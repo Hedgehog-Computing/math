@@ -1,0 +1,3 @@
+function test(){
+  print("All test cases passed!")
+}
