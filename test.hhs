@@ -1,3 +1,12 @@
 function test(){
+  
+  //cholesky not ready
+  //cholesky_test();
+  is_symmetric_test();
+  lup_test();
+  QR_test();
+  trace_test();
+  transpose_test();
+  
   print("All test cases passed!")
 }

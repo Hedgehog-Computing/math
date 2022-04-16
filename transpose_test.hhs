@@ -1,0 +1,35 @@
+//author Jason Reynolds
+
+//simple function for testing transpose of a matrix
+*import math:transpose
+
+function transpose_test(inputM) {
+
+    //check basic transpose 
+    if (!((transpose([[1,1,4],[4,3,12],[5,6,7]]) === ( [[1,4,5],[1,3,6],[4,12,7]]) ))) {
+        throw new Error('Unit test failed for transpose.')
+    }
+
+    //check input matrix is not modified after the execution of the transpose 
+if (!(inputM == null)) {
+    //make a copy before the transpose
+    let copy_input = Array(inputM.length).fill(0).map(() => Array(inputM[0].length));
+    for (i = 0; i <inputM.length; i++) {
+        for (j=0; j<inputM[0].length; j++) {
+            copy_input[i][j] = inputM[i][j];
+        }
+    }
+    //tranpose the matrix in question
+    let input_t = transpose(inputM);
+
+    //verify that the copy still matches inputM entry by entry
+    for (h=0; h<inputM.length;h++) {
+        for (k=0; k<inputM[0].length; k++) {
+            if (copy_input[h][k] !== inputM[h][k]) {
+                throw new Error('Unit test for transpose has failed, input was modified');
+            }
+        }
+    }
+}
+    
+}

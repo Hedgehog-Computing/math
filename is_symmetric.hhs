@@ -1,0 +1,41 @@
+//author Jason Reynolds
+/* Function to check if the matrix, raw array or Mat object is symmetric */
+
+//returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
+function is_symmetric(inputMatrix) {
+
+if (inputMatrix instanceof Mat) {
+    //boundary check , square matrix check
+  if(inputMatrix.rows !== inputMatrix.cols || inputMatrix.rows == 0 || inputMatrix.cols == 0) {
+      throw 'Either not square or 0 dimension row/cols'
+  }
+  //if the Mat object doesn't equal it's transpose, return false
+  if (!inputMatrix.equals(inputMatrix.transpose())) {
+    return false;
+  }
+  //otherwise if all above statements failed, then its of valid size and it's transpose is itself, it's symmetric
+  return true;
+}
+//in the case that if is bypassed and its not an instance of Mat by rather a raw array
+// just do similar work except use inputmatrix.length and inputmatrix[0].length
+
+if (inputMatrix.length !== inputMatrix[0].length || inputMatrix.length == 0 || inputMatrix[0].length == 0  ) {
+    throw 'Either not a square matrix or 0 dimension row/cols.'
+}
+//check if its symmetric i.e. if transpose is equal to itself, call the helper function transpose
+if (!inputMatrix !== transpose(inputMatrix)) {
+    return false;
+}
+    return true;
+}
+
+function transpose(inputM) {
+
+        for (i = 0; i < inputM.length; i++) {
+            for (j = 0; j < i;j++) {
+                let tmp = inputM[i][j];
+                inputM[i][j] = inputM[j][i];
+                inputM[j][i] = tmp;
+            }
+        }
+}
