@@ -1,0 +1,16 @@
+//author Jason Reynolds
+// simple test for checking symmetricity of a matrix, raw or Mat object
+
+*import math:is_symmetric
+
+function is_symmetric_test(inputMatrix) {
+
+    if (is_symmetric([[1,2,3],[1,2,3],[1,2,3]])) {
+        throw 'is_symmetric has failed the unit test'
+    }
+
+    if (!is_symmetric([[1,2,3],[2,1,4],[3,4,1]])) {
+        throw 'is_symmetric has failed the unit test'
+    }
+
+}
