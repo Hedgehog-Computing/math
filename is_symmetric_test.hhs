@@ -13,4 +13,12 @@ function is_symmetric_test(inputMatrix) {
         throw 'is_symmetric has failed the unit test'
     }
 
+    if (!is_symmetric(new Mat([[2,1],[1,2]]))) {
+        throw 'is_symmetric has failed unit test for mat obj'
+    }
+
+    if (is_symmetric(new Mat([[1,2,3],[1,2,3],[1,2,3]]))) {
+        throw 'is_symmetric has failed unit test for mat obj'
+    }
+
 }

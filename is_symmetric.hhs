@@ -4,6 +4,39 @@
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
 function is_symmetric(inputMatrix) {
 
+    //helper function for getting transpose. Gets it both if raw array or mat obj 
+    function transpose(inputM) {
+
+        if (inputM instanceof Mat) {
+            let raw_array_init = inputM.val;
+            for (i = 0; i < inputM.rows; i++) {
+                for (j=0; j<i; j++) {
+                    let tmp = raw_array_init[i][j];
+                    raw_array_init[i][j] = raw_array_init[j][i]
+                    raw_array_init[j][i] = tmp; 
+                }
+            }
+            return new Mat(raw_array_init);
+        }
+        else {
+            let copy_input = zeros(inputM.length).val;
+
+            for (h = 0; h < inputMatrix.length; h++) {
+                for (k = 0; k < inputMatrix[0].length; k++) {
+                    copy_input[h][k] = inputMatrix[h][k];
+                }
+            }
+            for (i = 0; i < inputM.length; i++) {
+                for (j = 0; j < i;j++) {
+                    let tmp = copy_input[i][j];
+                    copy_input[i][j] = copy_input[j][i];
+                    copy_input[j][i] = tmp;
+                }
+            }
+            return copy_input;
+        }
+
+    }
 if (inputMatrix instanceof Mat) {
     //boundary check , square matrix check
   if(inputMatrix.rows !== inputMatrix.cols || inputMatrix.rows == 0 || inputMatrix.cols == 0) {
@@ -16,6 +49,8 @@ if (inputMatrix instanceof Mat) {
   //otherwise if all above statements failed, then its of valid size and it's transpose is itself, it's symmetric
   return true;
 }
+
+else {
 //in the case that if is bypassed and its not an instance of Mat by rather a raw array
 // just do similar work except use inputmatrix.length and inputmatrix[0].length
 
@@ -23,19 +58,9 @@ if (inputMatrix.length !== inputMatrix[0].length || inputMatrix.length == 0 || i
     throw 'Either not a square matrix or 0 dimension row/cols.'
 }
 //check if its symmetric i.e. if transpose is equal to itself, call the helper function transpose
-if (!inputMatrix !== transpose(inputMatrix)) {
-    return false;
-}
+if (inputMatrix === transpose(inputMatrix)) {
     return true;
 }
-
-function transpose(inputM) {
-
-        for (i = 0; i < inputM.length; i++) {
-            for (j = 0; j < i;j++) {
-                let tmp = inputM[i][j];
-                inputM[i][j] = inputM[j][i];
-                inputM[j][i] = tmp;
-            }
-        }
+    return false;
+}
 }
