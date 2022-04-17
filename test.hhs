@@ -1,7 +1,6 @@
 function test(){
   
-  //cholesky not ready
-  //cholesky_test();
+  cholesky_test();
   is_symmetric_test();
   lup_test();
   QR_test();

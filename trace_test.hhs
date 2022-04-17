@@ -1,9 +1,12 @@
 //author Jason Reynolds
 /* simple test for trace of a matrix */
 
+
+*import math:trace
+
 function trace_test(a) {
 
-    if (trace_test([[2.1,3],[3,6.11]]) !== 8.21) {
+    if (trace([[2.1,3],[3,6.11]]) !== 8.21) {
         throw "Trace unit test has failed."
     }
 
