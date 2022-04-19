@@ -1,0 +1,33 @@
+//author Jason Reynolds
+//wrapper function for factorial of enumber or array, Mat or raw 
+
+function factorial(input) {
+
+    //isNumber
+    if (typeof input === "number" ) {
+        let result = mathjs.factorial(input);
+        return result;
+    }
+
+    if (input instanceof Mat) {
+
+        let result_array = zeros(input.rows, input.cols);
+        for (i = 0; i <input.rows; i++) {
+            for (j = 0; j < input.cols; j++) {
+                result_array.val[i][j] = mathjs.factorial(input.val[i][j]);
+            }
+        }
+        return result_array;
+
+    }
+
+    else {
+        let result_array = zeros(input.length, input[0].length);
+        for (i = 0; i< input.length; i++) {
+            for (j=0; j< input[0].length; j++) {
+                result_array.val[i][j] = mathjs.factorial(input[i][j]);
+            }   
+        }
+        return result_array;
+    }
+}
