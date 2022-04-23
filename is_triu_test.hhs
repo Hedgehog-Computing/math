@@ -7,7 +7,7 @@
  * Function for testing the is_tril.hhs function
  */
 
- *import math:is_triu;
+ *import math:is_triu
 
  function is_triu_test() {
  

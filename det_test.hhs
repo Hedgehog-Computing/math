@@ -6,7 +6,7 @@
  * Function for testing determinant of matrix
  */
 
-*import math:det;
+*import math:det
 
 function det_test() {
 

@@ -7,7 +7,7 @@
  */
 
 
-*import math:factorial;
+*import math:factorial
 
 function factorial_test() {
 
