@@ -9,7 +9,7 @@
 
 *import math:trace
 
-function trace_test(a) {
+function trace_test() {
 
     if (trace([[2.1,3],[3,6.11]]) !== 8.21) {
         throw "Trace unit test has failed."

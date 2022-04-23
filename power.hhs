@@ -30,10 +30,10 @@ function power(base, power) {
     if (is_number(base))  {
         return Number(Math.pow(base, power));
     }
-    /*if (istensor base) {
-
+    if (base instanceof Tensor) {
+        
     }
-    if(  base instanceof symbol ) {
+    /*if(  base instanceof symbol ) {
 
     }*/
 }
