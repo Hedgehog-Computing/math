@@ -8,7 +8,7 @@
  * Function similar to lusolve - it solves an nxn matrix exquation Ax = b for x. May work faster but only allows lower triangular matrices as input
  */
 
-*import math:is_tril;
+*import math:is_tril
 
  function lsolve(inputM, inputCol) {
 
