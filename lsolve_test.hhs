@@ -9,7 +9,7 @@
 
 
 
-*import math:lsolve;
+*import math:lsolve
 
 function lsolve_test() {
 

@@ -6,7 +6,7 @@
  * Function for testing dot_divide.hhs
  */
 
-*import math:dot_divide;
+*import math:dot_divide
 
 function dot_divide_test() {
 

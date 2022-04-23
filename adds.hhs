@@ -9,17 +9,22 @@
 * @return Mat returns a Mat object for the user to see their matrix as a Mat object
 */
 
+*import math:is_number
+
 function adds(add_constant, input) {
 
-    if (adds_constant.isNumber())
+    if (!(is_number(add_constant))) {
+        throw new Error('constant is not a number');
+    }
     //in the case that the input is a Mat object 
     if (input instanceof Mat) {
         //copy over the value of Mat to a raw 2d array
         let result_array = input.val;
         //iterate through the array and add the constant to each element
-        for (i=0; i<input.rows; i++) {
-            for (j=0;j<input.cols;j++) {
-                result_array[i][j] += add_constant;
+        let input_col = result_array.map(e=>e[0]);
+        for (i=0; i<result_array.length; i++) {
+            for (j=0;j<input_col.length;j++) {
+                result_array[i][j] = result_array[i][j]+add_constant;
             }
         }
         //return the array as a Mat
@@ -27,22 +32,23 @@ function adds(add_constant, input) {
     }
     //otherwise, when a raw 2d array
     else {
+        let result_col = input.map(e=>e[0]);
         //initalize an array of the correct size full of zeros
-        let result_array = zeros(input.length, input[0].length);
+        let result_array = zeros(input.length, result_col.length).val;
         //copy the inputs values to the eventually returning array. 
         //purpose being to avoid handling input data and instead copy it and work on the copy
         for (i = 0; i < input.length; i++) {
-            for (j = 0; j< input.length; j++) {
-                result_array.val[i][j] = input[i][j];
+            for (j = 0; j< result_col.length; j++) {
+                result_array[i][j] = input[i][j];
             }
         }
         //use the copied array and add the constant through a loop
         for (h = 0; h<input.length; h++) {
-            for (k=0; k<input.length;k++) {
-                result_array.val[i][j] += add_constant;
+            for (k=0; k<result_col.length;k++) {
+                result_array[h][k] = result_array[h][k]+add_constant;
             }
         }
-        //return it. It is already of Mat type since intitialized by zeros()
-        return result_array;
+        //return it. Make it Mat type since intitialized by zeros() non mat-type
+        return new Mat(result_array);
     }
 }

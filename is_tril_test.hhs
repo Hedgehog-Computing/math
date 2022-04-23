@@ -6,7 +6,7 @@
  * Function for testing the is_tril.hhs function
  */
 
-*import math:is_tril;
+*import math:is_tril
 
 function is_tril_test() {
 

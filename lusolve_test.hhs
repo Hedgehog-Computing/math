@@ -7,7 +7,7 @@
 * Function that's a unit test for lusolve.hhs. Tests if it gives the correct answer and if it accepts both array and Mat object
 */
 
-*import math:lusolve;
+*import math:lusolve
 
 function lusolve_test() {
 

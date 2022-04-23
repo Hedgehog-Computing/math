@@ -6,7 +6,7 @@
  * Function unit test for power. Includes a test for matrices and numbers.
  */
 
-*import math:power;
+*import math:power
 
 function power_test() {
 
