@@ -11,9 +11,9 @@
 function lup_test () {
 
     let a = [[1,2],[4,5]];
-    if (  lup(a).L !== [[1,0],[0.25,1]] ||
-    lup(a).U !== [[4,5],[0,0.75]] ||
-    lup(a).p !== [[1,0]]  ) {
+    if (  !(lup(a).L === [[1,0],[0.25,1]]) ||
+    !(lup(a).U === [[4,5],[0,0.75]]) ||
+    !(lup(a).p === [[1,0]])  ) {
         throw new Error('LUP unit test failed.Note there may be multiple answers to 1 solution by different factors.');
     }
     
