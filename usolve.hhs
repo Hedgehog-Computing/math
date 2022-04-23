@@ -8,8 +8,9 @@
  * Function similar to lsolve - it solves an nxn matrix exquation Ax = b for x. May work faster but only allows upper triangular matrices as input
  */
 
- *import math:is_triu;
+ *import math:is_triu
 
+ //function to solve Ax=b using upper triangular matrix 
  function usolve(inputM, inputCol) {
 
     //make sure that the input array is upper triangular
