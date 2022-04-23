@@ -12,7 +12,7 @@ function power_test() {
 
     let a = 3;
     let b = 4;
-    if (power(b,a) !== 64) {
+    if (!(power(b,a) === 64)) {
         throw new Error('Unit test failed for numbers power test');
     }
     let c = new Mat([[3,2],[4,1]]);

@@ -3,7 +3,7 @@
 
 *import math:cholesky
 
-function cholesky_test(a) {
+function cholesky_test() {
 
     //see if the cholesky value returns the correct results for a raw array
     if ((!(cholesky([[2,1],[1,2]]) === [[1.414,0.707],[0,1.225]]))) {

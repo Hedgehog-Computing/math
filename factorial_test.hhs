@@ -11,7 +11,7 @@
 
 function factorial_test() {
 
-        if (factorial(5) !== 120) {
+        if (!(factorial(5) === 120)) {
             throw new Error('factorial unit test failed for number.');
         }
 

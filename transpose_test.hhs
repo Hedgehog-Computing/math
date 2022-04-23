@@ -33,7 +33,7 @@ let a = [[2,3],[1,2]];
     //verify that the copy still matches inputM entry by entry
     for (h=0; h<a.length;h++) {
         for (k=0; k< a[0].length; k++) {
-            if (copy_input[h][k] !== a[h][k]) {
+            if (!(copy_input[h][k] === a[h][k])) {
                 throw new Error('Unit test for transpose has failed, input was modified');
             }
         }
