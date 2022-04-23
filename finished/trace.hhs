@@ -1,6 +1,11 @@
-//author Jason Reynolds
+/**
+ * @author Jason Reynolds
+ * @param inputMatrix - the matrix to evaluate the trace on (sum of diagonal values), has to be square
+ * @returns - a number which is the sum of the diagonal entries on the matrix, the trace
+ * 
+ * Simple function for determining the trace of a matrix
+ */
 
-/* simple function for determining the trace of a matrix */
 
 //input is raw array or Mat obj, returns the trace value
 function trace(inputMatrix) {

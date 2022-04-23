@@ -1,0 +1,48 @@
+/*
+*  Function: adds
+*  This function is simply to add a constant to a matrix element-wise. 
+*  The input can be a matrix or Mat object and the output is a Mat object.
+*
+* @author Jason Reynolds
+* @param add_constant the constant that you would like to add to the matrix, element-wise
+* @param input the incoming input which can be a matrix, Mat or later a tensor
+* @return Mat returns a Mat object for the user to see their matrix as a Mat object
+*/
+
+function adds(add_constant, input) {
+
+    if (adds_constant.isNumber())
+    //in the case that the input is a Mat object 
+    if (input instanceof Mat) {
+        //copy over the value of Mat to a raw 2d array
+        let result_array = input.val;
+        //iterate through the array and add the constant to each element
+        for (i=0; i<input.rows; i++) {
+            for (j=0;j<input.cols;j++) {
+                result_array[i][j] += add_constant;
+            }
+        }
+        //return the array as a Mat
+        return new Mat(result_array);
+    }
+    //otherwise, when a raw 2d array
+    else {
+        //initalize an array of the correct size full of zeros
+        let result_array = zeros(input.length, input[0].length);
+        //copy the inputs values to the eventually returning array. 
+        //purpose being to avoid handling input data and instead copy it and work on the copy
+        for (i = 0; i < input.length; i++) {
+            for (j = 0; j< input.length; j++) {
+                result_array.val[i][j] = input[i][j];
+            }
+        }
+        //use the copied array and add the constant through a loop
+        for (h = 0; h<input.length; h++) {
+            for (k=0; k<input.length;k++) {
+                result_array.val[i][j] += add_constant;
+            }
+        }
+        //return it. It is already of Mat type since intitialized by zeros()
+        return result_array;
+    }
+}

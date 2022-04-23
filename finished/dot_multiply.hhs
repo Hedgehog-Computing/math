@@ -1,0 +1,36 @@
+/**
+ * Function - dot_multiply : multiplies two matrices element-wise, as in multiplies A[0][0] * B[0][0] = result[0][0], and so on..
+ * 
+ * @author Jason Reynolds
+ * @params 2 matrices of the same dimensions
+ * @returns a matrix of the same dimension with the element wise multiplied results
+ * 
+ * 
+ * 
+ */
+
+function dot_multiply(A, B) {
+
+    //turn down A, B into raw arrays
+    if (A instanceof Mat) {
+        A = A.val;
+    }
+    if (B instanceof Mat) {
+        B = B.val;
+    }
+    const a_col = A.map(e => e[0]);
+    const b_col = B.map(e => e[0]);
+
+    if (A.length !== B.length || a_col.length !== b_col.length) {
+        throw new Error('Matrix input are of different dimensions')
+    }
+
+    let result = zeros(A.length, a_col.length).val;
+
+    for (i = 0; i< A.length; i++) {
+        for (j = 0; j< a_col.length;j++) {
+            result[i][j] = A[i][j]*B[i][j];
+        }
+    }
+    return new Mat(result);
+}

@@ -1,5 +1,8 @@
-//author Jason Reynolds
-/* simple wrapper function for lup mathjs */
+/**
+ * @author Jason Reynolds
+ * @params - inputMatrix the matrix to be decomposed into L, U and p
+ * @returns - 3 objects of type Mat - L, U and p. A lower triangular matrix, upper triangular and p
+ */
 
 //takes in raw array or Mat object and return L, U, p as decomposed objects
 function lup(inputMatrix){

@@ -1,8 +1,13 @@
-//author Jason Reynolds
-/*simple function to transpose a matrix */
+/**
+ * @author Jason Reynolds
+ * @param inputMatrix - the matrix to transpose, aka make columns rows and rows columns must be square
+ * @returns - the transposed matrix, as a Mat object
+ * 
+ * Simple function that transposes a matrix and returns it 
+ */
 
 
-//takes in a square function, returns the transpose of it 
+//takes in a square matrix, returns the transpose of it 
 function transpose(inputMatrix) {
     //in the case that the transpose is done on a mat obj
     if (inputMatrix instanceof Mat) {

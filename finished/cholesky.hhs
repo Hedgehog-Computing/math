@@ -1,3 +1,12 @@
+/**
+ * 
+ * Function for decomposing a matrix via cholesky method, returning the L in the L*L^T part. 
+ * Note: Mathjs returns L^T by default so it is transposed by default to get L
+ * @author Xinran Wang, Jason Reynolds
+ * @param inputMatrix the matrix to be decomposed into L 
+ * @returns the cholesky decomposition's L part
+ */
+
 function cholesky(inputMatrix) {
 
     //helper function to get the transpose of matrices

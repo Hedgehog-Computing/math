@@ -1,0 +1,24 @@
+/**
+ * Function for determining if a data type is of 'number', i.e. typical non finite number
+ * 
+ * Original author:  * is-number <https://github.com/jonschlinkert/is-number>
+ *
+ * Copyright (c) 2014-present, Jon Schlinkert.
+ * Released under the MIT License.
+ * 
+ * @param input the value to check if its a number
+ * @returns boolean true or false depending if its evaluated to be a number or not. Note that NaN, and infinity are not numbers
+ */
+
+'use strict';
+
+function is_number(input) {
+
+    if (typeof input === 'number') {
+        return input - input === 0;
+    }
+    if (typeof input === 'string' && input.trim() !== '') {
+        return Number.isFinite ? Number.isFinite(+input) : isFinite(+input)
+    }
+    return false;
+}
