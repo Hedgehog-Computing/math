@@ -7,7 +7,7 @@
  * Function wrapper for mathjs pow function. Also works for matrices
  */
 
-*import math:is_number;
+*import math:is_number
 
 function power(base, power) {
 
