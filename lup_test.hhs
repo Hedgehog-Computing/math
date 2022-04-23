@@ -8,7 +8,7 @@
 
 *import math:lup
 
-function lup_test (a) {
+function lup_test () {
 
     let a = [[1,2],[4,5]];
     if (  lup(a).L !== [[1,0],[0.25,1]] ||
