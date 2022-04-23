@@ -1,11 +1,29 @@
+/**
+ * @author Jason Reynolds, ...
+ * 
+ * Function for testing all unit tests 
+ */
+
 function test(){
   
+
+  adds_test();
   cholesky_test();
+  det_test();
+  dot_divide_test();
+  dot_multiply_test();
+  factorial_test();
   is_symmetric_test();
+  is_tril_test();
+  is_triu_test();
+  lsolve_test();
   lup_test();
+  lusolve_test();
+  power_test();
   QR_test();
   trace_test();
   transpose_test();
+  usolve_test();
   
   print("All test cases passed!")
 }

@@ -1,9 +1,14 @@
-
-//function for checking transpose and making sure it doesn't modify original input 
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function for checking transpose.hhs and making sure it doesnt modify original input
+ */
 
 *import math:transpose
 
-function transpose_test(inputM) {
+function transpose_test() {
 
     //check basic transpose 
     if (!((transpose([[1,1,4],[4,3,12],[5,6,7]]) === ( [[1,4,5],[1,3,6],[4,12,7]]) ))) {

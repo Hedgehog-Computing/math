@@ -1,0 +1,39 @@
+/**
+ * @author Jason Reynolds
+ * @param base - the base to be taken to an exponent. can be a matrix, tensor, symbol, or number
+ * @param power - the exponent to take the base to, needs to be a number
+ * @returns - the value of the raised number, the multiplied power-wise element-wise matrix or tensor and symbolic powered value
+ * 
+ * Function wrapper for mathjs pow function. Also works for matrices
+ */
+
+*import math:is_number;
+
+function power(base, power) {
+
+    if (!(typeof power === 'number')) {
+        throw new Error('power needs to be a number');
+    }
+    if (base instanceof Mat || Array.isArray(base) ) {
+        if (base instanceof Mat) {
+            base = base.val;
+        }
+        const base_col = base.map(e => e[0]);
+        result = zeros(base.length, base_col.length).val;
+        for (i = 0; i< base.length; i++) {
+            for (j = 0; j< base_col.length;j++) {
+                result[i][j] = Math.pow(base[i][j], power);
+            }
+        }
+        return new Mat(result);
+    }
+    if (is_number(base))  {
+        return Number(Math.pow(base, power));
+    }
+    /*if (istensor base) {
+
+    }
+    if(  base instanceof symbol ) {
+
+    }*/
+}

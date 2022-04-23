@@ -1,5 +1,11 @@
-//author Jason Reynolds
-//test for factorial.hhs
+/**
+ * @author Jason Reynolds
+ * @param 
+ * @returns
+ * 
+ * Function for testing factorial.hhs
+ */
+
 
 *import math:factorial;
 

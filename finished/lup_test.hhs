@@ -1,5 +1,11 @@
-//author Jason Reynolds
-//simple test for lup wrapper
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function thats a unit test for the lup function/wrapper
+ */
+
 *import math:lup
 
 function lup_test (a) {

@@ -1,5 +1,12 @@
-//author Jason Reynolds
-/* Function to check if the matrix, raw array or Mat object is symmetric */
+/**
+ * @author Jason Reynolds
+ * @param inputMatrix the matrix to check if it's symmetric, needs to be square
+ * @returns a boolean value, true or false, depending on if if inputMatrix is symmetric or not 
+ * 
+ * Function to check if the matrix, raw array or Mat object is symmetric 
+ * 
+ */
+
 
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
 function is_symmetric(inputMatrix) {

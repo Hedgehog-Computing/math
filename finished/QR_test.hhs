@@ -1,9 +1,14 @@
-//author Jason Reynolds
-// Quick test on qr.hhs 
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function unit test for QR, makes sure it decomposes the right answer for both Q and R with hedgehog's built in tolerance level
+ */
 
 *import math:QR
 
-function QR_test(inputM) {
+function QR_test() {
     if (QR([[1,-1,4],[1,4,-2],[1,4,2],[1,-1,0]]).R.val === [[2,3,2],[0,5,-2],[0,0,4],[0,0,0]]) {
         
     }

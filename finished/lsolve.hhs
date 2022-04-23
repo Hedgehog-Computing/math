@@ -1,0 +1,37 @@
+/**
+ * @author Jason Reynolds
+ * 
+ * @param inputM - the matrix part of the equation Ax=b to be solved for x. Is strictly lower triangular in lsolve (see lusolve for other)
+ * @param inputCol - the column part, b, of the equation Ax = b, to be solved for x. Has to be of size A.length
+ * @returns - Matrix that has dimensions A.length x 1 (column vector) with the answers to the linear equation systems ie it is unknown x in Ax=b
+ * 
+ * Function similar to lusolve - it solves an nxn matrix exquation Ax = b for x. May work faster but only allows lower triangular matrices as input
+ */
+
+*import math:is_tril;
+
+ function lsolve(inputM, inputCol) {
+
+    //make sure that the input array is lower triangular
+    if (!(is_tril(inputM))) {
+        throw new Error('Non lower triangular matrix in input');
+    }
+    //if any input is Mat, turn it down into raw array
+    if (inputM instanceof Mat) {
+        inputM = inputM.val;
+    }
+    if (inputCol instanceof Mat) {
+        inputCol = inputCol.val;
+    }
+
+    //make sure they are correct dimensions, has to be square matrix 
+    const arr_col = inputM.map(e => e[0]);
+    const col_vec = inputCol.map(e => e[0]);
+    if (inputM.length == 0 || inputM[0].length == 0 || inputM.length !== arr_col.length || col_vec.length !== inputM.length) {
+        throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
+    }
+    //define the result to be the lusolve output ie the solution
+    let result = mathjs.lsolve(inputM, inputCol);
+    //return it as a Mat object
+    return new Mat(result);
+}

@@ -1,5 +1,10 @@
-//author Jason Reynolds
-/* simple test for trace of a matrix */
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function unit test for trace, determines if it's adding up the diagonal entries correctly
+ */
 
 
 *import math:trace

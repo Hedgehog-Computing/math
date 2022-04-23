@@ -1,6 +1,12 @@
-//author Jason Reynolds
-/*simple js wrapper for QR function*/
-/*function that takes in a raw or object matrix, decomposes it using QR method, and return the Q and R as objects*/
+/**
+ * @author Jason Reynolds
+ * @param inputMatrix - the matrix to be decomposed via the QR method
+ * @returns - 2 object values of type Mat, Q and R, the matrices it decomposes inputMatrix into
+ * 
+ * simple js wrapper for QR function
+ * function that takes in a raw or object matrix, decomposes it using QR method, and return the Q and R as objects
+ */
+
 function QR(inputMatrix){
     //in the case of the instance being a Mat object rather than a raw array
     if (inputMatrix instanceof Mat){

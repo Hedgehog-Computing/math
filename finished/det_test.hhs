@@ -1,5 +1,12 @@
-//author Jason Reynolds
-//function test for det wrapper function
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function for testing determinant of matrix
+ */
+
+*import math:det;
 
 function det_test() {
 

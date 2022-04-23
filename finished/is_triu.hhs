@@ -1,0 +1,46 @@
+/**
+ * @author Jason Reynolds
+ * 
+ * @param input - matrix to determine if its upper triangular or not
+ * @returns - a boolean value true or false depending if its upper triangular or not 
+ * 
+ * Function : is_triu - a boolean function to determine if a square matrix is upper triangular or not. Counter part to is_tril (lower triangular)
+ * Done by cutting a square portion of the upper triangular matrix and then checking the upper triangular explicit entries
+ * 
+ */
+
+ function is_triu(input) {
+
+    //turn Mat down to raw array in case it isn't 
+    if (input instanceof Mat) {
+        input = input.val;
+    }
+    const arr_col = input.map(e => e[0]);
+    //need a square matrix, non empty, as input
+    if (input.length == 0 || input[0].length == 0 || input.length !== arr_col.length) {
+        throw new Error('Wrong dimensions. Needs a square matrix as input');
+    }
+    //get a raw array of correct size initiliazed
+    let copy_input = zeros(input.length, input[0].length).val;
+    for (i = 0; i < input.length; i++) {
+        for (j = 0; j<input[0].length; j++) {
+            copy_input[i][j] = input[i][j];
+        }
+    }
+    //iterate through array and if you spot a non-zero entry in a spot in the upper triangular region, return false
+    //cut a sub matrix in the upper triangular region
+
+    //reason being dont want to copy the whole array if its large, theres definitely more efficient ways to do it 
+    for (k = 0; k < copy_input.length-1; k++) {
+        for (h = 1; h<copy_input.length; h++) {
+            //when in the tringaular zone exactly
+            if (h > k) {
+                if (!(copy_input[h][k] == 0)) {
+                    return false;
+                }
+            }
+        }
+    }
+    //if it goes through the whole loop just fine then all the lower triangular entries are zero
+    return true;
+}

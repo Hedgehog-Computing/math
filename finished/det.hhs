@@ -1,6 +1,12 @@
-//author Jason Reynolds
+/**
+ * @author Jason Reynolds
+ * @param input the square matrix to take in and find the determinant of
+ * @returns the determinant of the matrix, as a number
+ * 
+ * functions finds determinant of a matrix, wrapper functions from mathjs
+ */
 
-//functions finds determinant of a matrix, wrapper functions from mathjs
+
 
 function det(input) {
 
