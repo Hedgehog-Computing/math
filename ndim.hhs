@@ -1,0 +1,46 @@
+/**
+ * @author Jason Reynolds
+ * @param - input - the matrix or tensor or list to enter to verify the dimension of 
+ * @returns a number, that is the dimension of the structure. for example a 2d array is 2 dimensions. a list is 1 dim, a 3d array (tensor) is 3 dim, etc
+ * 
+ * Function that takes in a structure namely a list, matrix, or tensor and returns the dimension of said structure
+ */
+
+*import math: is_number
+
+function ndim(input) {
+
+    let in_type = (input instanceof Mat)
+    let raw_in = (in_type) ? input.clone() : input;
+
+    if (Array.isArray(input) || (input instanceof Mat) || (input instanceof Tensor)) {
+
+        if (input instanceof Mat || input instanceof Tensor) {
+            //need to separate it for clone and copy 
+            raw_in = raw_in.val;
+        }
+        let dims = [];
+        for (let i = 0; i < raw_in.length; i++) {
+            dims.push(raw_in.length);
+
+            if (Array.isArray(raw_in[0])) {
+                raw_in = raw_in[0];
+            } else {
+                break;
+            }
+        }
+        return dims.length;
+    }
+    else if (input instanceof Tensor) {
+        raw_in = raw_in.val;
+        return (raw_in.shape.length);
+    }
+
+    else if (is_number(input)) {
+        return 0;
+    }
+
+    else {
+        return NaN;
+    }
+}

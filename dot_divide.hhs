@@ -7,27 +7,29 @@
  * 
  */
 
- function dot_divide(A, B) {
+function dot_divide(A, B) {
 
-    //turn down A, B into raw arrays
+    let in_type_A = (A instanceof Mat);
+    let in_type_B = (B instanceof Mat);
+    let raw_in_a = (in_type_A) ? A.clone() : A;
+    let raw_in_b = (in_type_B) ? B.clone() : B;
+
     if (A instanceof Mat) {
-        A = A.val;
+        raw_in_a = raw_in_a.val;
     }
     if (B instanceof Mat) {
-        B = B.val;
+        raw_in_b = raw_in_b.val
     }
-    const a_col = A.map(e => e[0]);
-    const b_col = B.map(e => e[0]);
 
-    if (A.length !== B.length || a_col.length !== b_col.length) {
+    if (!(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
         throw new Error('Matrix input are of different dimensions')
     }
 
-    let result = zeros(A.length, a_col.length).val;
+    let result = zeros(raw_in_a.length, raw_in_a[0].length).val;
 
-    for (i = 0; i< A.length; i++) {
-        for (j = 0; j< a_col.length;j++) {
-            result[i][j] = A[i][j]/B[i][j];
+    for (let i = 0; i < raw_in_a.length; i++) {
+        for (let j = 0; j < raw_in_a[0].length; j++) {
+            result[i][j] = raw_in_a[i][j] / raw_in_b[i][j];
         }
     }
     return new Mat(result);

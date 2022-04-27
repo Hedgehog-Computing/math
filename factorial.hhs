@@ -1,33 +1,32 @@
 //author Jason Reynolds
 //wrapper function for factorial of enumber or array, Mat or raw 
 
+*import math: is_number
+*import math: ndim
+
+
 function factorial(input) {
 
-    //isNumber
-    if (typeof input === "number" ) {
-        let result = mathjs.factorial(input);
-        return result;
+    //doesnt support tensors yet 
+    let in_type = (input instanceof Mat || input instanceof Tensor)
+    let raw_in = (in_type) ? input.clone() : input;
+
+
+    if (ndim(input) === 1) {
+        if (is_number(input)) {
+            return (mathjs.factorial(raw_in));
+        }
     }
-
-    if (input instanceof Mat) {
-
-        let result_array = zeros(input.rows, input.cols);
-        for (i = 0; i <input.rows; i++) {
-            for (j = 0; j < input.cols; j++) {
-                result_array.val[i][j] = mathjs.factorial(input.val[i][j]);
+    if (ndim(input) >= 2) {
+        if (input instanceof Mat) {
+            raw_in = raw_in.val;
+        }
+        let result_array = zeros(raw_in.length, raw_in[0].length);
+        for (let i = 0; i < raw_in.length; i++) {
+            for (let j = 0; j < raw_in[0].length; j++) {
+                result_array.val[i][j] = mathjs.factorial(raw_in[i][j]);
             }
         }
-        return result_array;
-
-    }
-
-    else {
-        let result_array = zeros(input.length, input[0].length);
-        for (i = 0; i< input.length; i++) {
-            for (j=0; j< input[0].length; j++) {
-                result_array.val[i][j] = mathjs.factorial(input[i][j]);
-            }   
-        }
-        return result_array;
+        return (result_array);
     }
 }

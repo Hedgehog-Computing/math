@@ -1,0 +1,33 @@
+/**
+ * @author Jason Reynolds
+ * @param - input - the matrix to be inverted
+ * @returns - the inverted matrix
+ * 
+ * Function that given a square invertible matrice, it will return the inverted matrix
+ */
+
+*import math: ndim
+*import math: det
+
+function inv(input) {
+
+    let in_type = (input instanceof Mat)
+
+    let raw_in = (in_type) ? input.clone() : input;
+
+    if (input instanceof Mat) {
+        raw_in = raw_in.val;
+    }
+    if (!(ndim(input) === 2)) {
+        throw new Error('Not a 2d matrix, either wrong formatting or wrong dimensions')
+    }
+    if (!(raw_in.length === raw_in[0].length)) {
+        throw new Error('Not a square matrix');
+    }
+    if (det(raw_in) === 0) {
+        throw new Error('Det is zero, not invertible');
+    }
+    if (ndim(raw_in) === 2 || input instanceof Mat) {
+        return new Mat(mathjs.inv(raw_in));
+    }
+}

@@ -1,0 +1,36 @@
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function wrapper mathjs for flattening a multi dim matrix into a 1d matrix/array
+ * 
+ * 
+ */
+
+*import math: ndim
+
+function flatten(input) {
+
+    let in_type = (input instanceof Mat || input instanceof Tensor);
+    let raw_input = (in_type) ? input.clone() : input;
+
+    if (input instanceof Mat || input instanceof Tensor) {
+        raw_input = raw_input.val;
+        return mathjs.flatten(raw_input);
+    }
+    else if (ndim(input) >= 2) {
+        return mathjs.flatten(raw_input);
+    }
+    else if (is_number(input)) {
+        let result = [];
+        result.push(input);
+        return result;
+    }
+    else if (ndim(input) === 1) {
+        return input;
+    }
+    else {
+        throw new Error('Wrong dimensions or structure of input');
+    }
+}

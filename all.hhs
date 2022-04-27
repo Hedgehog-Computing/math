@@ -1,0 +1,36 @@
+/** 
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function for importing all math routines/functions, done by calling '*import math:all'
+ */
+
+
+ *import math:cholesky
+ *import math:det
+ //import math:diagn --> base
+ *import math:dot_divide
+ *import math:dot_multiply
+ *import math:factorial
+ *import math:flatten 
+ *import math:inv 
+ *import math:is_number 
+ *import math:is_symmetric
+ *import math:is_tril
+ *import math:is_triu
+ *import math:lsolve
+ *import math:lup
+ *import math:lusolve
+ *import math:ndim 
+ //import math:ones --> base
+ //import math:power --> base
+ *import math:QR
+ *import math:sum
+ *import math:trace
+ *import math:transpose
+ *import math:usolve
+ //import math:power --> base
+
+ 
+ 

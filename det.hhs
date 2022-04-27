@@ -10,23 +10,28 @@
 
 function det(input) {
 
+    let in_type = (input instanceof Mat);
+    let raw_in = (in_type) ? input.clone() : input;
+
     if (input instanceof Mat) {
 
-        if (input.rows == 0 || input.cols == 0 || input.rows !== input.cols) {
+        if (input.rows === 0 || input.cols === 0 || !(input.rows === input.cols)) {
             throw new Error('Wrong dimensions for input');
         }
-        let raw = input.val;
-        let result = mathjs.det(raw);
+        raw_in = raw_in.val;
+        let result = mathjs.det(raw_in);
         return result;
 
     }
 
-    else {
-        if (input.length == 0 || input[0].length == 0 || input.length !== input[0].length) {
+    else if (Array.isArray(input)) {
+        if (input.length === 0 || input[0].length === 0 || !(input.length === input[0].length)) {
             throw new Error('Wrong dimensions');
         }
         let result = mathjs.det(input);
         return result;
-
+    }
+    else {
+        throw new Error('Not a JavaScript matrix or Mat object');
     }
 }

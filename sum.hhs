@@ -1,0 +1,80 @@
+/**
+ * @author Jason Reynolds
+ * @param
+ * @returns
+ * 
+ * Function that takes in a list or matrix/submatrix or tensor/subtensor and returns the sum of all entries, using mathjs.sum
+ * 
+ * 
+ *   consider pulling functions from here for basic use since javascript doesnt use scalars as 1d arrays
+ * 
+ *  could also consider flatten() -> sum
+ */
+
+*import math: is_number
+*import math: flatten
+*import math: ndim
+
+function sum(input) {
+    if (arguments.length === 0) {
+        throw new Error('No argument given');
+    }
+    if (is_number(arguments[0])) {
+        for (let i = 0; i < arguments.length; i++) {
+            if (!(is_number(arguments[i]))) {
+                throw new Error('First argument suggests a list, but there is a non number element in arguments.');
+            }
+        }
+        let result = 0;
+        for (let j = 0; j < arguments.length; j++) {
+            result += arguments[j];
+        }
+        return result;
+    }
+    //return mathjs.sum(input)
+    let in_type = (input instanceof Mat);
+    let raw_in = (in_type) ? input.clone() : input;
+
+    if (arguments.length === 1 && (Array.isArray(arguments[0]) || arguments[0] instanceof Mat)) {
+        if (arguments[0] instanceof Mat) {
+            raw_in = raw_in.val;
+        }
+        //how to jump to differnet line of code?
+
+        //useful for later possibly, number of wrapped arrays in array
+        //let num_wrap = arguments[0].filter(Array.isArray).length
+
+        /*let num_wrap = (arguments[0].map(e=>e[0]))
+        num_wrap = num_wrap.length;
+        print(num_wrap)*/
+        let dims = ndim(input)
+        if (dims === 1) {
+            let result2 = 0;
+            for (let k = 0; k < arguments[0].length; k++) {
+                result2 = result2 + arguments[0][k];
+            }
+
+            return result2;
+        }
+        //if number of wrappings is 1, we have 2d array, if higher its tensor
+        else if (dims === 2) {
+            let result3 = 0;
+            for (let h = 0; h < arguments[0].length; h++) {
+                for (let g = 0; g < arguments[0][0].length; g++) {
+                    result3 += arguments[0][h][g];
+                }
+            }
+            return result3;
+        }
+
+        else if (input instanceof Tensor || (dims > 2 && is_number(dims))) {
+            raw_in = flatten(raw_in);
+            //is now in a 1d raw format
+            let result4 = 0;
+            for (let n = 0; n < input.length; n++) {
+                result4 += input[n];
+            }
+            return result4;
+        }
+    }
+}

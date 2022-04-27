@@ -12,40 +12,41 @@ function transpose(inputMatrix) {
     //in the case that the transpose is done on a mat obj
     if (inputMatrix instanceof Mat) {
 
-       if (inputMatrix.rows == 0 || inputMatrix.cols == 0 || inputMatrix.rows !== inputMatrix.cols ) {
-           throw new Error('Input matrix is not square or has bad dimensions'+inputMatrix);
-       } 
-       let raw_array_init = inputMatrix.val;
-        for (i = 0; i < inputMatrix.rows; i++) {
-            for (j=0; j< i; j++) {
+        if (inputMatrix.rows === 0 || inputMatrix.cols === 0 || inputMatrix.rows !== inputMatrix.cols) {
+            throw new Error('Input matrix is not square or has bad dimensions' + inputMatrix);
+        }
+        let raw_array_init = inputMatrix.clone();
+        raw_array_init = raw_array_init.val;
+        for (let i = 0; i < inputMatrix.rows; i++) {
+            for (let j = 0; j < i; j++) {
                 let tmp = raw_array_init[i][j];
                 raw_array_init[i][j] = raw_array_init[j][i];
-                raw_array_init[j][i] = tmp; 
+                raw_array_init[j][i] = tmp;
             }
         }
         return new Mat(raw_array_init);
     }
     //in the case that the transpose is done on a raw array 
     else {
-    if (inputMatrix.length == 0 || inputMatrix[0].length == 0 || inputMatrix.length !== inputMatrix[0].length) {
-        throw new Error('Input matrix is not square or has bad dimensions'+inputmatrix);
-    }
-    //let copy_input = Array(inputMatrix.length).fill(0).map(() => Array(inputMatrix[0].length));
-    let copy_input = zeros(inputMatrix.length, inputMatrix.length).val;
-
-    for (h = 0; h < inputMatrix.length; h++) {
-        for (k = 0; k < inputMatrix[0].length; k++) {
-            copy_input[h][k] = inputMatrix[h][k];
+        if (inputMatrix.length == 0 || inputMatrix[0].length == 0 || inputMatrix.length !== inputMatrix[0].length) {
+            throw new Error('Input matrix is not square or has bad dimensions' + inputmatrix);
         }
-    }
+        //let copy_input = Array(inputMatrix.length).fill(0).map(() => Array(inputMatrix[0].length));
+        let copy_input = zeros(inputMatrix.length, inputMatrix.length).val;
 
-    for (i = 0; i < inputMatrix.length; i++) {
-        for (j=0; j<i;j++) {
-            let tmp = copy_input[i][j];
-            copy_input[i][j] = copy_input[j][i];
-            copy_input[j][i] = tmp;
+        for (h = 0; h < inputMatrix.length; h++) {
+            for (k = 0; k < inputMatrix[0].length; k++) {
+                copy_input[h][k] = inputMatrix[h][k];
+            }
         }
+
+        for (i = 0; i < inputMatrix.length; i++) {
+            for (j = 0; j < i; j++) {
+                let tmp = copy_input[i][j];
+                copy_input[i][j] = copy_input[j][i];
+                copy_input[j][i] = tmp;
+            }
+        }
+        return new Mat(copy_input);
     }
-    return new Mat(copy_input);
-}
 }

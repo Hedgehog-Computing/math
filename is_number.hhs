@@ -17,7 +17,7 @@ function is_number(input) {
     if (typeof input === 'number') {
         return input - input === 0;
     }
-    if (typeof input === 'string' && input.trim() !== '') {
+    if (typeof input === 'string' && !(input.trim() === '')) {
         return Number.isFinite ? Number.isFinite(+input) : isFinite(+input)
     }
     return false;
