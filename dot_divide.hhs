@@ -2,18 +2,24 @@
  * Function - dot_divide : divides two matrices element-wise, as in divides A[0][0] / B[0][0] = result[0][0], and so on..
  * 
  * @author Jason Reynolds
- * @params 2 matrices of the same dimensions
+ * @param A - matrix to be the numerator of the division operation. Must be same size as B.
+ * @param B - matrix to be the denominator of the division operation. Must be same size as A. 
  * @returns a matrix of the same dimension with the element wise divided results
  * 
+ * This function takes two matrix like structures and divides them element-wise. The left hand side argument is the numerator, the right, denominator.
  */
+
+//Note: need to add tensor support
 
 function dot_divide(A, B) {
 
+    //declare raw_in_a and raw_in_b to be either clones of respective inputs or inputs themselves depending on if Mat or not
     let in_type_A = (A instanceof Mat);
     let in_type_B = (B instanceof Mat);
     let raw_in_a = (in_type_A) ? A.clone() : A;
     let raw_in_b = (in_type_B) ? B.clone() : B;
 
+    //when a Mat object, degrade to JS array to modify it along with JS arrays so code isn't duplicated for Mat cases
     if (A instanceof Mat) {
         raw_in_a = raw_in_a.val;
     }
@@ -21,16 +27,21 @@ function dot_divide(A, B) {
         raw_in_b = raw_in_b.val
     }
 
+    //check: is A's row length the same as B? column? if not, throw error
+
     if (!(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
         throw new Error('Matrix input are of different dimensions')
     }
 
+    //initalize result with size of A (or B, theyre both equal size)
     let result = zeros(raw_in_a.length, raw_in_a[0].length).val;
 
+    //element-wise divide each element A/B, and place into result for corresponding indice
     for (let i = 0; i < raw_in_a.length; i++) {
         for (let j = 0; j < raw_in_a[0].length; j++) {
             result[i][j] = raw_in_a[i][j] / raw_in_b[i][j];
         }
     }
+    //return the result as a Mat object 
     return new Mat(result);
 }

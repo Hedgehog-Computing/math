@@ -2,39 +2,45 @@
  * Function - dot_multiply : multiplies two matrices element-wise, as in multiplies A[0][0] * B[0][0] = result[0][0], and so on..
  * 
  * @author Jason Reynolds
- * @params 2 matrices of the same dimensions
+ * @param A - left hand multiplicand matrix
+ * @param B - right hand multiplicand matrix (they are reversible)
  * @returns a matrix of the same dimension with the element wise multiplied results
  * 
- * 
+ *  This function multiplies 2 matrices element-wise. Since multiplication in the reals is commutative, A*B = B*A in this case. 
  * 
  */
 
 
 function dot_multiply(A, B) {
 
+    //declare raw_in_a and raw_in_b to be clones of A, B if Mat or A,B themselves when JS arrays
     let in_type_A = (A instanceof Mat);
     let in_type_B = (B instanceof Mat);
     let raw_in_a = (in_type_A) ? A.clone() : A;
     let raw_in_b = (in_type_B) ? B.clone() : B;
 
+    //for instances of Mat, degrade to JS array to generalize the below code for both Mat and JS arrays
     if (A instanceof Mat) {
         raw_in_a = raw_in_a.val;
     }
     if (B instanceof Mat) {
         raw_in_b = raw_in_b.val
     }
-    //a.length doesnt make sense if a, b aren't javscript arrays 
-
-    if (!(raw_in_a[0].length === raw_in_b[0].length)) {
+    
+    //check: are rows the same size? are columns? if not, throw error.
+    if ( !(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
         throw new Error('Matrix input are of different dimensions')
     }
 
+    //intialize result as zeros of size A (or B)
     let result = zeros(raw_in_a.length, raw_in_a[0].length).val;
 
+    //go through the zeros array and in each corresponding indice, place A*B for the respective indice, the element wise multiplication
     for (let i = 0; i < raw_in_a.length; i++) {
         for (let j = 0; j < raw_in_a[0].length; j++) {
             result[i][j] = raw_in_a[i][j] * raw_in_b[i][j];
         }
     }
+    //return result as a Mat
     return new Mat(result);
 }

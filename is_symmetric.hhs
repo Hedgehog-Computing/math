@@ -1,30 +1,34 @@
 /**
  * @author Jason Reynolds
- * @param inputMatrix the matrix to check if it's symmetric, needs to be square
- * @returns a boolean value, true or false, depending on if if inputMatrix is symmetric or not 
+ * @param input - the matrix to check if it's symmetric, needs to be square and 2d, can be Mat or JS
+ * @returns  -  boolean value, true or false, depending on if if input is symmetric or not 
  * 
- * Function to check if the matrix, raw array or Mat object is symmetric 
+ * Function to check if the 2d matrix, raw array or Mat object is symmetric 
  * 
  */
 
 *import math: transpose
+*import math: ndim
 
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
 function is_symmetric(input) {
 
+    //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
     let in_type = (input instanceof Mat);
     let raw_in = (in_type) ? input.clone() : input;
+
+    //in the case of input being Mat, degrade raw_in to JS array for generalized code
     if (input instanceof Mat) {
         raw_in = raw_in.val;
     }
-    //boundary check , square matrix check
-    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0) {
-        throw new Error('Either not square or 0 dimension row/cols');
+    //check: is matrix square? is any dimension 0? is ndim not 2? if so throw an error
+    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2)) ) {
+        throw new Error('Either not square, not 2d, or 0 dimension row/cols');
     }
     //if the Mat object doesn't equal it's transpose, return false
-    if (!(raw_in === (transpose(input)))) {
+    if (!(raw_in === (transpose(raw_in)))) {
         return false;
     }
-    //otherwise if all above statements failed, then its of valid size and it's transpose is itself, it's symmetric
+    //otherwise if all above statements failed, then its of valid size and it's transpose is itself; it passed all tests ==> it's symmetric
     return true;
 }

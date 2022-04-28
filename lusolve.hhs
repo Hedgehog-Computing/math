@@ -10,12 +10,13 @@
 
 function lusolve(inputM, input_col) {
 
+    //declare raw_in, raw_in_col as input.clone() if Mat otherwise, inputM, input_col themselves 
     let in_type_M = (inputM instanceof Mat);
     let raw_in = (in_type_M) ? inputM.clone() : inputM;
     let in_type_col = (input_col instanceof Mat);
     let raw_in_col = (in_type_col) ? input_col.clone() : input_col;
 
-    //if any input is Mat, turn it down into raw array
+    //if any input is Mat, degrade to JS array
     if (raw_in instanceof Mat) {
         raw_in = raw_in.val;
     }
@@ -23,7 +24,7 @@ function lusolve(inputM, input_col) {
         raw_in_col = raw_in_col.val;
     }
 
-    //make sure they are correct dimensions
+    //check: 0 dims? not square? column vector not equal to length of matrix row length? (if input is m x n, b is m x 1, while solution is n x 1 
     if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(raw_in_col.length === raw_in.length) ) {
         throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
     }

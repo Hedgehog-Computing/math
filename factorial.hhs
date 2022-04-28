@@ -1,5 +1,11 @@
-//author Jason Reynolds
-//wrapper function for factorial of enumber or array, Mat or raw 
+/**
+ * @author Jason Reynolds
+ * @param input - The number, array or Mat to find the factorial of
+ * @returns - The same type as the input but with factorial operated on it. If it wasn't a number, factorial was applied in an element-wise fashion
+ * 
+ * This function takes a number, array or Mat and finds the factorial of it, where the factorial is the element-wise factorial for matrix like structures
+ * and the normal factorial for numbers. Recall factorial for a number is num! = (num)*(num-1)*(num-2)*...*2*1 . Ex: 5! = 5*4*3*2*1 = 120.
+ */
 
 *import math: is_number
 *import math: ndim
@@ -8,25 +14,36 @@
 function factorial(input) {
 
     //doesnt support tensors yet 
+
+    //declare raw_in to be a clone of Mat if input is Mat, or input itself otherwise
     let in_type = (input instanceof Mat || input instanceof Tensor)
     let raw_in = (in_type) ? input.clone() : input;
 
-
-    if (ndim(input) === 1) {
+    //when ndim is 0 (i.e. a number), get the factorial of it 
+    if (ndim(input) === 0) {
+        //make sure it's a number
         if (is_number(input)) {
             return (mathjs.factorial(raw_in));
         }
     }
+    ///NEED A NDIM ===1 PART OR GENERALIZE 0,1 2 WITH AN INDUCTIVE FOR LOOP
+
+
+    //when ndim = 2 or higher, it's a 2d array or higher, (only supports up to 2d right now), get the factorial element-wise for each element
     if (ndim(input) >= 2) {
+        //when its a Mat degrade it to JS array for generalized code
         if (input instanceof Mat) {
             raw_in = raw_in.val;
         }
+        //initialize result of same size as input
         let result_array = zeros(raw_in.length, raw_in[0].length);
+        //loop through each result value and set it to factorial of the value at the corresponding indice in the input
         for (let i = 0; i < raw_in.length; i++) {
             for (let j = 0; j < raw_in[0].length; j++) {
                 result_array.val[i][j] = mathjs.factorial(raw_in[i][j]);
             }
         }
+        //return the Mat object 
         return (result_array);
     }
 }

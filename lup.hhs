@@ -1,27 +1,35 @@
 /**
  * @author Jason Reynolds
- * @params - input the matrix to be decomposed into L, U and p
+ * @param input - the matrix to be decomposed into L, U and p
  * @returns - 3 objects of type Mat - L, U and p. A lower triangular matrix, upper triangular and p
  */
+
+*import math: ndim
+
 
 //takes in raw array or Mat object and return L, U, p as decomposed objects
 function lup(input) {
 
+    //declare raw_in as input.clone() if Mat otherwise input
     let in_type = (input instanceof Mat);
     let raw_in = (in_type) ? input.clone() : input;
 
+    //when a Mat, degrade to JS array
     if (input instanceof Mat) {
-        //convert to raw
         raw_in = raw_in.val;
     }
-    //check to see if input is a vector or non-usable
+
+    //check: is it a vector? if so, throw error
     if (raw_in.length < 2 || raw_in[0].length < 2) {
         throw new Error('Wrong dimensions for LUP, make sure its a matrix');
     }
-    //if instance of Mat object, convert to 2d raw array and return L, U, p\
-    //mathjs lup on the raw 
+    if (!(ndim(raw_in) === 2)) {
+        throw new Error('Not a 2d matrix');
+    }
+
+    //mathjs lup on the raw, save as result
     let result = mathjs.lup(raw_in);
-    //return the L, U and p objects 
+    //return the L, U and p objects as Mats
     return {
         L: mat(result.L),
         U: mat(result.U),
