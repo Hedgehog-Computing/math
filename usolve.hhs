@@ -2,37 +2,47 @@
  * @author Jason Reynolds
  * 
  * @param inputM - the matrix in the Ax=b equation, namely A, to solve for x
- * @param inputCol - the column vector in the Ax=b equation, namely b, to solve for x
+ * @param input_col - the column vector in the Ax=b equation, namely b, to solve for x
  * @returns - the value of 'x', in Ax=b, the solution to the equation. 
  * 
  * Function similar to lsolve - it solves an nxn matrix exquation Ax = b for x. May work faster but only allows upper triangular matrices as input
  */
 
- *import math:is_triu
+*import math: is_triu
+*import math: ndim
 
- //function to solve Ax=b using upper triangular matrix 
- function usolve(inputM, inputCol) {
+function usolve(inputM, input_col) {
 
-    //make sure that the input array is upper triangular
-    if (!(is_triu(inputM))) {
+    //declare raw_in and raw_in_col : they are either clones of inputM and input_col respectively if Mat objects or inputM, input_col themselves otherwise
+    let in_type_M = (inputM instanceof Mat);
+    let raw_in = (in_type_M) ? inputM.clone() : inputM;
+    let in_type_col = (input_col instanceof Mat);
+    let raw_in_col = (in_type_col) ? input_col.clone() : input_col;
+
+
+    //if any input is Mat, degrade to JS array for generalized code
+    if (inputM instanceof Mat) {
+        raw_in = raw_in.val;
+    }
+    if (input_col instanceof Mat) {
+        raw_in_col = raw_in_col.val;
+    }
+
+    //make sure that the input array is upper triangular (this checks: 2d, 0 length dims, square)
+    if (!(is_triu(raw_in))) {
         throw new Error('Non upper triangular matrix in input');
     }
-    //if any input is Mat, turn it down into raw array
-    if (inputM instanceof Mat) {
-        inputM = inputM.val;
-    }
-    if (inputCol instanceof Mat) {
-        inputCol = inputCol.val;
-    }
-
-    //make sure they are correct dimensions, has to be square matrix 
-    const arr_col = inputM.map(e => e[0]);
-    const col_vec = inputCol.map(e => e[0]);
-    if (inputM.length == 0 || inputM[0].length == 0 || inputM.length !== arr_col.length || col_vec.length !== inputM.length) {
+    //Double check, good practice
+    //check: 0 dims? square? column length === row/col length of matrix? if not throw error
+    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(raw_in_col.length === raw_in.length)) {
         throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
     }
-    //define the result to be the lusolve output ie the solution
-    let result = mathjs.usolve(inputM, inputCol);
-    //return it as a Mat object
+    //check: is column not 1d? is it not a -column- vector? that is, does row have more than 1 entry? if so, throw error
+    if (!(ndim(raw_in_col) === 1) || !(raw_in_col[0].length === 1)) {
+        throw new Error('Column vector is not of correct input. Make sure it is a column and not row vector, 1 dimensional')
+    }
+    //declare the result to be the output of lsolve 
+    let result = mathjs.usolve(raw_in, raw_in_col);
+    //return result as a Mat
     return new Mat(result);
 }

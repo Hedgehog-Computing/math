@@ -2,30 +2,34 @@
 * 
 * @author Jason Reynolds 
 * @param - inputM the matrix in the equation Ax=b, namely A
-* @param - inputCol the column vector in the equation Ax = b, namely b
+* @param - input_col the column vector in the equation Ax = b, namely b
 * @returns - the matrix answer , x, to the equation Ax=b using lu decomposition
 *
 * Function that uniquely solves the equation Ax = b for a square matrix/Mat A and column vector b
 */
 
-function lusolve(inputM, inputCol) {
+function lusolve(inputM, input_col) {
 
-    //if any input is Mat, turn it down into raw array
-    if (inputM instanceof Mat) {
-        inputM = inputM.val;
+    //declare raw_in, raw_in_col as input.clone() if Mat otherwise, inputM, input_col themselves 
+    let in_type_M = (inputM instanceof Mat);
+    let raw_in = (in_type_M) ? inputM.clone() : inputM;
+    let in_type_col = (input_col instanceof Mat);
+    let raw_in_col = (in_type_col) ? input_col.clone() : input_col;
+
+    //if any input is Mat, degrade to JS array
+    if (raw_in instanceof Mat) {
+        raw_in = raw_in.val;
     }
-    if (inputCol instanceof Mat) {
-        inputCol = inputCol.val;
+    if (input_col instanceof Mat) {
+        raw_in_col = raw_in_col.val;
     }
 
-    //make sure they are correct dimensions
-    const arr_col = inputM.map(e => e[0]);
-    const col_vec = inputCol.map(e => e[0]);
-    if (inputM.length == 0 || inputM[0].length == 0 || inputM.length !== arr_col.length || col_vec.length !== inputM.length) {
+    //check: 0 dims? not square? column vector not equal to length of matrix row length? (if input is m x n, b is m x 1, while solution is n x 1 
+    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(raw_in_col.length === raw_in.length) ) {
         throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
     }
     //define the result to be the lusolve output ie the solution
-    let result = mathjs.lusolve(inputM, inputCol);
+    let result = mathjs.lusolve(raw_in, raw_in_col);
     //return it as a Mat object
     return new Mat(result);
 }

@@ -1,0 +1,35 @@
+/**
+ * 
+ * @param input - the matrix like structure to find the shape of. Can be a 1d, 2d, etc JS array, Mat object or Tensor
+ * @returns - a row vector or array representing the 'shape', i.e. the length of each dimension. for example a 3x4 (2 dimensional) matrix will have shape [3,4]. 
+ * 
+ * This function is similar to Tensor.shape, where it gives a shape vector representing each dimension's length
+ */
+
+*import math: is_number
+
+
+function shape(input) {
+
+    let result = [];
+    let current_dim = 0;
+
+    if (is_number(input)) {
+        throw new Error('Numbers dont have dimensions');
+    }
+
+    let in_type = (input instanceof Mat || input instanceof Tensor);
+    let raw_in = (in_type) ? input.clone() : input;
+
+    if (input instanceof Mat || input instanceof Tensor) {
+        raw_in = raw_in.val;
+    }
+
+    while (raw_in instanceof Array) {
+        current_dim += 1;
+        result.push(raw_in.length);
+        raw_in = raw_in[0];
+    }
+
+    return result;
+}

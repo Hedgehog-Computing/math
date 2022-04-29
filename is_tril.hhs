@@ -1,39 +1,38 @@
 /**
  * @author Jason Reynolds
  * 
- * @param input the matrix to be check if its lower triangular or not
- * @return boolean value true or false depending on if its determined to be lower triangular or not 
+ * @param input - the matrix to be check if its lower triangular or not
+ * @returns - boolean value true or false depending on if its determined to be lower triangular or not 
  * 
  * Function : is_tril - a boolean function to determine if a square matrix is lower triangular or not. Counter part to is_triu (upper triangular)
  * 
  * 
  */
 
+*import math: ndim
+
 function is_tril(input) {
 
-    //turn Mat down to raw array in case it isn't 
+    //declare raw_in to be input.clone() if Mat otherwise input itself
+    let in_type = (input instanceof Mat);
+    let raw_in = (in_type) ? input.clone() : input;
+
+    //degrade raw_in to JS array for generalized code
     if (input instanceof Mat) {
-        input = input.val;
+        raw_in = raw_in.val;
     }
-    const arr_col = input.map(e => e[0]);
-    //need a square matrix, non empty, as input
-    if (input.length == 0 || input[0].length == 0 || input.length !== arr_col.length) {
-        throw new Error('Wrong dimensions. Needs a square matrix as input');
+    //check: any dimension 0? square matrix? 2d? if so, throw error 
+    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(ndim(raw_in) === 2)) {
+        throw new Error('Wrong dimensions, need a square 2d, non empty matrix as input');
     }
-    //get a raw array of correct size initiliazed
-    let copy_input = zeros(input.length, input[0].length).val;
-    for (i = 0; i < input.length; i++) {
-        for (j = 0; j<input[0].length; j++) {
-            copy_input[i][j] = input[i][j];
-        }
-    }
+
     //iterate through array and if you spot a non-zero entry in a spot in the lower triangular region, return false
     //cut a sub matrix in the lower triangular region
-    for (k = 1; k < copy_input.length; k++) {
-        for (h = 0; h<copy_input.length-1; h++) {
+    for (let k = 1; k < raw_in.length; k++) {
+        for (let h = 0; h < raw_in.length - 1; h++) {
             //when in the tringaular zone exactly
             if (h < k) {
-                if (!(copy_input[h][k] == 0)) {
+                if (!(raw_in[h][k] === 0)) {
                     return false;
                 }
             }

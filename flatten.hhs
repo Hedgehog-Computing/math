@@ -1,0 +1,43 @@
+/**
+ * @author Jason Reynolds
+ * @param input - The multidimensional (or not) array to flatten
+ * @returns A 1d array that represents the input 'flattened'. Not returning Mat because Mat forces 2d
+ * 
+ * Function wrapper mathjs for flattening a multi dim matrix into a 1d matrix/array
+ * 
+ * 
+ */
+
+*import math: ndim
+
+function flatten(input) {
+
+    //declare raw_input to be a clone of input when input is a Mat or Tensor, otherwise input itself
+    let in_type = (input instanceof Mat || input instanceof Tensor);
+    let raw_input = (in_type) ? input.clone() : input;
+
+    //when it is a clone, degrade it to vanilla array to use as argument for JS function
+    if (input instanceof Mat || input instanceof Tensor) {
+        raw_input = raw_input.val;
+        //return the result of mathjs.flatten
+        return mathjs.flatten(raw_input);
+    }
+    //when ndim = 2 or higher and not instanceof Mat or Tensor, then it's JS array so return it through mathjs.flatten
+    else if (ndim(input) >= 2) {
+        return mathjs.flatten(raw_input);
+    }
+    //when its a number... create an empty array, push input into it and return that array of length 1
+    else if (is_number(input)) {
+        let result = [];
+        result.push(input);
+        return result;
+    }
+    //when its a 1d array, you can't flatten it so return itself
+    else if (ndim(input) === 1) {
+        return input;
+    }
+    //any other case is of wrong dimensions or using a wrong structure
+    else {
+        throw new Error('Wrong dimensions or structure of input');
+    }
+}

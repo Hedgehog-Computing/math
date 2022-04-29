@@ -1,62 +1,31 @@
 /**
  * 
  * Function for decomposing a matrix via cholesky method, returning the L in the L*L^T part. 
- * Note: Mathjs returns L^T by default so it is transposed by default to get L
  * @author Xinran Wang, Jason Reynolds
  * @param inputMatrix the matrix to be decomposed into L 
  * @returns the cholesky decomposition's L part
  */
 
+*import math: transpose
+*import math: is_symmetric
+
+
 function cholesky(inputMatrix) {
 
-    //helper function to get the transpose of matrices
-    function transpose(inputM) {
-      //in the case of the input being type Mat, convert to raw and copy and return as a Mat
-        if (inputM instanceof Mat) {
-            let raw_array_init = inputM.val;
-            for (i = 0; i < inputM.rows; i++) {
-                for (j=0; j<i; j++) {
-                    let tmp = raw_array_init[i][j];
-                    raw_array_init[i][j] = raw_array_init[j][i]
-                    raw_array_init[j][i] = tmp; 
-                }
-            }
-            return new Mat(raw_array_init);
-        }
-        //otherwise, if raw input, copy it into new array then do the same as above
-        else {
-
-            let copy_input = Array(inputMatrix.length).fill(0).map(() => Array(inputMatrix[0].length));
-
-            for (h = 0; h < inputMatrix.length; h++) {
-                for (k = 0; k < inputMatrix[0].length; k++) {
-                    copy_input[h][k] = inputMatrix[h][k];
-                }
-            }
-            for (i = 0; i < inputM.length; i++) {
-                for (j = 0; j < i;j++) {
-                    let tmp = copy_input[i][j];
-                    copy_input[i][j] = copy_input[j][i];
-                    copy_input[j][i] = tmp;
-                }
-            }
-            return copy_input;
-        }
-
+  //Cholesky: if the input is Mat, check rows/cols and symmetricity 
+  if (inputMatrix instanceof Mat) {
+    L: Mat;
+    if (!(inputMatrix.rows === inputMatrix.cols) || inputMatrix.rows === 0 || inputMatrix.cols === 0) {
+      throw new Error('Wrong dimension for' + inputMatrix);
     }
 
-    //Cholesky: if the input is Mat, check rows/cols and symmetricity 
-    if (inputMatrix instanceof Mat) {
-  L: Mat;
-  if(inputMatrix.rows !== inputMatrix.cols || inputMatrix.rows == 0 || inputMatrix.cols == 0) {
-    throw new Error('Wrong dimension for'+inputMatrix);
-  }
+    if (!inputMatrix === transpose(inputMatrix)) {
+      throw new Error('Matrix is not symmetric:' + inputMatrix)
+    }
 
-  if(!inputMatrix.equals(inputMatrix.transpose())) {
-    throw new Error('Matrix is not symmetric:'+inputMatrix)
-  }
-
-  //if (!isSymmetric(inputMatrix)) { throw new Error('Not symmetric')}
+    if (!is_symmetric(inputMatrix)) {
+      throw new Error('Not symmetric')
+    }
 
     //dimension n
     const n = inputMatrix.rows;
@@ -80,39 +49,37 @@ function cholesky(inputMatrix) {
       }
     }
 
-    return transpose(L);
+    return L;
 
+  }
+
+  //in the case the array is raw
+
+  if (!(inputMatrix.length === inputMatrix[0].length) || inputMatrix.length === 0 || inputMatrix[0].length === 0) {
+    throw new Error('Wrong dimensions for ' + inputMatrix);
+  }
+  if (!(is_symmetric(inputMatrix))) {
+    throw new Error('Not symmetric');
+  }
+
+  const n_2 = inputMatrix.length;
+  const L_2 = zeros(n_2).val;
+  //const L_2 = Array(n_2).fill(0).map(() => Array(n_2).fill(0));
+
+  for (let x = 0; x < n_2; x++) {
+    for (let y = 0; y < x + 1; y++) {
+      let sum2 = 0;
+      for (let z = 0; z < y; z++) {
+        sum2 += L_2[x][z] * L_2[y][z];
+      }
+
+      if (x === y) {
+        L_2[x][y] = Math.sqrt(inputMatrix[x][x] - sum2);
+      } else {
+        L_2[x][y] = (1.0 / L_2[y][y]) * (inputMatrix[x][y] - sum2);
+      }
     }
+  }
+  return (mat(L_2));
 
-    //in the case the array is raw
-
-    if (inputMatrix.length !== inputMatrix[0].length || inputMatrix.length == 0 || inputMatrix[0].length == 0) {
-        throw new Error('Wrong dimensions for '+inputMatrix);
-    }
-    if (transpose(inputMatrix) === inputMatrix) {
-
-        const n_2= inputMatrix.length;
-        const L_2 = zeros(n_2).val;
-        //const L_2 = Array(n_2).fill(0).map(() => Array(n_2).fill(0));
-
-        for (let x=0; x<n_2; x++) {
-            for (y=0; y<x+1;y++) {
-                let sum2 = 0;
-                for (let z = 0; z < y; z++) {
-                    sum2+=L_2[x][z]*L_2[y][z];
-                }
-
-                if ( x===y ) {
-                    L_2[x][y] = Math.sqrt(inputMatrix[x][x] - sum2); 
-                } else {
-                    L_2[x][y] = (1.0 / L_2[y][y]) * (inputMatrix[x][y] - sum2);
-                }
-            }
-        }
-
-        return transpose(mat(L_2));
-    }
-    else {
-        throw new Error('Matrix is not symmetric: '+inputMatrix)
-    }
 }

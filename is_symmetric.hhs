@@ -1,73 +1,34 @@
 /**
  * @author Jason Reynolds
- * @param inputMatrix the matrix to check if it's symmetric, needs to be square
- * @returns a boolean value, true or false, depending on if if inputMatrix is symmetric or not 
+ * @param input - the matrix to check if it's symmetric, needs to be square and 2d, can be Mat or JS
+ * @returns  -  boolean value, true or false, depending on if if input is symmetric or not 
  * 
- * Function to check if the matrix, raw array or Mat object is symmetric 
+ * Function to check if the 2d matrix, raw array or Mat object is symmetric 
  * 
  */
 
+*import math: transpose
+*import math: ndim
 
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
-function is_symmetric(inputMatrix) {
+function is_symmetric(input) {
 
-    //helper function for getting transpose. Gets it both if raw array or mat obj 
-    function transpose(inputM) {
+    //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
+    let in_type = (input instanceof Mat);
+    let raw_in = (in_type) ? input.clone() : input;
 
-        if (inputM instanceof Mat) {
-            let raw_array_init = inputM.val;
-            for (i = 0; i < inputM.rows; i++) {
-                for (j=0; j<i; j++) {
-                    let tmp = raw_array_init[i][j];
-                    raw_array_init[i][j] = raw_array_init[j][i]
-                    raw_array_init[j][i] = tmp; 
-                }
-            }
-            return new Mat(raw_array_init);
-        }
-        else {
-            let copy_input = zeros(inputM.length).val;
-
-            for (h = 0; h < inputMatrix.length; h++) {
-                for (k = 0; k < inputMatrix[0].length; k++) {
-                    copy_input[h][k] = inputMatrix[h][k];
-                }
-            }
-            for (i = 0; i < inputM.length; i++) {
-                for (j = 0; j < i;j++) {
-                    let tmp = copy_input[i][j];
-                    copy_input[i][j] = copy_input[j][i];
-                    copy_input[j][i] = tmp;
-                }
-            }
-            return copy_input;
-        }
-
+    //in the case of input being Mat, degrade raw_in to JS array for generalized code
+    if (input instanceof Mat) {
+        raw_in = raw_in.val;
     }
-if (inputMatrix instanceof Mat) {
-    //boundary check , square matrix check
-  if(inputMatrix.rows !== inputMatrix.cols || inputMatrix.rows == 0 || inputMatrix.cols == 0) {
-      throw 'Either not square or 0 dimension row/cols'
-  }
-  //if the Mat object doesn't equal it's transpose, return false
-  if (!inputMatrix.equals(inputMatrix.transpose())) {
-    return false;
-  }
-  //otherwise if all above statements failed, then its of valid size and it's transpose is itself, it's symmetric
-  return true;
-}
-
-else {
-//in the case that if is bypassed and its not an instance of Mat by rather a raw array
-// just do similar work except use inputmatrix.length and inputmatrix[0].length
-
-if (inputMatrix.length !== inputMatrix[0].length || inputMatrix.length == 0 || inputMatrix[0].length == 0  ) {
-    throw 'Either not a square matrix or 0 dimension row/cols.'
-}
-//check if its symmetric i.e. if transpose is equal to itself, call the helper function transpose
-if (inputMatrix === transpose(inputMatrix)) {
+    //check: is matrix square? is any dimension 0? is ndim not 2? if so throw an error
+    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2)) ) {
+        throw new Error('Either not square, not 2d, or 0 dimension row/cols');
+    }
+    //if the Mat object doesn't equal it's transpose, return false
+    if (!(raw_in === (transpose(raw_in)))) {
+        return false;
+    }
+    //otherwise if all above statements failed, then its of valid size and it's transpose is itself; it passed all tests ==> it's symmetric
     return true;
-}
-    return false;
-}
 }

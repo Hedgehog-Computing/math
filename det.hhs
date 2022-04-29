@@ -10,23 +10,35 @@
 
 function det(input) {
 
+    //set raw_in to be either a clone of Mat or input itself if JS array
+    let in_type = (input instanceof Mat);
+    let raw_in = (in_type) ? input.clone() : input;
+
+    //in the case that it's an input of Mat
     if (input instanceof Mat) {
 
-        if (input.rows == 0 || input.cols == 0 || input.rows !== input.cols) {
+        //check the dimensions: are rows, cols 0? is it not square? if so, throw error 
+        if (input.rows === 0 || input.cols === 0 || !(input.rows === input.cols)) {
             throw new Error('Wrong dimensions for input');
         }
-        let raw = input.val;
-        let result = mathjs.det(raw);
-        return result;
+        //since it's Mat, degrade to JS array
+        raw_in = raw_in.val;
+        //plug it into mathjs.det and return 
+        return mathjs.det(raw_in);
 
     }
 
-    else {
-        if (input.length == 0 || input[0].length == 0 || input.length !== input[0].length) {
+    //in the case that it's a JS array
+    else if (Array.isArray(input)) {
+        //again check the input. is any dim 0? is it not square? if so, throw error.
+        if (input.length === 0 || input[0].length === 0 || !(input.length === input[0].length)) {
             throw new Error('Wrong dimensions');
         }
-        let result = mathjs.det(input);
-        return result;
-
+        //plug in input clone into mathjs.det and return. Technically since det doesn't modify you could use parameter 'input'
+        return mathjs.det(raw_in);
+    }
+    //all other structures have no determinant
+    else {
+        throw new Error('Not a JavaScript matrix or Mat object');
     }
 }

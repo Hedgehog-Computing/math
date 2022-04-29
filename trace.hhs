@@ -1,45 +1,40 @@
 /**
  * @author Jason Reynolds
- * @param inputMatrix - the matrix to evaluate the trace on (sum of diagonal values), has to be square
+ * @param input - the matrix to evaluate the trace on (sum of diagonal values), has to be square
  * @returns - a number which is the sum of the diagonal entries on the matrix, the trace
  * 
- * Simple function for determining the trace of a matrix
+ * Simple function for determining the trace of a matrix (recall trace is the sum of diagonal entries on a square 2d matrix)
  */
 
+*import math:ndim 
 
-//input is raw array or Mat obj, returns the trace value
-function trace(inputMatrix) {
 
-    if (inputMatrix instanceof Mat) {
+function trace(input) {
 
-    //check for square matrix, throw exception if not ; trace defined only on square matrices
-    if (inputMatrix.rows !== inputMatrix.cols) {
-        throw 'Not a square matrix. Trace is undefined.';
+    //declare raw_in to be an input clone if Mat or input itself otherwise
+    let in_type = (input instanceof Mat)
+    let raw_in = (in_type) ? input.clone() : input;
+
+    //when input is Mat, degrade to JS array
+    if (input instanceof Mat) {
+        raw_in = raw_in.val;
     }
 
-    traceVal=0;
-    //start at 0 and add the diagnol entries to traceVal til you're all diaganol entries are added
-    for(i=0;i<inputMatrix.rows;i++) {
-        for (j=0; j<inputMatrix.cols;j++) {
-            if (i == j) {
-                traceVal += inputMatrix.val[i][j]
+    //check: is it square? 0 dims? ndim not equal to 2?
+    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2)) ) {
+        throw 'Not a square, 2d, non-empty matrix. Trace is undefined.';
+    }
+    //declare trace_val the value we will sum up and return
+    let trace_val = 0;
+
+    //loop through twice, since its a 2d matrix
+    for (let i = 0; i < input.length; i++) {
+        for (let j = 0; j < input[0].length; j++) {
+            //when i===j i.e. it's a trace value, sum up that value
+            if (i === j) {
+                trace_val += raw_in[i][j];
             }
         }
     }
-    return traceVal;
-
-    }
-    if (inputMatrix.length !== inputMatrix[0].length) {
-        throw 'Not a square matrix. Trace is undefined.';
-    }
-    let traceVal2 = 0;
-    for (i=0; i<inputMatrix.length; i++) {
-        for (j=0; j<inputMatrix[0].length; j++) {
-            if (i==j) {
-                traceVal2 += inputMatrix[i][j];
-            }
-        }
-    }
-
-    return traceVal2;
+    return trace_val;
 }
