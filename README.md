@@ -28,4 +28,6 @@ and you will see the result on the right:
 
 ### Community
 
-Join the [**Discord Server**](https://discord.gg/hGhsanhJaK) and follow the [**Twitter**](https://twitter.com/HedgehogLabHQ)
+[**Discord Server**](https://discord.gg/hGhsanhJaK) 
+
+[**Twitter**](https://twitter.com/HedgehogLabHQ)
