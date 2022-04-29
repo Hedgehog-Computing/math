@@ -1,6 +1,6 @@
-# math @ Hedgheog Computing
+# math 
 
-The official Math library for Hedgehog Lab.
+The official Math library for [**Hedgehog Lab**](https://github.com/Hedgehog-Computing/hedgehog-lab), maintained by [**Hedgehog Computing**](https://github.com/Hedgehog-Computing).
 
 ### Quick Start
 
