@@ -1,6 +1,6 @@
 
 
-*import math:gcd
+*import math: gcd
 
 function gcd_test() {
     // test scenario 1: integer test
