@@ -1,0 +1,45 @@
+
+
+*import math:gcd
+
+function gcd_test() {
+    // test scenario 1: integer test
+    // testset setup
+    let testSet1A = [-5, 17, 10, 0];
+    let testSet1B = [-15, 3, 100, 0];
+    let expected1Val = [5, 1, 10, 0];
+    // test process
+    for (let i = 0; i < testSet1A.length; i++) {
+        if (expected1Val[i] !== gcd(testSet1A[i], testSet1B[i])) {
+            throw new Error("gcd integer test has failed on testcase: " + "(" + testSet1A[i] + ", " + testSet1B[i] + ")" +
+            "\noutput " + gcd(testSet1A[i], testSet1B[i]) + " while " + expected1Val[i] + " is expected.");
+        }
+    }
+
+    // test scenario 2: 2d array and mat object test
+    // testset setup
+    let testSet2A = [mat([-5, 17, 10, 0]), [[-5, 17,], [10, 0]], mat([[-5, 17,], [10, 0]])];
+    let testSet2B = [mat([-15, 3, 100, 0]), [[-15, 3], [100, 0]], [[-15, 3], [100, 0]]];
+    let expected2Val = [mat([5, 1, 10, 0]), mat([[5, 1], [10, 0]]), mat([[5, 1], [10, 0]])];
+    // test process
+    for (let i = 0; i < testSet2A.length; i++) {
+        if (gcd(testSet2A[i], testSet2B[i]) !== expected2Val[i]) {
+            throw new Error("gcd 2d array and mat object test has failed on testcase: " + "(" + testSet2A[i] + ", " + testSet2B[i] + ")" +
+            "\noutput " + gcd(testSet2A[i], testSet2B[i]) + " while " + expected2Val[i] + " is expected.");
+        }
+    }
+
+    // test scenario 3: 1d array test
+    // testset setup
+    let testSet3A = [[-5, 17, 10, 0]];
+    let testSet3B = [[-15, 3, 100, 0]];
+    let expected3Val = [mat([5, 1, 10, 0])];
+    // test process
+    for (let i = 0; i < testSet3A.length; i++) {
+        if (gcd(testSet3A[i], testSet3B[i]) !== expected3Val[i]) {
+            throw new Error("gcd 1d array test has failed on testcase: " + "(" + testSet3A[i] + ", " + testSet3B[i] + ")" +
+            "\noutput " + gcd(testSet3A[i], testSet3B[i]) + " while " + expected3Val[i] + " is expected.");
+        }
+    }
+
+}
