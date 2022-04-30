@@ -29,10 +29,11 @@
  *import math:QR
  *import math:shape 
  *import math:sum
+ *import math:test
  *import math:trace
  *import math:transpose
  *import math:usolve
- //import math:power --> base
+
 
  
  
