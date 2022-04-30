@@ -7,6 +7,8 @@
  * 
  */
 
+*import math:is_number
+
 function max(input) {
 
     //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
