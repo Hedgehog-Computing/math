@@ -19,7 +19,7 @@ function cholesky(inputMatrix) {
       throw new Error('Wrong dimension for' + inputMatrix);
     }
 
-    if (!inputMatrix === transpose(inputMatrix)) {
+    if (!(inputMatrix === transpose(inputMatrix))) {
       throw new Error('Matrix is not symmetric:' + inputMatrix)
     }
 
@@ -48,9 +48,7 @@ function cholesky(inputMatrix) {
         }
       }
     }
-
     return L;
-
   }
 
   //in the case the array is raw
