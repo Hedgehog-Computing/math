@@ -19,7 +19,7 @@ function shape(input) {
     }
 
     let in_type = (input instanceof Mat || input instanceof Tensor);
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     if (input instanceof Mat || input instanceof Tensor) {
         raw_in = raw_in.val;

@@ -15,7 +15,7 @@ function is_symmetric(input) {
 
     //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //in the case of input being Mat, degrade raw_in to JS array for generalized code
     if (input instanceof Mat) {

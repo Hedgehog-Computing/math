@@ -43,7 +43,7 @@ function sum(input) {
 
     //declare raw_in, set it to a input clone if its a Mat otherwise input itself
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //check case: make sure there's only 1 arguments (1 matrix like structure) and the argument is an array or Mat
     if (arguments.length === 1 && (Array.isArray(arguments[0]) || arguments[0] instanceof Mat)) {
