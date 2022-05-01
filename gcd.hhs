@@ -1,0 +1,114 @@
+/*
+* @author Blake Wang
+* @params 2 integers, 2 js 2d-arrays/Mat objects of the same dimensions, 2 js 1d-arrays of the same dimensions
+* @returns an integer representing greatest common divisor of 2 input integers 
+*  or a mat object holds greatest common divisors of the elements of A and B
+*
+*
+*
+*/
+
+
+function gcd (a, b) {
+    // check if a and b are matrix, if so, make clone
+    let in_type_a = (a instanceof Mat);
+    let in_type_b = (b instanceof Mat);
+    let raw_in_a = (in_type_a) ? a.clone() : a;
+    let raw_in_b = (in_type_b) ? b.clone() : b;
+    
+    // when input are Mat or 2d-Array objects
+    if ((in_type_a || (raw_in_a instanceof Array && raw_in_a[0] instanceof Array)) && (in_type_b || (raw_in_b instanceof Array && raw_in_b[0] instanceof Array))) {
+        // convert matrix to js array
+        if (in_type_a) {
+            raw_in_a = raw_in_a.val;
+        }
+        if (in_type_b) {
+            raw_in_b = raw_in_b.val;
+        }
+        // check if a and b are of same size
+        if (raw_in_a.length !== raw_in_b.length || raw_in_a[0].length !== raw_in_b[0].length) {
+            throw new Error("Matrix/2d array inputs are of different dimensions");
+        }
+        // apply gcd calculation element by element
+        for (let i = 0; i < raw_in_a.length; i++) {
+            for (let j = 0; j < raw_in_a[0].length; j++) {
+                if ((Number.isInteger(raw_in_a[i][j])) && (Number.isInteger(raw_in_b[i][j]))) {
+                    // set operands as non-negative numbers
+                    raw_in_a[i][j] = abs(raw_in_a[i][j]).val[0][0];
+                    raw_in_b[i][j] = abs(raw_in_b[i][j]).val[0][0];
+                    // gcd algorithm
+                    let tep = 0;
+                    while(raw_in_a[i][j] % raw_in_b[i][j] > 0) {
+                        tep = raw_in_a[i][j] % raw_in_b[i][j];
+                        raw_in_a[i][j] = raw_in_b[i][j];
+                        raw_in_b[i][j] = tep;
+                    }
+
+                    /* This algothem will lead to death loop, 
+                    I doult a system bug causes raw_in_a[i][j] !== raw_in_b[i][j] to be true forever
+
+                    this bug should be related to operator overload
+                    */
+
+                    // while(raw_in_a[i][j] !== raw_in_b[i][j]) {
+                    //     if (raw_in_a[i][j] > raw_in_b[i][j]) {
+                    //         raw_in_a[i][j] -= raw_in_b[i][j];
+                    //     }else {
+                    //         raw_in_b[i][j] -= raw_in_a[i][j];
+                    //     }
+                    // }
+                }else {
+                    throw new Error("input must be integer");
+                }
+                
+            }
+        }
+        return new mat(raw_in_b);
+    }
+    
+    // when input are integers
+    if ((Number.isInteger(raw_in_a)) && (Number.isInteger(raw_in_b))) {
+        // set operands as non-negative numbers
+        raw_in_a = abs(raw_in_a).val[0][0];
+        raw_in_b = abs(raw_in_b).val[0][0];
+        // gcd algorithm
+        while(raw_in_a !== raw_in_b) {
+            if (raw_in_a > raw_in_b) {
+                raw_in_a -= raw_in_b;
+            }else {
+                raw_in_b -= raw_in_a;
+            }
+        }
+        return raw_in_a;
+    }
+
+    // when input are 1d-arrays
+    if (!(raw_in_a[0] instanceof Array) && !(raw_in_b[0] instanceof Array)) {
+        // check if a and b are of same length
+        if (raw_in_a.length !== raw_in_b.length) {
+            throw new Error("1d array inputs are of different length");
+        }
+        for (let i = 0; i < raw_in_a.length; i++) {
+            if ((Number.isInteger(raw_in_a[i])) && (Number.isInteger(raw_in_b[i]))) {
+                // set operands as non-negative numbers
+                raw_in_a[i] = abs(raw_in_a[i]).val[0][0];
+                raw_in_b[i] = abs(raw_in_b[i]).val[0][0];
+                // gcd algorithm
+                let tep = 0;
+                while(raw_in_a[i] % raw_in_b[i] > 0) {
+                    tep = raw_in_a[i] % raw_in_b[i];
+                    raw_in_a[i] = raw_in_b[i];
+                    raw_in_b[i] = tep;
+                }
+            }
+        }
+        return new mat(raw_in_b);
+    }else {
+        throw new Error("inputs must be integer, matrix, 1d array, or 2d array");
+    }
+}
+
+/* 
+existing issues:
+1. need to contribute a is_Integer() function to math library to replace Numbers.isInteger() function used here.
+*/

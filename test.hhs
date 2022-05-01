@@ -19,6 +19,7 @@
 *import math:trace_test
 *import math:transpose_test
 *import math:usolve_test
+*import math:gcd_test
 
 
 function test(){
@@ -39,6 +40,7 @@ function test(){
   trace_test();
   transpose_test();
   usolve_test();
+  gcd_test();
   
   print("All test cases passed!")
 }
