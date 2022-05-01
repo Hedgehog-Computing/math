@@ -39,9 +39,9 @@ function lsolve(inputM, input_col) {
         throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
     }
     
-    //check: is column not 1d? is it not a -column- vector? that is, does row have more than 1 entry? if so, throw error
-    if (!(ndim(raw_in_col) === 1) || !(raw_in_col[0].length === 1)) {
-        throw new Error('Column vector is not of correct input. Make sure it is a column and not row vector, 1 dimensional')
+    //check: is column not 2d? (still is 2d when its nx1) is it not a -column- vector? that is, does row have more than 1 entry? if so, throw error
+    if (!(ndim(raw_in_col) === 2) || !(raw_in_col[0].length === 1)) {
+        throw new Error('Column vector is not of correct input. Make sure it is a column and not row vector, of the form, [[n1],[n2],...,[n]]')
     }
     
     //declare the result to be the output of lsolve 
