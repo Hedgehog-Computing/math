@@ -16,8 +16,8 @@ function dot_multiply(A, B) {
     //declare raw_in_a and raw_in_b to be clones of A, B if Mat or A,B themselves when JS arrays
     let in_type_A = (A instanceof Mat);
     let in_type_B = (B instanceof Mat);
-    let raw_in_a = (in_type_A) ? A.clone() : A;
-    let raw_in_b = (in_type_B) ? B.clone() : B;
+    let raw_in_a = (in_type_A) ? A.clone() : JSON.parse(JSON.stringify(A));
+    let raw_in_b = (in_type_B) ? B.clone() : JSON.parse(JSON.stringify(B));
 
     //for instances of Mat, degrade to JS array to generalize the below code for both Mat and JS arrays
     if (A instanceof Mat) {

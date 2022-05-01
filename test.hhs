@@ -3,7 +3,7 @@
  * 
  * Function for testing all unit tests 
  */
-*import math:adds_test
+
 *import math:cholesky_test
 *import math:det_test
 *import math:dot_divide_test
@@ -15,7 +15,6 @@
 *import math:lsolve_test
 *import math:lup_test
 *import math:lusolve_test
-*import math:power_test
 *import math:QR_test
 *import math:trace_test
 *import math:transpose_test
@@ -26,7 +25,6 @@
 function test(){
   
 
-  adds_test();
   cholesky_test();
   det_test();
   dot_divide_test();
@@ -38,7 +36,6 @@ function test(){
   lsolve_test();
   lup_test();
   lusolve_test();
-  power_test();
   QR_test();
   trace_test();
   transpose_test();

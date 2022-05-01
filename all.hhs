@@ -3,7 +3,7 @@
  * @param
  * @returns
  * 
- * Function for importing all math routines/functions, done by calling '*import math:all'
+ * Function for importing all math routines/functions, done by calling star import math:all
  */
 
 
@@ -29,11 +29,10 @@
  *import math:QR
  *import math:shape 
  *import math:sum
+ *import math:test
  *import math:trace
  *import math:transpose
  *import math:usolve
  *import math:gcd
- //import math:power --> base
-
  
  

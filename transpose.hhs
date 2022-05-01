@@ -11,9 +11,9 @@
 
 function transpose(input) {
 
-    //declare raw_in to be input clone if Mat and input otherwise 
+    //declare raw_in to be input clone if Mat and input deep copy otherwise
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //if input is Mat degrade to JS array to have the below code work for both JS arrays and Mat objects
     if (input instanceof Mat) {
@@ -27,9 +27,11 @@ function transpose(input) {
 
     //loop through twice as it's a 2d array
     for (let i = 0; i < raw_in.length; i++) {
-        for (let j = 0; j < raw_in[0].length; j++) {
+        for (let j = i; j < raw_in[0].length; j++) {
             //CHANGE i,j indice to value of j,i's. For diagonal entries note that i===j so raw_in[i][j] will be === raw_in[j][i] as expected of a transpose
+            let tmp = raw_in[i][j]
             raw_in[i][j] = raw_in[j][i];
+            raw_in[j][i] = tmp;
         }
     }
     return (new Mat(raw_in));

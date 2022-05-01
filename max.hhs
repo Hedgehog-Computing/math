@@ -7,13 +7,15 @@
  * 
  */
 
+*import math:is_number
+
 function max(input) {
 
     //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
     let in_type = (input instanceof Mat || input instanceof Tensor);
     let raw_in = (in_type) ? input.clone() : input;
     //declare maximum within function scope so we can modify it in loop
-    let maximum = 0;
+    let maximum = Number.MIN_SAFE_INTEGER;
 
     if (input instanceof Mat || input instanceof Tensor) {
         //degrade to JS array if Mat/Tensor

@@ -14,7 +14,7 @@ function flatten(input) {
 
     //declare raw_input to be a clone of input when input is a Mat or Tensor, otherwise input itself
     let in_type = (input instanceof Mat || input instanceof Tensor);
-    let raw_input = (in_type) ? input.clone() : input;
+    let raw_input = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //when it is a clone, degrade it to vanilla array to use as argument for JS function
     if (input instanceof Mat || input instanceof Tensor) {

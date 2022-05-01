@@ -14,7 +14,7 @@ function ndim(input) {
 
     //declare raw_in to be a clone of input or input itself depending on whether its a Mat/Tensor or not, respectively
     let in_type = (input instanceof Mat || input instanceof Tensor)
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //if the input is... an array OR an instance of Mat OR an instance of Tensor (covers all grounds here) then do the algorithm
     if (Array.isArray(input) || (input instanceof Mat) || (input instanceof Tensor)) {
