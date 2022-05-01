@@ -37,9 +37,9 @@ function usolve(inputM, input_col) {
     if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(raw_in_col.length === raw_in.length)) {
         throw new Error('Wrong dimensions. Need nxn matrix, may want to try lusolveAll or check column vector');
     }
-    //check: is column not 1d? is it not a -column- vector? that is, does row have more than 1 entry? if so, throw error
-    if (!(ndim(raw_in_col) === 1) || !(raw_in_col[0].length === 1)) {
-        throw new Error('Column vector is not of correct input. Make sure it is a column and not row vector, 1 dimensional')
+    //check: is column not 2d? is it not a -column- vector? that is, does row have more than 1 entry? if so, throw error
+    if (!(ndim(raw_in_col) === 2) || !(raw_in_col[0].length === 1)) {
+        throw new Error('Column vector is not of correct input. Make sure it is a column and not row vector, of the form [[n1], [n2], ... , [n]]')
     }
     //declare the result to be the output of lsolve 
     let result = mathjs.usolve(raw_in, raw_in_col);
