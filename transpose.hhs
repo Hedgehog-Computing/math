@@ -27,9 +27,11 @@ function transpose(input) {
 
     //loop through twice as it's a 2d array
     for (let i = 0; i < raw_in.length; i++) {
-        for (let j = 0; j < raw_in[0].length; j++) {
+        for (let j = i; j < raw_in[0].length; j++) {
             //CHANGE i,j indice to value of j,i's. For diagonal entries note that i===j so raw_in[i][j] will be === raw_in[j][i] as expected of a transpose
+            let tmp = raw_in[i][j]
             raw_in[i][j] = raw_in[j][i];
+            raw_in[j][i] = tmp;
         }
     }
     return (new Mat(raw_in));
