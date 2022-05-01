@@ -3,7 +3,7 @@
  * @param
  * @returns
  * 
- * Function for importing all math routines/functions, done by calling '*import math:all'
+ * Function for importing all math routines/functions, done by calling star import math:all
  */
 
 
