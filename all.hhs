@@ -23,6 +23,7 @@
  *import math:lup
  *import math:lusolve
  *import math:max 
+ *import math:min
  *import math:ndim 
  //import math:ones --> base
  //import math:power --> base
