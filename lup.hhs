@@ -12,7 +12,7 @@ function lup(input) {
 
     //declare raw_in as input.clone() if Mat otherwise input
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : input;
+    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
 
     //when a Mat, degrade to JS array
     if (input instanceof Mat) {
