@@ -1,0 +1,12 @@
+/**
+ * @author Yu Li
+ * @param a, b - integers
+ * @returns - gcd of a, b
+ * find the greatest common divisor of a, b
+ */
+function gcd(a, b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
