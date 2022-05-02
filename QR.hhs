@@ -7,11 +7,14 @@
  * function that takes in a raw or object matrix, decomposes it using QR method, and return the Q and R as objects
  */
 
+*import math:deep_copy
+
+
 function QR(input) {
 
     //declare raw_in as input.clone() if Mat type otherwise, input itself
     let in_type = (input instanceof Mat)
-    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
+    let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //in the case of input being a Mat, degrade to JS array for 'raw_in' to apply for both JS arrays and Mat objects 
     if (input instanceof Mat) {

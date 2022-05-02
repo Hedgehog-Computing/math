@@ -17,7 +17,7 @@ function factorial(input) {
 
     //declare raw_in to be a clone of Mat if input is Mat, or input itself otherwise
     let in_type = (input instanceof Mat || input instanceof Tensor)
-    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
+    let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //when ndim is 0 (i.e. a number), get the factorial of it 
     if (ndim(input) === 0) {

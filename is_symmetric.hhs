@@ -9,13 +9,14 @@
 
 *import math: transpose
 *import math: ndim
+*import math: deep_copy
 
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
 function is_symmetric(input) {
 
     //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
+    let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //in the case of input being Mat, degrade raw_in to JS array for generalized code
     if (input instanceof Mat) {

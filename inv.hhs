@@ -8,12 +8,14 @@
 
 *import math: ndim
 *import math: det
+*import math: deep_copy
+
 
 function inv(input) {
 
     //declare raw_in to be a clone of input if Mat otherwise input itself 
     let in_type = (input instanceof Mat)
-    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
+    let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //when an instance of Mat degrade to JS array to generalize preceeding code
     if (input instanceof Mat) {
