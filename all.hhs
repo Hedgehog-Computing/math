@@ -27,6 +27,8 @@
  *import math:ndim 
  //import math:ones --> base
  //import math:power --> base
+ //import math:floor --> base
+ //import math:ceil --> base
  *import math:QR
  *import math:shape 
  *import math:sum
