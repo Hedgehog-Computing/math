@@ -1,0 +1,13 @@
+/**
+ * @author Jason Reynolds
+ * @param input - the input to make a deep copy of 
+ * @returns - a new copy of the original input with a different reference
+ * 
+ *  This recursive function is made for cloning arrays in a deep manner since javascript doesn't have a way to do it. All common ways to copy is shallow and that
+ *  causes a lot of issues for functions that modify the input or a reference to the input 
+ */
+
+ function deep_copy(input) {
+    input.map(input => Array.isArray(input) ? deep_copy(input) : input);
+    return input;
+}
