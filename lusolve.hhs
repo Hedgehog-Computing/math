@@ -8,13 +8,16 @@
 * Function that uniquely solves the equation Ax = b for a square matrix/Mat A and column vector b
 */
 
+*import math: deep_copy
+
+
 function lusolve(inputM, input_col) {
 
     //declare raw_in, raw_in_col as input.clone() if Mat otherwise, inputM, input_col themselves 
     let in_type_M = (inputM instanceof Mat);
-    let raw_in = (in_type_M) ? inputM.clone() : JSON.parse(JSON.stringify(inputM));
+    let raw_in = (in_type_M) ? inputM.clone() : deep_copy(inputM);
     let in_type_col = (input_col instanceof Mat);
-    let raw_in_col = (in_type_col) ? input_col.clone() : JSON.parse(JSON.stringify(input_col));
+    let raw_in_col = (in_type_col) ? input_col.clone() : deep_copy(input_col);
 
     //if any input is Mat, degrade to JS array
     if (raw_in instanceof Mat) {

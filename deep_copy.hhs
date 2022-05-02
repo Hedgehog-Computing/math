@@ -7,7 +7,7 @@
  *  causes a lot of issues for functions that modify the input or a reference to the input 
  */
 
- function deep_copy(input) {
+function deep_copy(input) {
     input.map(input => Array.isArray(input) ? deep_copy(input) : input);
     return input;
 }

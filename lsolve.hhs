@@ -11,14 +11,15 @@
 
 *import math: is_tril
 *import math: ndim
+*import math: deep_copy
 
 function lsolve(inputM, input_col) {
 
     //declare raw_in and raw_in_col : they are either clones of inputM and input_col respectively if Mat objects or inputM, input_col themselves otherwise
     let in_type_M = (inputM instanceof Mat);
-    let raw_in = (in_type_M) ? inputM.clone() : JSON.parse(JSON.stringify(inputM));
+    let raw_in = (in_type_M) ? inputM.clone() : deep_copy(inputM);
     let in_type_col = (input_col instanceof Mat);
-    let raw_in_col = (in_type_col) ? input_col.clone() : JSON.parse(JSON.stringify(input_col));
+    let raw_in_col = (in_type_col) ? input_col.clone() : deep_copy(input_col);
 
 
     //if any input is Mat, degrade to JS array for generalized code
