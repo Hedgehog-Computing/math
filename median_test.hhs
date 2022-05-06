@@ -1,0 +1,24 @@
+/**
+ * @author Jianan Lin (林家南)
+ */
+
+*import math: mean
+
+let a = 6;
+let b = [5,34,3];
+let c = [[3,2,3],[3,4,2]];
+let d = new Mat([3,4,2]);
+let e = new Mat([[3,4],[4,3],[4,3]]);
+let f = [[[2,2],[3,3],[4,4]],[[2,2],[3,3],[4,4]],[[4,4],[3,3],[2,2]]];
+let g = [[1, 2], [3], [4, 5, 6]];
+let h = [[8, 5, 7, 3, 6, 4, 2, 1, -1, 0], [11, 12, 15, 18, 88, 87, 65, 64, 63, 21]];
+
+print(mean(1, 2));
+print(mean(b));
+print(mean(c));
+print(mean(d));
+print(mean(e));
+print(mean(f));
+print(mean(g));
+print(median(h));
+print(median([1]));
