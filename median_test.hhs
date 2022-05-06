@@ -1,5 +1,6 @@
 /**
  * @author Jianan Lin (林家南)
+ * Function for unit test for median
  */
 
 *import math: median
