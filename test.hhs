@@ -20,6 +20,8 @@
 *import math:transpose_test
 *import math:usolve_test
 *import math:gcd_test
+//*import math:floor_test --> base
+//*import math:ceil_test --> base
 *import math:mean_test 
 *import math:median_test
 
@@ -44,6 +46,8 @@ function test(){
   transpose_test();
   usolve_test();
   gcd_test();
+  //floor_test();
+  //ceil_test();
   mean_test();
   median_test();
   
