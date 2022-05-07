@@ -36,6 +36,10 @@
  *import math:trace
  *import math:transpose
  *import math:usolve
+
  *import math:gcd
+ *import math:mean 
+ *import math:median 
+ 
  
  

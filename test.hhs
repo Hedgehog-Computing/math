@@ -22,6 +22,9 @@
 *import math:gcd_test
 //*import math:floor_test --> base
 //*import math:ceil_test --> base
+*import math:mean_test 
+*import math:median_test
+
 
 
 function test(){
@@ -45,6 +48,8 @@ function test(){
   gcd_test();
   //floor_test();
   //ceil_test();
+  mean_test();
+  median_test();
   
   print("All test cases passed!")
 }
