@@ -9,9 +9,11 @@
  * 
  */
 
-*import math: ndim
+
 
 function is_tril(input) {
+
+    *import math: ndim
 
     //declare raw_in to be input.clone() if Mat otherwise input itself
     let in_type = (input instanceof Mat);

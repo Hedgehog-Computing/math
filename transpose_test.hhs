@@ -6,24 +6,26 @@
  * Function for checking transpose.hhs and making sure it doesnt modify original input
  */
 
-*import math:transpose
+
 
 function transpose_test() {
 
+    *import math: transpose
+
     //check basic transpose 
-    if (!((transpose([[1,1,4],[4,3,12],[5,6,7]]) === ( [[1,4,5],[1,3,6],[4,12,7]]) ))) {
+    if (!((transpose([[1, 1, 4], [4, 3, 12], [5, 6, 7]]) === ([[1, 4, 5], [1, 3, 6], [4, 12, 7]])))) {
         throw new Error('Unit test failed for transpose.')
     }
-    
+
     //check input matrix is not modified after the execution of the transpose 
 
-let a = [[2,3],[1,2]];  
+    let a = [[2, 3], [1, 2]];
 
-//if (!(inputM === null)) {. //// not working plus it asks for user input which is dumb of me
+    //if (!(inputM === null)) {. //// not working plus it asks for user input which is dumb of me
     //make a copy before the transpose
     let copy_input = zeros(a.length, a.length).val;
-    for (i = 0; i <a.length; i++) {
-        for (j=0; j<a[0].length; j++) {
+    for (i = 0; i < a.length; i++) {
+        for (j = 0; j < a[0].length; j++) {
             copy_input[i][j] = a[i][j];
         }
     }
@@ -31,8 +33,8 @@ let a = [[2,3],[1,2]];
     transpose(a);
 
     //verify that the copy still matches inputM entry by entry
-    for (h=0; h<a.length;h++) {
-        for (k=0; k< a[0].length; k++) {
+    for (h = 0; h < a.length; h++) {
+        for (k = 0; k < a[0].length; k++) {
             if (!(copy_input[h][k] === a[h][k])) {
                 throw new Error('Unit test for transpose has failed, input was modified');
             }

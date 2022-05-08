@@ -10,9 +10,11 @@
  */
 
 //Note: need to add tensor support
-*import math:deep_copy
+
 
 function dot_divide(A, B) {
+
+    *import math: deep_copy
 
     //declare raw_in_a and raw_in_b to be either clones of respective inputs or deep copy inputs themselves depending on if Mat or not
     let in_type_A = (A instanceof Mat);

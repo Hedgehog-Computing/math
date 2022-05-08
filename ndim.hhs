@@ -6,12 +6,14 @@
  * Function that takes in a structure namely a list, matrix, or tensor and returns the dimension of said structure
  */
 
-*import math: is_number
-*import math: shape 
-*import math: deep_copy
+
 
 
 function ndim(input) {
+
+    *import math: is_number
+    *import math: shape
+    *import math: deep_copy
 
     //declare raw_in to be a clone of input or input itself depending on whether its a Mat/Tensor or not, respectively
     let in_type = (input instanceof Mat || input instanceof Tensor)
@@ -23,11 +25,11 @@ function ndim(input) {
         //degrade to JS array if Tensor or Mat object 
 
         /***not even this is necessary since shape() handles it***/
-        
+
         if (input instanceof Mat || input instanceof Tensor) {
             raw_in = raw_in.val;
         }
-        
+
         return (shape(raw_in).length);
         /********* I think this is all unnecessary and we can simply have shape() which gives us the length of each dimension, and then find the
          * length of shape aka THE #dimensions. 

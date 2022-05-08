@@ -9,14 +9,16 @@
 
 
 
-*import math:lsolve
+
 
 function lsolve_test() {
 
-    let a = new Mat([[3,0,0],[3,2,0],[1,4,1]]);
-    let b = [[3],[4],[5]];
+    *import math: lsolve
 
-    if (!(lsolve(a,b) === [[1],[0.5],[2]]) ) {
+    let a = new Mat([[3, 0, 0], [3, 2, 0], [1, 4, 1]]);
+    let b = [[3], [4], [5]];
+
+    if (!(lsolve(a, b) === [[1], [0.5], [2]])) {
         throw new Error('Unit test failed for lusolve');
     }
 }

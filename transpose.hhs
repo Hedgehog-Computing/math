@@ -6,11 +6,12 @@
  * Simple function that transposes a matrix and returns it. This does NOT modify the input 
  */
 
-*import math: ndim
-*import math: deep_copy
 
 
 function transpose(input) {
+
+    *import math: ndim
+    *import math: deep_copy
 
     //declare raw_in to be input clone if Mat and input deep copy otherwise
     let in_type = (input instanceof Mat);
@@ -22,7 +23,7 @@ function transpose(input) {
     }
 
     //checks: 0 dims, not square, ndim not === 2? 
-    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(ndim(raw_in)===2)) {
+    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(ndim(raw_in) === 2)) {
         throw new Error('Matrix must be non-empty, square and 2d');
     }
 

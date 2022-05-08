@@ -6,11 +6,13 @@
  * This function is similar to Tensor.shape, where it gives a shape vector representing each dimension's length
  */
 
-*import math: is_number
-*import math: deep_copy
 
 
 function shape(input) {
+
+
+    *import math: is_number
+    *import math: deep_copy
 
     let result = [];
     let current_dim = 0;

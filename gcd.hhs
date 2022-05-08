@@ -1,4 +1,4 @@
-/*
+/** 
 * @author Blake Wang
 * @params 2 integers, 2 js 2d-arrays/Mat objects of the same dimensions, 2 js 1d-arrays of the same dimensions
 * @returns an integer representing greatest common divisor of 2 input integers 
@@ -8,10 +8,12 @@
 *
 */
 
-*import math: deep_copy
+
 
 
 function gcd(input) {
+
+    *import math: deep_copy
 
     //helper function for 1 argument / list version. could probably combine with integer version for compactness
 

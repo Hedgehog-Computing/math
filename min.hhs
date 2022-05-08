@@ -8,49 +8,51 @@
  * 
  */
 
- *import math:is_number
 
- function min(input) {
+
+function min(input) {
  
-     //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
-     let in_type = (input instanceof Mat || input instanceof Tensor);
-     let raw_in = (in_type) ? input.clone() : input;
-     //declare minimum within function scope so we can modify it in loop
-     let minimum = Number.MAX_SAFE_INTEGER;
- 
-     if (in_type || (raw_in instanceof Array && raw_in[0] instanceof Array)) {
-         //degrade to JS array if Mat/Tensor
-         if (in_type) {
+    *import math: is_number
+
+    //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
+    let in_type = (input instanceof Mat || input instanceof Tensor);
+    let raw_in = (in_type) ? input.clone() : input;
+    //declare minimum within function scope so we can modify it in loop
+    let minimum = Number.MAX_SAFE_INTEGER;
+
+    if (in_type || (raw_in instanceof Array && raw_in[0] instanceof Array)) {
+        //degrade to JS array if Mat/Tensor
+        if (in_type) {
             raw_in = raw_in.val;
-         }
-         
-         //loop through all elements (only supports 2d arrays right now until I get recursive for loops going)
-         for (let i = 0; i < raw_in.length; i++) {
-             for (let j = 0; j < raw_in[0].length; j++) {
-                 //check in the matrix is larger than minimum. If so, replace minimum with that value. Repeat
-                 if (raw_in[i][j] < minimum) {
-                     //keep replacing until you get the highest one eventually
-                     minimum = raw_in[i][j];
-                 }
-             }
-         }
-         //we exhausted the elements so its gauranteed to be the minimum
-         return minimum;
-     }
-     //otherwise, if it's a number, return the number
-     if (is_number(input)) {
-         return input;
-     }
- 
-     //for cases where its a 1d list:
-     //if you take the first row of the array... and its NOT an array it must be a 1d array
-     if (!Array.isArray(raw_in[0])) {
-         //loop through setting minimum to new values when finding one higher than itself
-         for (let i = 0; i < raw_in.length; i++) {
-             if (raw_in[i] < minimum) {
-                 minimum = raw_in[i];
-             }
-         }
-         return minimum;
-     }
- }
+        }
+
+        //loop through all elements (only supports 2d arrays right now until I get recursive for loops going)
+        for (let i = 0; i < raw_in.length; i++) {
+            for (let j = 0; j < raw_in[0].length; j++) {
+                //check in the matrix is larger than minimum. If so, replace minimum with that value. Repeat
+                if (raw_in[i][j] < minimum) {
+                    //keep replacing until you get the highest one eventually
+                    minimum = raw_in[i][j];
+                }
+            }
+        }
+        //we exhausted the elements so its gauranteed to be the minimum
+        return minimum;
+    }
+    //otherwise, if it's a number, return the number
+    if (is_number(input)) {
+        return input;
+    }
+
+    //for cases where its a 1d list:
+    //if you take the first row of the array... and its NOT an array it must be a 1d array
+    if (!Array.isArray(raw_in[0])) {
+        //loop through setting minimum to new values when finding one higher than itself
+        for (let i = 0; i < raw_in.length; i++) {
+            if (raw_in[i] < minimum) {
+                minimum = raw_in[i];
+            }
+        }
+        return minimum;
+    }
+}

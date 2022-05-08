@@ -7,12 +7,15 @@
  * 
  */
 
-*import math: transpose
-*import math: ndim
-*import math: deep_copy
+
 
 //returns true if symmetric, false if not, throws exception if not correct dimensions or 0 dimensions
 function is_symmetric(input) {
+
+
+    *import math: transpose
+    *import math: ndim
+    *import math: deep_copy
 
     //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
     let in_type = (input instanceof Mat);
@@ -23,7 +26,7 @@ function is_symmetric(input) {
         raw_in = raw_in.val;
     }
     //check: is matrix square? is any dimension 0? is ndim not 2? if so throw an error
-    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2)) ) {
+    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2))) {
         throw new Error('Either not square, not 2d, or 0 dimension row/cols');
     }
     //if the Mat object doesn't equal it's transpose, return false

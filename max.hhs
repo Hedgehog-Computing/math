@@ -7,9 +7,11 @@
  * 
  */
 
-*import math:is_number
+
 
 function max(input) {
+
+    *import math: is_number
 
     //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
     let in_type = (input instanceof Mat || input instanceof Tensor);

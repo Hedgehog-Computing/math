@@ -7,9 +7,12 @@
 *
 */
 
-*import math:is_number
+
 
 function ceil(input) {
+
+  *import math: is_number
+  
   // if input is a Mat, Tensor or 2d array
   let in_type = ((input instanceof Mat || input instanceof Tensor))
   if (in_type || (input instanceof Array && input[0] instanceof Array)) {
@@ -21,12 +24,12 @@ function ceil(input) {
     for (let i = 0; i < input.length; i++) {
       for (let j = 0; j < input[i].length; j++) {
         if (is_number(input[i][j])) {
-          if (input[i][j] >= 0){
+          if (input[i][j] >= 0) {
             input[i][j] = (input[i][j] % 1 === 0 ? parseInt(input[i][j]) : parseInt(input[i][j]) + 1);
-          }else {
+          } else {
             input[i][j] = parseInt(input[i][j]);
           }
-        }else {
+        } else {
           input[i][j] = NaN;
         }
       }
@@ -38,26 +41,26 @@ function ceil(input) {
   if (input instanceof Array && !Array.isArray(input[0])) {
     for (let i = 0; i < input.length; i++) {
       if (is_number(input[i])) {
-        if (input[i] >= 0){
+        if (input[i] >= 0) {
           input[i] = (input[i] % 1 === 0 ? parseInt(input[i]) : parseInt(input[i]) + 1);
-        }else {
+        } else {
           input[i] = parseInt(input[i]);
         }
-      }else {
+      } else {
         input[i] = NaN;
       }
     }
     return mat(input);
-  }  
+  }
 
   // when input is a number
   if (is_number(input)) {
-    if (input >= 0){
+    if (input >= 0) {
       return (input % 1 === 0 ? parseInt(input) : parseInt(input) + 1);
-    }else {
+    } else {
       return parseInt(input);
     }
-  }else {
+  } else {
     return NaN;
   }
 }
