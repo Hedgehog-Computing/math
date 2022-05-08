@@ -3,15 +3,17 @@
  * Function for unit test for median
  */
 
-*import math: median
+
 
 function median_test() {
 
-    let b = [5,34,3];
-    let c = [[3,2,3],[3,4,3]];
-    let d = new Mat([3,4,2]);
-    let e = new Mat([[3,4],[4,3],[4,3]]);
-    let f = [[[2,2],[3,3],[4,4]],[[2,2],[3,3],[4,4]],[[4,4],[3,3],[2,2]]];
+    *import math: median
+
+    let b = [5, 34, 3];
+    let c = [[3, 2, 3], [3, 4, 3]];
+    let d = new Mat([3, 4, 2]);
+    let e = new Mat([[3, 4], [4, 3], [4, 3]]);
+    let f = [[[2, 2], [3, 3], [4, 4]], [[2, 2], [3, 3], [4, 4]], [[4, 4], [3, 3], [2, 2]]];
     let g = [[1, 2], [3], [4, 5, 6]];
     let h = new Tensor([[[1, 2], [3, 4]], [[5, 6], [7, 8]]]);
 

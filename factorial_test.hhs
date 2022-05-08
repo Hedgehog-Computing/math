@@ -7,15 +7,15 @@
  */
 
 
-*import math:factorial
-
 function factorial_test() {
 
-        if (!(factorial(5) === 120)) {
-            throw new Error('factorial unit test failed for number.');
-        }
+    *import math: factorial
 
-        if ( !( factorial([[3,2],[5,1]]) === [[6,2],[120,1]] ) ) {
-            throw new Error ('factorial unit test failed for array.');
-        }
+    if (!(factorial(5) === 120)) {
+        throw new Error('factorial unit test failed for number.');
+    }
+
+    if (!(factorial([[3, 2], [5, 1]]) === [[6, 2], [120, 1]])) {
+        throw new Error('factorial unit test failed for array.');
+    }
 } 

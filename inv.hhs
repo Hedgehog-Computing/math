@@ -6,12 +6,14 @@
  * Function that given a square invertible matrice, it will return the inverted matrix
  */
 
-*import math: ndim
-*import math: det
-*import math: deep_copy
+
 
 
 function inv(input) {
+
+    *import math: ndim
+    *import math: det
+    *import math: deep_copy
 
     //declare raw_in to be a clone of input if Mat otherwise input itself 
     let in_type = (input instanceof Mat)

@@ -9,11 +9,13 @@
  * 
  */
 
-*import math: ndim
-*import math: deep_copy
+
 
 
 function is_triu(input) {
+
+    *import math: ndim
+    *import math: deep_copy
 
     //declare raw_in to be input.clone() if Mat otherwise input itself
     let in_type = (input instanceof Mat);

@@ -11,13 +11,16 @@
  */
 
 
+
 function dot_multiply(A, B) {
+
+    *import math: deep_copy
 
     //declare raw_in_a and raw_in_b to be clones of A, B if Mat or A,B themselves when JS arrays
     let in_type_A = (A instanceof Mat);
     let in_type_B = (B instanceof Mat);
-    let raw_in_a = (in_type_A) ? A.clone() : JSON.parse(JSON.stringify(A));
-    let raw_in_b = (in_type_B) ? B.clone() : JSON.parse(JSON.stringify(B));
+    let raw_in_a = (in_type_A) ? A.clone() : deep_copy(A);
+    let raw_in_b = (in_type_B) ? B.clone() : deep_copy(B);
 
     //for instances of Mat, degrade to JS array to generalize the below code for both Mat and JS arrays
     if (A instanceof Mat) {
@@ -26,9 +29,9 @@ function dot_multiply(A, B) {
     if (B instanceof Mat) {
         raw_in_b = raw_in_b.val
     }
-    
+
     //check: are rows the same size? are columns? if not, throw error.
-    if ( !(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
+    if (!(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
         throw new Error('Matrix input are of different dimensions')
     }
 

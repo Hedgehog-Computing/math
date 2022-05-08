@@ -7,11 +7,13 @@
  * and the normal factorial for numbers. Recall factorial for a number is num! = (num)*(num-1)*(num-2)*...*2*1 . Ex: 5! = 5*4*3*2*1 = 120.
  */
 
-*import math: is_number
-*import math: ndim
+
 
 
 function factorial(input) {
+
+    *import math: is_number
+    *import math: ndim
 
     //doesnt support tensors yet 
 

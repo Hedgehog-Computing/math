@@ -6,11 +6,13 @@
  * @returns the cholesky decomposition's L part
  */
 
-*import math: transpose
-*import math: is_symmetric
+
 
 
 function cholesky(inputMatrix) {
+
+    *import math: transpose
+    *import math: is_symmetric
 
   //Cholesky: if the input is Mat, check rows/cols and symmetricity 
   if (inputMatrix instanceof Mat) {

@@ -8,10 +8,12 @@
  * 
  */
 
-*import math: ndim
-*import math: deep_copy
+
 
 function flatten(input) {
+
+    *import math: ndim
+    *import math: deep_copy
 
     //declare raw_input to be a clone of input when input is a Mat or Tensor, otherwise input itself
     let in_type = (input instanceof Mat || input instanceof Tensor);

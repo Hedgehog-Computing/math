@@ -6,10 +6,12 @@
  * Simple function for determining the trace of a matrix (recall trace is the sum of diagonal entries on a square 2d matrix)
  */
 
-*import math:ndim 
+
 
 
 function trace(input) {
+
+    *import math: ndim
 
     //declare raw_in to be an input clone if Mat or input itself otherwise
     let in_type = (input instanceof Mat)
@@ -21,7 +23,7 @@ function trace(input) {
     }
 
     //check: is it square? 0 dims? ndim not equal to 2?
-    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2)) ) {
+    if (!(raw_in.length === raw_in[0].length) || raw_in.length === 0 || raw_in[0].length === 0 || (!(ndim(raw_in) === 2))) {
         throw 'Not a square, 2d, non-empty matrix. Trace is undefined.';
     }
     //declare trace_val the value we will sum up and return

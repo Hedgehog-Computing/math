@@ -6,13 +6,15 @@
  * Function for testing dot_divide.hhs
  */
 
-*import math:dot_divide
+
 
 function dot_divide_test() {
 
-    let a = new Mat([[3,4],[5,6]]);
-    let b = [[2,2],[1,3]];
-    if (! (dot_divide(a,b) === [[1.5,2],[5,2]] )) {
+    *import math: dot_divide
+
+    let a = new Mat([[3, 4], [5, 6]]);
+    let b = [[2, 2], [1, 3]];
+    if (!(dot_divide(a, b) === [[1.5, 2], [5, 2]])) {
         throw new Error('Unit test failed for dot_divide');
     }
 }

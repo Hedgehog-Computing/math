@@ -4,12 +4,14 @@
  * @returns - 3 objects of type Mat - L, U and p. A lower triangular matrix, upper triangular and p
  */
 
-*import math: ndim
-*import math: deep_copy
+
 
 
 //takes in raw array or Mat object and return L, U, p as decomposed objects
 function lup(input) {
+
+    *import math: ndim
+    *import math: deep_copy
 
     //declare raw_in as input.clone() if Mat otherwise input
     let in_type = (input instanceof Mat);

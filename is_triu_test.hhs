@@ -7,12 +7,14 @@
  * Function for testing the is_tril.hhs function
  */
 
- *import math:is_triu
 
- function is_triu_test() {
+
+function is_triu_test() {
  
-     let a = new Mat([[3,2,1],[0,1,3],[0,0,2]]);
-     if (!is_triu(a)) {
-         throw new Error('Unit test failed for is_tril');
-     }
- }
+    *import math: is_triu
+
+    let a = new Mat([[3, 2, 1], [0, 1, 3], [0, 0, 2]]);
+    if (!is_triu(a)) {
+        throw new Error('Unit test failed for is_tril');
+    }
+}
