@@ -14,10 +14,11 @@
 function is_tril(input) {
 
     *import math: ndim
+    *import math: deep_copy
 
     //declare raw_in to be input.clone() if Mat otherwise input itself
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : JSON.parse(JSON.stringify(input));
+    let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //degrade raw_in to JS array for generalized code
     if (input instanceof Mat) {
