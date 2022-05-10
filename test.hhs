@@ -29,6 +29,7 @@ function test() {
 *import math:mean_test 
 *import math:median_test
 *import math:multinomial_test
+*import math:reshape_test
 
 
 
@@ -53,6 +54,7 @@ function test() {
   mean_test();
   median_test();
   multinomial_test();
+  reshape_test();
 
   print("All test cases passed!")
 }
