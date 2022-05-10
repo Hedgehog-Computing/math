@@ -18,7 +18,7 @@ function reshape(input, sizes = [-1]) {
     if (arguments.length === 0) {
         throw new Error('Exception occurred in reshape - no argument given');
     }
-    else if (length > 2) {
+    else if (arguments.length > 2) {
         throw new Error('Exception occurred in reshape - wrong argument number');
     }
 
