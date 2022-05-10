@@ -28,6 +28,7 @@ function test() {
 //*import math:ceil_test --> UNCOMMENT WHEN REMOVED FROM BASE
 *import math:mean_test 
 *import math:median_test
+*import math:multinomial_test
 
 
 
@@ -51,6 +52,7 @@ function test() {
   //ceil_test();
   mean_test();
   median_test();
+  multinomial_test();
 
   print("All test cases passed!")
 }
