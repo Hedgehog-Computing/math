@@ -40,6 +40,6 @@
  *import math:gcd
  *import math:mean 
  *import math:median 
- 
+ *import math:multinomial
  
  
