@@ -16,14 +16,14 @@ function multinomial(input) {
 
     // if there are no arguments, there is an error
     if (length === 0) {
-        throw new Error('No argument given');
+        throw new Error('Exception occurred in multinomial - no argument given');
     }
 
     // if we input a series of numbers
     if (is_number(input)) {
         for (let i = 0; i < length; i++) {
             if (arguments[i] < 0 || parseInt(arguments[i]) !== arguments[i]) {
-                throw new Error('Arguments must be non-negative integers');
+                throw new Error('Exception occurred in multinomial - arguments must be non-negative integers');
             }
         }
 
@@ -40,10 +40,9 @@ function multinomial(input) {
         return result;
     }
 
-    // input is an array / matrix / tensor
     else {
         if (length !== 1) {
-            throw new Error('Wrong argument number');
+            throw new Error('Exception occurred in multinomial - wrong argument number');
         }
 
         if ( !(Array.isArray(arguments[0])) && !(arguments[0] instanceof Mat) && !(arguments[0] instanceof Tensor)) {
@@ -57,7 +56,7 @@ function multinomial(input) {
         let array_length = raw_in.length;
         for (let i = 0; i < array_length; i++) {
             if (raw_in[i] < 0 || parseInt(raw_in[i]) !== raw_in[i]) {
-                throw new Error('Elements must be non-negative integers');
+                throw new Error('Exception occurred in multinomial - elements must be non-negative integers');
             }
         }
 
