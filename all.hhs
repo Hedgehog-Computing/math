@@ -41,5 +41,6 @@
  *import math:mean 
  *import math:median 
  *import math:multinomial
+ *import math:reshape
  
  
