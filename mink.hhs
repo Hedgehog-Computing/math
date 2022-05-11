@@ -1,0 +1,87 @@
+
+
+function mink(input, k, dim)
+{
+  *import math: is_number
+  *import math: ndim
+  *import math: deep_copy
+  *import math: transpose
+  
+  let in_type = (input instanceof Mat || input instanceof Tensor);
+  let raw_in = (in_type) ? input.clone().val : deep_copy(input);
+  let dims = ndim(raw_in);
+
+  if(dims === 1) 
+  {
+    Array.sort(raw_in);
+    let result = [];
+    for(let i = 0; i < k; i++)
+    {
+      result.push(raw_in[i]);
+    }
+    return result;
+  }
+  else if(dims === 2)
+  {
+    if(dim === 1)
+    {
+      let result = [];
+      for(let i = 0; i < raw_in.length; i++)
+      {
+        Array.sort(raw_in[i]);
+        for(let j = 0; j < k; j++)
+        {
+          result[i].push(raw_in[i][j]);
+        }
+      }
+      return result;
+    }
+    else if(dim === 2)
+    {
+      // let raw_in_transpose = 
+    }
+    else
+    {
+      throw new Error('dim can only be 1 or 2');
+    }
+  }
+  else
+  {
+    throw new Error('only support 1d or 2d array of matrix');
+  }
+}
+
+function private_heap_sort(input, k)
+{
+  let n = input.length;
+
+  for(let i = Math.floor(n / 2) - 1; i >= 0; i--)
+    heapify(input, n, i);
+  
+  for(let i = n - 1; i > 0; i--)
+  {
+    let temp = input[0];
+    input[0] = input[i];
+    input[i] = temp;
+
+    heapify(input, i, 0);
+  }
+
+  function heapify(input, k, i)
+  {
+    let largest = i;
+    let l = 2 * i + 1;
+    let r = 2 * i + 2;
+    if(l < n && input[l] > input[largest])
+      largest = l;
+    if(r < n && input[r] > input[largest])
+      largest = r;
+    if(largest != i)
+    {
+      let temp = input[i];
+      input[i] = input[largest];
+      input[largest] = temp;
+      heapify(input, k, largest);
+    }
+  }
+}
