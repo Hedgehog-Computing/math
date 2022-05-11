@@ -8,6 +8,20 @@
  */
 
 function deep_copy(input) {
-    input.map(input => Array.isArray(input) ? deep_copy(input) : input);
-    return input;
+    
+    // wrong argument number
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in deep_copy - no argument given');
+    }
+    else if (arguments.length > 1) {
+        throw new Error('Exception occurred in deep_copy - wrong argument number');
+    }
+
+    // type check
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in deep_copy - input is not a Mat, Tensor or JS Array');
+    }
+
+    let result = Array.isArray(input) ? input.map(x => x) : input.clone();
+    return result;
 }
