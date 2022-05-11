@@ -14,6 +14,15 @@ function QR(input) {
 
     *import math: deep_copy
 
+    // argument number
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in QR - no argument given');
+    }
+    else if (length > 2) {
+        throw new Error('Exception occurred in QR - wrong argument number');
+    }
+
+
     // type check
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
         throw new Error('Exception occurred in QR - input is not a Mat, Tensor or JS Array');
