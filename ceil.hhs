@@ -12,6 +12,19 @@
 function ceil(input) {
 
   *import math: is_number
+
+  // arguments length
+  if (arguments.length === 0) {
+    throw new Error('Exception occurred in ceil - no argument given');
+  }
+  else if (arguments.length > 1) {
+    throw new Error('Exception occurred in ceil - wrong arguments number');
+  }
+
+  // type check
+  if (!is_number(input) && !(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+    throw new Error('Exception occurred in ceil - input is not a number, Mat, Tensor or JS Array');
+  }
   
   // if input is a Mat, Tensor or 2d array
   let in_type = ((input instanceof Mat || input instanceof Tensor))
