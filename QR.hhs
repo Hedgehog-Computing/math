@@ -18,7 +18,7 @@ function QR(input) {
     if (arguments.length === 0) {
         throw new Error('Exception occurred in QR - no argument given');
     }
-    else if (arguments.length > 2) {
+    else if (arguments.length > 1) {
         throw new Error('Exception occurred in QR - wrong argument number');
     }
 
