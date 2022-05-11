@@ -14,6 +14,19 @@ function cholesky(inputMatrix) {
     *import math: transpose
     *import math: is_symmetric
 
+    // argument number
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in cholesky - no argument given');
+    }
+    else if (arguments.length > 1) {
+        throw new Error('Exception occurred in cholesky - wrong argument number');
+    }
+
+    // type check
+    if (!(Array.isArray(inputMatrix)) && !(inputMatrix instanceof Mat) && !(inputMatrix instanceof Tensor)) {
+        throw new Error('Exception occurred in cholesky - inputMatrix is not a Mat, Tensor or JS Array');
+    }
+    
   //Cholesky: if the input is Mat, check rows/cols and symmetricity 
   if (inputMatrix instanceof Mat) {
     L: Mat;
@@ -54,6 +67,10 @@ function cholesky(inputMatrix) {
   }
 
   //in the case the array is raw
+  //consider the tensor
+  if (inputMatrix instanceof Tensor) {
+    inputMatrix = inputMatrix.val;
+  }
 
   if (!(inputMatrix.length === inputMatrix[0].length) || inputMatrix.length === 0 || inputMatrix[0].length === 0) {
     throw new Error('Wrong dimensions for ' + inputMatrix);
