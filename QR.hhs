@@ -22,7 +22,6 @@ function QR(input) {
         throw new Error('Exception occurred in QR - wrong argument number');
     }
 
-
     // type check
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
         throw new Error('Exception occurred in QR - input is not a Mat, Tensor or JS Array');
