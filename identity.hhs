@@ -4,7 +4,6 @@
  * @returns - a Mat object representing a 2D identity matrix.
  */
 
-
 function identity(input) {
 
 	*import math: is_number
@@ -16,23 +15,27 @@ function identity(input) {
 	}
 
 	// Then we return special Mat value when input is 0 or 1
-	if (input == 0) {
+	if (input === 0) {
 		return new Mat([]);
 	}
 
-	if (input == 1) {
+	if (input === 1) {
 		return new Mat([[1]]);
 	}
 
 	// Now we can start on creating the Id matrix
-	let result = [];
+	let result = new Mat().zeros(n, n);
 	for (let i = 0; i < n; i++){
-		// For each row, we create a new Array object and fill the corresponded position with 1
-		let row = new Array(len).fill(0);
-		row[i] = 1;
-		result += row;
-	}
+		result[i][i] = 1;
+	}	
 
 	// return as a Mat object
-	return new Mat(result);
+	return result;
+
+	// Note: the implementation of `result` above is for practicing purpose, from which I've learnt a lot.
+	// A better implementation suggested by the team is as follows, so feel free to alternate between the above 
+	// version and the following one.
+	// result = mathjs.identity(input);
+	// // return the result as a mat object
+	// return mat(result);
 }
