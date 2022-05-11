@@ -8,6 +8,6 @@
  */
 
 function deep_copy(input) {
-    input.map(input => Array.isArray(input) ? deep_copy(input) : input);
-    return input;
+    // the most fastest version, faster than for loop
+    return items.map(item => isArray(item) ? deep_copy(item) : item);
 }

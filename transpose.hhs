@@ -1,11 +1,11 @@
 /**
  * @author Jason Reynolds
- * @param input - the matrix to transpose, aka make columns->rows and rows->columns. Must be square, 2d
+ * @modifiedBy Jing Stone
+ * @param input - the matrix to transpose, aka make columns->rows and rows->columns. Support list and 2d matrix.
  * @returns - the transposed matrix, as a Mat object
  * 
  * Simple function that transposes a matrix and returns it. This does NOT modify the input 
  */
-
 
 
 function transpose(input) {
@@ -15,26 +15,41 @@ function transpose(input) {
 
     //declare raw_in to be input clone if Mat and input deep copy otherwise
     let in_type = (input instanceof Mat);
-    let raw_in = (in_type) ? input.clone() : deep_copy(input);
-
     //if input is Mat degrade to JS array to have the below code work for both JS arrays and Mat objects
-    if (input instanceof Mat) {
-        raw_in = raw_in.val;
-    }
+    /**
+     * the speed the mat.clone() is a little slow, need some optimization.
+     */
+    let raw_in = (in_type) ? input.clone().val : deep_copy(input);
+
 
     //checks: 0 dims, not square, ndim not === 2? 
-    if (raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length) || !(ndim(raw_in) === 2)) {
-        throw new Error('Matrix must be non-empty, square and 2d');
-    }
+    if (raw_in.length === 0 || raw_in[0].length === 0 || (ndim(raw_in) > 2)) {
+        throw new Error('parameter must be non-empty and two dimensional matrix or list');
+    } 
 
     //loop through twice as it's a 2d array
-    for (let i = 0; i < raw_in.length; i++) {
-        for (let j = i; j < raw_in[0].length; j++) {
-            //CHANGE i,j indice to value of j,i's. For diagonal entries note that i===j so raw_in[i][j] will be === raw_in[j][i] as expected of a transpose
-            let tmp = raw_in[i][j]
-            raw_in[i][j] = raw_in[j][i];
-            raw_in[j][i] = tmp;
+    //support for arbitrary two-dimensional arrays
+    let result = [];
+    // for one dimensional matrix: [1, 2, 3] --> [[1], [2], [3]]
+    if(ndim(raw_in) === 1)
+    {
+        for(let i = 0; i < raw_in.length; i++)
+        {
+            let temp = [];
+            temp.push(raw_in[i]);
+            result.push(temp);
         }
     }
-    return (new Mat(raw_in));
+    // for two dimensional matrix: [[1, 2, 3], [4, 5, 6]] --> [[1, 4], [2, 5], [3, 6]]
+    if(ndim(raw_in) === 2)
+    {
+        for (let i = 0; i < raw_in[0].length; i++) {
+            let temp = [];
+            for (let j = 0; j < raw_in.length; j++) {
+                temp.push(raw_in[j][i]);
+            }
+            result.push(temp);
+        }
+    }
+    return (new Mat(result));
 }
