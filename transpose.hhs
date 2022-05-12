@@ -24,7 +24,7 @@ function transpose(input) {
 
     //checks: 0 dims, not square, ndim not === 2? 
     if (raw_in.length === 0 || raw_in[0].length === 0 || (ndim(raw_in) > 2)) {
-        throw new Error('Exception occured in transpose - parameter must be non-empty and two dimensional matrix or list');
+        throw new Error('Exception occured in transpose - parameter must be non-empty and 1d list or 2d matrix');
     } 
 
     //loop through twice as it's a 2d array
@@ -55,5 +55,5 @@ function transpose(input) {
             result.push(temp);
         }
     }
-    return result;
+    return (new Mat(result));
 }
