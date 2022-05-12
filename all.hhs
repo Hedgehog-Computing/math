@@ -42,6 +42,6 @@
  *import math:median 
  *import math:multinomial
  *import math:reshape
- *import maxk
+ *import math:maxk
  
  
