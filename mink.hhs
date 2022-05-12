@@ -83,12 +83,12 @@ function mink(input, k, dim)
     }
     else
     {
-      throw new Error('dim can only be 1 or 2');
+      throw new Error('Exception occured in mink - dim can only be 1 or 2');
     }
   }
   else
   {
-    throw new Error('only support 1d or 2d array of matrix');
+    throw new Error('Exception occured in mink - only support 1d list or 2d matrix');
   }
   return null;
 }

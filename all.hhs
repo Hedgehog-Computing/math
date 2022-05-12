@@ -36,6 +36,7 @@
  *import math:trace
  *import math:transpose
  *import math:usolve
+ *import math:mink
 
  *import math:gcd
  *import math:mean 
