@@ -31,7 +31,7 @@ function is_diag(input)
     {
       for(let j = 0; j < row; j++)
       {
-        if(i !== j && input[i][j] === 0)
+        if(i !== j && input[i][j] !== 0)
           return false;
       }
     }
