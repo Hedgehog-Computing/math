@@ -29,7 +29,7 @@ function maxk_test() {
                   [25, 18, 11]];
 
   function test(input, k, dim, result) {
-    !(maxk(input, k, dim) === result)
+    if(!(maxk(input, k, dim) === result))
     {
       throw new Error('Unit test failed for maxk.')
     }
