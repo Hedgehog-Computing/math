@@ -14,18 +14,14 @@ function is_diag(input)
   let dims = ndim(input)
   if(dims === 1)
   {
-    if(input[0] === 1)
+    for(let i = 1; i < input.length; i++)
     {
-      for(let i = 1; i < input.length; i++)
+      if(input[i] !== 0)
       {
-        if(input[i] !== 0)
-        {
-          return false;
-        }
+        return false;
       }
-      return true;
     }
-    return false;
+    return true;
   }
   else
   {
