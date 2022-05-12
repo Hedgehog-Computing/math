@@ -1,0 +1,43 @@
+/**
+ * @author Jing Stone
+ * Unit test for maxk function
+ */
+
+function mink_test() {
+  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/maxk.hhs
+
+  let A = [[17, 24, 1, 8, 15], 
+            [23, 5, 7, 14, 16], 
+            [4, 6, 13, 20, 22], 
+            [10, 12, 19, 21, 3], 
+            [11, 18, 25, 2, 9]];
+  // A-num-num means the 3 parameters of maxk
+  const A_2_1 = [[23, 24, 25, 21, 22],
+                  [17, 18, 19, 20, 16]];
+  const A_2_2 = [[24, 17],
+                  [23, 16],
+                  [22, 20],
+                  [21, 19],
+                  [25, 18]];
+  const A_3_1 = [[23, 24, 25, 21, 22],
+                  [17, 18, 19, 20, 16],
+                  [11, 12, 13, 14, 15]];
+  const A_3_2 = [[24, 17, 15],
+                  [23, 16, 14],
+                  [22, 20, 13],
+                  [21, 19, 12],
+                  [25, 18, 11]];
+
+  function test(input, k, dim, result) {
+    !(mink(input, k, dim) === result)
+    {
+      throw new Error('Unit test failed for maxk.')
+    }
+  }
+
+  test(A, 2, 1, A_2_1);
+  test(A, 2, 2, A_2_2);
+  test(A, 3, 1, A_3_1);
+  test(A, 3, 2, A_3_2);
+  print("maxk test passed!");
+}

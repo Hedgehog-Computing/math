@@ -1,0 +1,78 @@
+/**
+ * @author Jing Stone
+ * @param input - list or two dimensional matrix, the largest k numbers that you want, the direction of matrix(column or row)
+ * @returns - if A is a list, return a list contain the k largest elements of a
+ *            if A is a matrix, return a matrix whose columns or rows contain the k largest elements of each columns or rows of A.
+ *            return a Mat object
+ *            dim = 1, column; dim = 2, row
+ *
+ */
+
+// the mat class should consider the input is 1d list, now the output is not correct
+function maxk(input, k, dim) {
+  *import math: is_number
+  *import math: ndim
+  *import math: deep_copy
+  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/mink/transpose.hhs
+
+  // the input should checked before, and only consider the 1d list or 2d matrix
+  let dims = ndim(input);
+  raw_in = input;
+  // if is list, use built-in sort function to get the k largest elements
+  if (dims === 1) {
+    raw_in.sort((a, b) => b - a);
+    let result = [];
+
+    k = k > raw_in.length ? raw_in.length : k;
+
+    for (let i = 0; i < k; i++) {
+      result.push(raw_in[i]);
+    }
+    return (new Mat(result));
+  }
+  // for 2 dims, the direction determined by dim parameter
+  else if (dims === 2) {
+    //get k largest elements of every row
+    if (dim === 2) {
+      let result = [];
+      //in case k is larger than the column or row of the matrix
+      k = k < raw_in[0].length ? k : raw_in[0].length;
+      //sort every row and get the k largest elements 
+      for (let i = 0; i < raw_in.length; i++) {
+        let temp = [];
+        raw_in[i].sort((a, b) => b - a);
+        for (let j = 0; j < k; j++) {
+          temp.push(raw_in[i][j]);
+        }
+        result[i] = temp;
+      }
+      return (new Mat(result));
+    }
+    else if (dim === 1) {
+      let result = [];
+      k = k < raw_in.length ? k : raw_in.length;
+      for (let i = 0; i < raw_in[0].length; i++) {
+        // store every column of matrix
+        let temp_1 = [];
+        // store the k largest elements
+        let temp_2 = [];
+        for (let j = 0; j < raw_in.length; j++) {
+          temp_1.push(raw_in[j][i]);
+        }
+        temp_1.sort((a, b) => b - a);
+        for (let p = 0; p < k; p++) {
+          temp_2.push(temp_1[p]);
+        }
+        result.push(temp_2);
+      }
+      return transpose(result);
+    }
+    else {
+      throw new Error('Exception occured in maxk - dim can only be 1d list or 2d matrix');
+    }
+  }
+  else {
+    throw new Error('Exception occured in maxk - only support 1d list or 2d matrix');
+  }
+  return null;
+}

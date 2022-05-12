@@ -1,0 +1,44 @@
+/**
+ * @author Jing Stone
+ * @param input - 1d list or 2d matrix
+ * @returns - 
+ *        Determine if matrix is diagonal, matrix could be rectangular.
+ */
+
+function is_diag(input)
+{
+  *import math:ndim
+
+  // true for []
+  if(input.length === 0) return true;
+  let dims = ndim(input)
+  if(dims === 1)
+  {
+    if(input[0] === 1)
+    {
+      for(let i = 1; i < input.length; i++)
+      {
+        if(input[i] !== 0)
+        {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+  else
+  {
+    let col = input.length;
+    let row = input[0].length;
+    for(let i = 0; i < col; i++)
+    {
+      for(let j = 0; j < row; j++)
+      {
+        if(i !== j && input[i][j] === 0)
+          return false;
+      }
+    }
+    return true;
+  }
+}
