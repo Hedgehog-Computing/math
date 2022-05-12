@@ -2,7 +2,7 @@
  * @author Jason Reynolds
  * @modifiedBy Jing Stone
  * @param input - the matrix to transpose, aka make columns->rows and rows->columns. Support list and 2d matrix.
- * @returns - the transposed matrix, as a Mat object
+ * @returns - the transposed matrix, 2d matrix
  * 
  * Simple function that transposes a matrix and returns it. This does NOT modify the input 
  */
@@ -55,5 +55,5 @@ function transpose(input) {
             result.push(temp);
         }
     }
-    return (new Mat(result));
+    return result;
 }

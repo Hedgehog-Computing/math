@@ -16,7 +16,7 @@ function mink_test()
 
   function test(input, k, dim, result)
   {
-    !(mink(input, k, dim) === A_3_1)
+    if(!(mink(input, k, dim).join("") === result.join("")))
     {
       throw new Error('Unit test failed for mink.')
     }

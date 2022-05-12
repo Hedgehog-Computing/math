@@ -35,7 +35,7 @@ function mink(input, k, dim)
     {
       result.push(raw_in[i]);
     }
-    return (new Mat(result));
+    return result;
   }
   // for 2 dims, the direction determined by dim parameter
   else if(dims === 2)
