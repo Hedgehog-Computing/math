@@ -13,7 +13,7 @@ function maxk(input, k, dim) {
   *import math: is_number
   *import math: ndim
   *import math: deep_copy
-  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/transpose.hhs
+  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/mink/transpose.hhs
 
   // the input should checked before, and only consider the 1d list or 2d matrix
   let raw_in = deep_copy(input);
