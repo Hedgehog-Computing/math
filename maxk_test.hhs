@@ -27,9 +27,10 @@ function maxk_test() {
                   [22, 20, 13],
                   [21, 19, 12],
                   [25, 18, 11]];
-
+  let B = [4, 2, 0, 1, 2, 9];
+  const B_3 = [9, 4, 2];
   function test(input, k, dim, result) {
-    if(!(maxk(input, k, dim) === result))
+    if(!(maxk(input, k, dim).join("") === result.join("")))
     {
       throw new Error('Unit test failed for maxk.')
     }
@@ -39,5 +40,6 @@ function maxk_test() {
   test(A, 2, 2, A_2_2);
   test(A, 3, 1, A_3_1);
   test(A, 3, 2, A_3_2);
+  test(B, 3, 1, B_3);
   print("maxk test passed!");
 }

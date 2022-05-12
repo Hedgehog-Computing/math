@@ -28,7 +28,7 @@ function maxk(input, k, dim) {
     for (let i = 0; i < k; i++) {
       result.push(raw_in[i]);
     }
-    return (new Mat(result));
+    return result;
   }
   // for 2 dims, the direction determined by dim parameter
   else if (dims === 2) {
@@ -46,7 +46,7 @@ function maxk(input, k, dim) {
         }
         result[i] = temp;
       }
-      return (new Mat(result));
+      return result;
     }
     else if (dim === 1) {
       let result = [];
