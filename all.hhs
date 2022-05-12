@@ -27,8 +27,8 @@
  *import math:ndim 
  //import math:ones --> base
  //import math:power --> base
- //*import math:floor UNCOMMENT WHEN REMOVED FROM BASE
- //*import math:ceil UNCOMMENT WHEN REMOVED FROM BASE 
+ //import math:floor UNCOMMENT WHEN REMOVED FROM BASE
+ //import math:ceil UNCOMMENT WHEN REMOVED FROM BASE 
  *import math:QR
  *import math:shape 
  *import math:sum
