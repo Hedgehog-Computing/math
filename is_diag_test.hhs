@@ -5,7 +5,8 @@
 
 function is_diag_test()
 {
-  *import *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/is_diag.hhs
+  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/is_diag.hhs
+  
   let A1 = [1, 2, 3, 4];
   let A2 = [];
   let A3 = [1, 0, 0, 0];

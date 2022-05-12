@@ -3,7 +3,7 @@
  * Unit test for maxk function
  */
 
-function mink_test() {
+function maxk_test() {
   *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/maxk.hhs
 
   let A = [[17, 24, 1, 8, 15], 
