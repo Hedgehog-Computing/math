@@ -9,15 +9,14 @@
  */
 
 // the mat class should consider the input is 1d list, now the output is not correct
-function maxk(input, k, dim) {
+function maxk(raw_in, k, dim) {
   *import math: is_number
   *import math: ndim
   *import math: deep_copy
   *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/transpose.hhs
 
   // the input should checked before, and only consider the 1d list or 2d matrix
-  let dims = ndim(input);
-  let raw_in = input;
+  let dims = ndim(raw_in);
   // if is list, use built-in sort function to get the k largest elements
   if (dims === 1) {
     raw_in.sort((a, b) => b - a);
