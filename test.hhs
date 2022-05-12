@@ -55,6 +55,7 @@ function test() {
   median_test();
   multinomial_test();
   reshape_test();
+  maxk_test();
 
   print("All test cases passed!")
 }
