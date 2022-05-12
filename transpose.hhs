@@ -33,6 +33,10 @@ function transpose(input) {
     // for one dimensional matrix: [1, 2, 3] --> [[1], [2], [3]]
     if(ndim(raw_in) === 1)
     {
+        if(raw_in.length === 1)
+        {
+            return (new Mat(raw_in));
+        }
         for(let i = 0; i < raw_in.length; i++)
         {
             let temp = [];

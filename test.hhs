@@ -31,6 +31,7 @@ function test() {
 *import math:multinomial_test
 *import math:reshape_test
 *import math:mink_test
+*import math:check_input_test
 
 
   cholesky_test();
@@ -56,6 +57,7 @@ function test() {
   multinomial_test();
   reshape_test();
   mink_test();
+  check_input_test();
 
   print("All test cases passed!")
 }

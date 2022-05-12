@@ -14,6 +14,7 @@ function mink(input, k, dim)
   *import math: is_number
   *import math: ndim
   *import math: deep_copy
+  *import math: transpose
   
   //declare raw_in to be input clone if Mat and input deep copy otherwise
   let in_type = (input instanceof Mat || input instanceof Tensor);
