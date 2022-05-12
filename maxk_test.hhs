@@ -4,7 +4,7 @@
  */
 
 function maxk_test() {
-  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/maxk/maxk.hhs
+  *import math: maxk
 
   let A = [[17, 24, 1, 8, 15], 
             [23, 5, 7, 14, 16], 
@@ -30,7 +30,12 @@ function maxk_test() {
   let B = [4, 2, 0, 1, 2, 9];
   const B_3 = [9, 4, 2];
   function test(input, k, dim, result) {
-    if(!(maxk(input, k, dim).join("") === result.join("")))
+    let output = maxk(input, k, dim);
+    if(output instanceof Mat)
+    {
+      output = output.clone().val;
+    }
+    if(!(output.join("") === result.join("")))
     {
       throw new Error('Unit test failed for maxk.')
     }
@@ -41,5 +46,5 @@ function maxk_test() {
   test(A, 3, 1, A_3_1);
   test(A, 3, 2, A_3_2);
   test(B, 3, 1, B_3);
-  print("maxk test passed!");
+  // print("maxk test passed!");
 }

@@ -13,7 +13,7 @@ function maxk(input, k, dim) {
   *import math: is_number
   *import math: ndim
   *import math: deep_copy
-  *import https://raw.githubusercontent.com/stonejing/hedgehog-math/mink/transpose.hhs
+  *import math: transpose
 
   // the input should checked before, and only consider the 1d list or 2d matrix
   let raw_in = deep_copy(input);
@@ -28,7 +28,7 @@ function maxk(input, k, dim) {
     for (let i = 0; i < k; i++) {
       result.push(raw_in[i]);
     }
-    return result;
+    return (new Mat(result));
   }
   // for 2 dims, the direction determined by dim parameter
   else if (dims === 2) {
@@ -46,7 +46,7 @@ function maxk(input, k, dim) {
         }
         result[i] = temp;
       }
-      return result;
+      return (new Mat(result));
     }
     else if (dim === 1) {
       let result = [];

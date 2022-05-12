@@ -30,7 +30,7 @@ function test() {
 *import math:median_test
 *import math:multinomial_test
 *import math:reshape_test
-
+*import math:maxk_test
 
 
   cholesky_test();
