@@ -17,7 +17,7 @@ function maxk(input, k, dim) {
 
   // the input should checked before, and only consider the 1d list or 2d matrix
   let dims = ndim(input);
-  raw_in = input;
+  let raw_in = input;
   // if is list, use built-in sort function to get the k largest elements
   if (dims === 1) {
     raw_in.sort((a, b) => b - a);
