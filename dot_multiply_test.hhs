@@ -11,9 +11,38 @@ function dot_multiply_test() {
 
     *import math: dot_multiply
 
-    let a = new Mat([[3, 4], [5, 6]]);
-    let b = [[2, 2], [1, 3]];
-    if (!(dot_multiply(a, b) === [[6, 8], [5, 18]])) {
-        throw new Error('Unit test failed for dot_divide');
+    let a = [9, 3, 1];
+    let b = [1, 3, 9];
+    let c = dot_multiply(a, b).val[0];
+    for (let i = 0; i < 3; i++) {
+        if (c[i] !== 9) {
+            throw new Error('Unit test failed for array for dot_multiply');
+        }
     }
+
+    let d = mat([[9, 3, 1], [9, 3, 1]]);
+    let e = mat([[1, 3, 9], [1, 3, 9]]);
+    let f = dot_multiply(d, e).val;
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (f[i][j] !== 9) {
+                throw new Error('Unit test failed for matrix for dot_multiply');
+            }
+        }
+    }
+
+    let g = new Tensor([[[9, 3, 1], [9, 3, 1]], [[9, 3, 1], [9, 3, 1]]]);
+    let h = new Tensor([[[1, 3, 9], [1, 3, 9]], [[1, 3, 9], [1, 3, 9]]]);
+    let m = dot_multiply(g, h).val;
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < 2; j++) {
+            for (let k = 0; k < 3; k++) {
+                if (m[i][j][k] !== 9) {
+                    throw new Error('Unit test failed for tensor for dot_multiply');
+                }
+            }
+        }
+    }
+
+    //print('dot_multiply test pass');
 }

@@ -15,6 +15,16 @@ function flatten(input) {
     *import math: ndim
     *import math: deep_copy
 
+    // wrong argument number
+    if (arguments.length !== 1) {
+        throw new Error('Exception occurred in flatten - wrong argument number');
+    }
+
+    // type check
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in flatten - input is not a Mat, Tensor or JS Array');
+    }
+
     //declare raw_input to be a clone of input when input is a Mat or Tensor, otherwise input itself
     let in_type = (input instanceof Mat || input instanceof Tensor);
     let raw_input = (in_type) ? input.clone() : deep_copy(input);

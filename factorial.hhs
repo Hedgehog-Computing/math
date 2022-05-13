@@ -16,37 +16,58 @@ function factorial(input) {
     *import math: ndim
     *import math: deep_copy 
 
-    //doesnt support tensors yet 
+    // wrong argument number
+    if (arguments.length !== 1) {
+        throw new Error('Exception occurred in factorial - wrong argument number');
+    }
+
+    // type check
+    if (!(is_number(input)) && !(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in factorial - input is not a number, Mat, Tensor or JS Array');
+    }
+
+    if (is_number(input)) {
+        if (input < 0 || parseInt(input) !== input) {
+            throw new Error('Exception occurred in factorial - input must be a non-negative integer');
+        }
+        return mathjs.factorial(input);
+    }
 
     //declare raw_in to be a clone of Mat if input is Mat, or input itself otherwise
     let in_type = (input instanceof Mat || input instanceof Tensor)
-    let raw_in = (in_type) ? input.clone() : deep_copy(input);
+    let raw_in = (in_type) ? input.clone().val : deep_copy(input);
 
-    //when ndim is 0 (i.e. a number), get the factorial of it 
-    if (ndim(input) === 0) {
-        //make sure it's a number
-        if (is_number(input)) {
-            return (mathjs.factorial(raw_in));
-        }
+    let result = factorial_helper(raw_in);
+    let dim = ndim(result);
+
+    if (dim <= 2) {
+        return mat(result);
     }
-    ///NEED A NDIM ===1 PART OR GENERALIZE 0,1 2 WITH AN INDUCTIVE FOR LOOP
+    else {
+        return new Tensor(result);
+    }
 
+    // recursion function
+    function factorial_helper(input) {
 
-    //when ndim = 2 or higher, it's a 2d array or higher, (only supports up to 2d right now), get the factorial element-wise for each element
-    if (ndim(input) >= 2) {
-        //when its a Mat degrade it to JS array for generalized code
-        if (input instanceof Mat) {
-            raw_in = raw_in.val;
-        }
-        //initialize result of same size as input
-        let result_array = zeros(raw_in.length, raw_in[0].length);
-        //loop through each result value and set it to factorial of the value at the corresponding indice in the input
-        for (let i = 0; i < raw_in.length; i++) {
-            for (let j = 0; j < raw_in[0].length; j++) {
-                result_array.val[i][j] = mathjs.factorial(raw_in[i][j]);
+        if (ndim(input) === 1) {
+            let result = deep_copy(input);
+            for (let i = 0; i < input.length; i++) {
+                if (!is_number(input[i]) || input[i] < 0 || parseInt(input[i]) !== input[i]) {
+                    throw new Error('Exception occurred in factorial - element in input must be nen-negative integers');
+                }
+                result[i] = mathjs.factorial(input[i]);
             }
+            return result;
         }
-        //return the Mat object 
-        return (result_array);
+
+        else {
+            let result = [];
+            for (let i = 0; i < input.length; i++) {
+                let temp = factorial_helper(input[i]);
+                result.push(temp);
+            }
+            return result;
+        }
     }
 }
