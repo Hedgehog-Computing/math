@@ -11,141 +11,107 @@
 
 
 
-function gcd(input) {
+function gcd(A, B) {
 
     *import math: deep_copy
+    *import math: ndim
+    *import math: is_number
 
     //helper function for 1 argument / list version. could probably combine with integer version for compactness
 
     function find_gcd(a, b) {
 
-        // looping until a===b
-        while (!(a === b)) {
-            if (a > b) {
-                a -= b;
-            }
-            else {
-                b -= a;
-            }
+        a = a < 0 ? -a : a;
+        b = b < 0 ? -b : b;
+
+        if (parseInt(a) !== a || parseInt(b) !== b) {
+            throw new Error('Exception occurred in gcd - number must be integer');
+        }
+
+        if (a * b === 0) {
+            return 0;
+        }
+
+        if (a < b) {
+            let temp = a;
+            a = b;
+            b = temp;
+        }
+
+        // looping
+        while (b > 0) {
+            let temp = a % b;
+            a = b;
+            b = temp;
         }
         return a;
     }
 
-    if (arguments.length === 2) {
-        // check if a and b are matrix, if so, make clone
-        let in_type_a = (arguments[0] instanceof Mat);
-        let in_type_b = (arguments[1] instanceof Mat);
-
-        let raw_in_a = (in_type_a) ? arguments[0].clone() : deep_copy(arguments[0])
-        let raw_in_b = (in_type_b) ? arguments[1].clone() : deep_copy(arguments[1])
-
-        // when input are Mat or 2d-Array objects
-        if ((in_type_a || (raw_in_a instanceof Array && raw_in_a[0] instanceof Array)) && (in_type_b || (raw_in_b instanceof Array && raw_in_b[0] instanceof Array))) {
-            // convert matrix to js array
-            if (in_type_a) {
-                raw_in_a = raw_in_a.val;
-            }
-            if (in_type_b) {
-                raw_in_b = raw_in_b.val;
-            }
-            // check if a and b are of same size
-            if (!(raw_in_a.length === raw_in_b.length) || !(raw_in_a[0].length === raw_in_b[0].length)) {
-                throw new Error("Matrix/2d array inputs are of different dimensions");
-            }
-            // apply gcd calculation element by element
-            for (let i = 0; i < raw_in_a.length; i++) {
-                for (let j = 0; j < raw_in_a[0].length; j++) {
-                    if ((Number.isInteger(raw_in_a[i][j])) && (Number.isInteger(raw_in_b[i][j]))) {
-                        // set operands as non-negative numbers
-                        raw_in_a[i][j] = abs(raw_in_a[i][j]).val[0][0];
-                        raw_in_b[i][j] = abs(raw_in_b[i][j]).val[0][0];
-                        // gcd algorithm
-                        let tep = 0;
-                        while (raw_in_a[i][j] % raw_in_b[i][j] > 0) {
-                            tep = raw_in_a[i][j] % raw_in_b[i][j];
-                            raw_in_a[i][j] = raw_in_b[i][j];
-                            raw_in_b[i][j] = tep;
-                        }
-
-                        /* This algothem will lead to death loop, 
-                        I doult a system bug causes raw_in_a[i][j] !== raw_in_b[i][j] to be true forever
-        
-                        this bug should be related to operator overload
-                        */
-
-                        // while(raw_in_a[i][j] !== raw_in_b[i][j]) {
-                        //     if (raw_in_a[i][j] > raw_in_b[i][j]) {
-                        //         raw_in_a[i][j] -= raw_in_b[i][j];
-                        //     }else {
-                        //         raw_in_b[i][j] -= raw_in_a[i][j];
-                        //     }
-                        // }
-                    } else {
-                        throw new Error("input must be integer");
-                    }
-
-                }
-            }
-            return new mat(raw_in_b);
-        }
-
-        // when input are integers
-        if ((Number.isInteger(raw_in_a)) && (Number.isInteger(raw_in_b))) {
-            // set operands as non-negative numbers
-            raw_in_a = abs(raw_in_a).val[0][0];
-            raw_in_b = abs(raw_in_b).val[0][0];
-            // gcd algorithm
-            while (raw_in_a !== raw_in_b) {
-                if (raw_in_a > raw_in_b) {
-                    raw_in_a -= raw_in_b;
-                } else {
-                    raw_in_b -= raw_in_a;
-                }
-            }
-            return raw_in_a;
-        }
-
-        // when input are 1d-arrays
-        if (!(raw_in_a[0] instanceof Array) && !(raw_in_b[0] instanceof Array)) {
-            // check if a and b are of same length
-            if (!(raw_in_a.length === raw_in_b.length)) {
-                throw new Error("1d array inputs are of different length");
-            }
-            for (let i = 0; i < raw_in_a.length; i++) {
-                if ((Number.isInteger(raw_in_a[i])) && (Number.isInteger(raw_in_b[i]))) {
-                    // set operands as non-negative numbers
-                    raw_in_a[i] = abs(raw_in_a[i]).val[0][0];
-                    raw_in_b[i] = abs(raw_in_b[i]).val[0][0];
-                    // gcd algorithm
-                    let tep = 0;
-                    while (raw_in_a[i] % raw_in_b[i] > 0) {
-                        tep = raw_in_a[i] % raw_in_b[i];
-                        raw_in_a[i] = raw_in_b[i];
-                        raw_in_b[i] = tep;
-                    }
-                }
-            }
-            return new mat(raw_in_b);
-        }
+    if (arguments.length !== 2) {
+        throw new Error('Exception occurred in gcd - wrong argument number');
     }
-    if (arguments.length === 1) {
-        if (Array.isArray(arguments[0])) {
-            let n1 = arguments[0][0];
-            let n2 = arguments[0][1];
-            let result = find_gcd(n1, n2);
-            for (let i = 2; i < arguments[0].length; i++) {
-                result = find_gcd(result, arguments[0][i])
-            }
-            return result;
 
-        }
+    if (is_number(A) && is_number(B)) {
+        return find_gcd(A, B);
+    }
+
+    if (!(Array.isArray(A)) && !(A instanceof Mat) && !(A instanceof Tensor)) {
+        throw new Error('Exception occurred in gcd - input must be number, array, matrix or tensor');
+    }
+
+    let in_type_a = (A instanceof Mat) || (A instanceof Tensor);
+    let in_type_b = (B instanceof Mat) || (B instanceof Tensor);
+    let raw_in_a = in_type_a ? A.clone().val : deep_copy(A);
+    let raw_in_b = in_type_b ? B.clone().val : deep_copy(B);
+
+    // in case raw_in_a = [[[1, 2, 3]]]
+    while (Array.isArray(raw_in_a) && raw_in_a.length === 1) {
+        raw_in_a = raw_in_a[0];
+    }
+    while (Array.isArray(raw_in_b) && raw_in_b.length === 1) {
+        raw_in_b = raw_in_b[0];
+    }
+
+    // in case A = [[1]], B = [[2]]
+    if (is_number(raw_in_a) && is_number(raw_in_b)) {
+        return find_gcd(A, B);
+    }
+
+    let result = gcd_helper(raw_in_a, raw_in_b);
+    let dim = ndim(result);
+    if (dim === 1) {
+        return result;
+    }
+    else if (dim === 2) {
+        return mat(result);
     }
     else {
-        throw new Error("inputs must be 2 integers, 2matrix, a 1d array, or 2 2d arrays");
+        return new Tensor(result);
+    }
+
+    function gcd_helper(A, B) {
+
+        let dimA = ndim(A);
+        let dimB = ndim(B);
+        if (dimA !== dimB || A.length !== B.length) {
+            throw new Error('Exception occurred in gcd - A and B must have the same sizes');
+        }
+
+        if (dimA === 1) {
+            let result = deep_copy(A);
+            for (let i = 0; i < A.length; i++) {
+                result[i] = find_gcd(A[i], B[i]);
+            }
+            return result;
+        }
+
+        else {
+            let result = [];
+            for (let i = 0; i < A.length; i++) {
+                let temp = gcd_helper(A[i], B[i]);
+                result.push(temp);
+            }
+            return result;
+        }
     }
 }
-
-/* 
-existing issues:
-1. need to contribute a is_Integer() function to math library to replace Numbers.isInteger() function used here.
-*/
