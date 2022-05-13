@@ -43,5 +43,27 @@ function floor_test() {
   if (!(floor(testSet4) === expectedVal4)) {
     throw new Error("floor Mat test has failed");
   }
+  
+    if (floor(1.5) !== 1) {
+        throw new Error('Unit test failed for number for floor');
+    }
+
+    let a = [1.5, 2.5, -1.5];
+    if (!(floor(a) === [1, 2, -2])) {
+        throw new Error('Unit test failed for array for floor');
+    }
+
+    let b = mat([[1.5, 2.5], [-1.5, -2.5]]);
+    if (!(floor(b) === mat([[1, 2], [-2, -3]]))) {
+        throw new Error('Unit test failed for matrix for floor');
+    }
+
+    let c = new Tensor([[[1.5, 2.5], [-1.5, -2.5]], [[1.5, 2.5], [-1.5, -2.5]]]);
+    let d = floor(c).val;
+    if (!(d[0] === [[1, 2], [-2, -3]]) || !(d[1] === [[1, 2], [-2, -3]])) {
+        throw new Error('Unit test failed for tensor for floor');
+    }
+
+    //print('floor test pass');
 
 }
