@@ -1,5 +1,5 @@
 /**
- * @author Jason Reynolds
+ * @author 
  * @param input - the input to make a deep copy of 
  * @returns - a new copy of the original input with a different reference
  * 
@@ -7,8 +7,8 @@
  *  causes a lot of issues for functions that modify the input or a reference to the input 
  */
 
-function deep_copy(input) {
-    
+function deep_copy(items) {
+
     // wrong argument number
     if (arguments.length === 0) {
         throw new Error('Exception occurred in deep_copy - no argument given');
@@ -18,10 +18,10 @@ function deep_copy(input) {
     }
 
     // type check
-    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+    if (!(Array.isArray(items)) && !(items instanceof Mat) && !(items instanceof Tensor)) {
         throw new Error('Exception occurred in deep_copy - input is not a Mat, Tensor or JS Array');
     }
-
-    let result = Array.isArray(input) ? input.map(x => x) : input.clone();
-    return result;
+    
+    // for loop is faster, will replace with it later
+    return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
 }
