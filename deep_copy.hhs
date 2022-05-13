@@ -1,5 +1,5 @@
 /**
- * @author Jason Reynolds
+ * @author 
  * @param input - the input to make a deep copy of 
  * @returns - a new copy of the original input with a different reference
  * 
@@ -8,6 +8,20 @@
  */
 
 function deep_copy(items) {
-    // the most fastest version, faster than for loop
+
+    // wrong argument number
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in deep_copy - no argument given');
+    }
+    else if (arguments.length > 1) {
+        throw new Error('Exception occurred in deep_copy - wrong argument number');
+    }
+
+    // type check
+    if (!(Array.isArray(items)) && !(items instanceof Mat) && !(items instanceof Tensor)) {
+        throw new Error('Exception occurred in deep_copy - input is not a Mat, Tensor or JS Array');
+    }
+    
+    // for loop is faster, will replace with it later
     return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
 }
