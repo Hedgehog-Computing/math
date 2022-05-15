@@ -23,5 +23,8 @@ function deep_copy(items) {
     }
     
     // for loop is faster, will replace with it later
-    return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
+    //below is causing items.map is not a function issue again?
+    //return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
+    let result = Array.isArray(items) ? items.map(x => x) : items.clone();
+    return result;
 }
