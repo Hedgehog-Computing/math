@@ -13,6 +13,7 @@ app.use(async ctx => {
   const filePath = path.join(__dirname, "/..", requestFile);
 
   try{
+    console.log(filePath);
     const fileBuffer = fs.ReadStream(filePath);
     ctx.body = fileBuffer;
   } catch(error) {
@@ -20,6 +21,6 @@ app.use(async ctx => {
   }
 });
 
-app.listen(4000);
+app.listen(5000);
 
 // run with node server.js, default port is 4000
