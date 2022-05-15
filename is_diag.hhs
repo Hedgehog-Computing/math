@@ -31,7 +31,7 @@ function is_diag(input) {
   }
   // check other elements except main diagonal are zero or not.
   else if(dims === 2) {
-    let row = input.length;
+    let row = raw_in.length;
     let col = input[0].length;
     for (let i = 0; i < row; i++) {
       for (let j = 0; j < col; j++) {
