@@ -32,6 +32,8 @@ function test() {
 *import math:reshape_test
 *import math:mink_test
 *import math:check_input_test
+*import math:is_diag_test
+
 
 
   cholesky_test();
@@ -58,6 +60,7 @@ function test() {
   reshape_test();
   mink_test();
   check_input_test();
+  is_diag_test();
 
   print("All test cases passed!")
 }

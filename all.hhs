@@ -42,5 +42,6 @@
  *import math:median 
  *import math:multinomial
  *import math:reshape
+ *import math:is_diag
  
  *import math:check_input
