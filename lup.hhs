@@ -13,21 +13,32 @@ function lup(input) {
     *import math: ndim
     *import math: deep_copy
 
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in lup - no argument given');
+    }
+    else if (arguments.length > 1) {
+        throw new Error('Exception occurred in lup - wrong argument number');
+    }
+
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in lup - input must be a 2-dimensional JS array, matrix or tensor');
+    }
+
     //declare raw_in as input.clone() if Mat otherwise input
-    let in_type = (input instanceof Mat);
+    let in_type = (input instanceof Mat) || (input instanceof Tensor);
     let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //when a Mat, degrade to JS array
-    if (input instanceof Mat) {
+    if (in_type) {
         raw_in = raw_in.val;
     }
 
     //check: is it a vector? if so, throw error
-    if (raw_in.length < 2 || raw_in[0].length < 2) {
-        throw new Error('Wrong dimensions for LUP, make sure its a matrix');
-    }
     if (!(ndim(raw_in) === 2)) {
-        throw new Error('Not a 2d matrix');
+        throw new Error('Exception occurred in lup - not a 2d matrix');
+    }
+    if (raw_in.length < 2 || raw_in[0].length < 2) {
+        throw new Error('Exception occurred in lup - wrong dimensions, make sure it\'s a matrix');
     }
 
     //mathjs lup on the raw, save as result
