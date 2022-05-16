@@ -17,12 +17,23 @@ function is_symmetric(input) {
     *import math: ndim
     *import math: deep_copy
 
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in is_symmetric - no argument given');
+    }
+    else if (arguments.length > 1) {
+        throw new Error('Exception occurred in is_symmetric - wrong argument number');
+    }
+
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in is_symmetric - input must be a JS array, matrix or tensor');
+    }
+
     //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
-    let in_type = (input instanceof Mat);
+    let in_type = (input instanceof Mat) || (input instanceof Tensor);
     let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //in the case of input being Mat, degrade raw_in to JS array for generalized code
-    if (input instanceof Mat) {
+    if (in_type) {
         raw_in = raw_in.val;
     }
     //check: is matrix square? is any dimension 0? is ndim not 2? if so throw an error
