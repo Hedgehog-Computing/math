@@ -17,14 +17,14 @@ function is_tril(input) {
     *import math: deep_copy
 
     if (arguments.length === 0) {
-        throw new Error('Exception occurred in is_trill - no argument given');
+        throw new Error('Exception occurred in is_tril - no argument given');
     }
     else if (arguments.length > 1) {
-        throw new Error('Exception occurred in is_trill - wrong argument number');
+        throw new Error('Exception occurred in is_tril - wrong argument number');
     }
 
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
-        throw new Error('Exception occurred in is_trill - input must be a 2-dimensional JS array, matrix or tensor');
+        throw new Error('Exception occurred in is_tril - input must be a 2-dimensional JS array, matrix or tensor');
     }
 
     //declare raw_in to be input.clone() if Mat otherwise input itself
@@ -37,7 +37,7 @@ function is_tril(input) {
     }
     //check: any dimension 0? square matrix? 2d? if so, throw error 
     if (!(ndim(raw_in) === 2) || raw_in.length === 0 || raw_in[0].length === 0 || !(raw_in.length === raw_in[0].length)) {
-        throw new Error('Exception occurred in is_trill - wrong dimensions, need a square 2d, non empty matrix as input');
+        throw new Error('Exception occurred in is_tril - wrong dimensions, need a square 2d, non empty matrix as input');
     }
 
     //iterate through array and if you spot a non-zero entry in a spot in the lower triangular region, return false
