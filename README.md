@@ -26,6 +26,15 @@ and you will see the result on the right:
 
 ### Documentation
 
+Document of functions to be implemented: (updated upon pulls and merges) https://github.com/Hedgehog-Computing/math/issues/6
+
+Document of example function for how to write, say, a mathjs wrapper function: https://github.com/Hedgehog-Computing/math/issues/16
+
+Document of styling guide, a brief description of a few guidelines we'd like followed for contributions: 
+https://github.com/Hedgehog-Computing/Hedgehog-Script-Style-Guide
+
+Thank you!
+
 ### Community
 
 [**Discord Server**](https://discord.gg/hGhsanhJaK) 

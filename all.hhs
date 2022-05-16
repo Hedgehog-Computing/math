@@ -6,7 +6,6 @@
  * Function for importing all math routines/functions, done by calling star import math:all
  */
 
-
  *import math:cholesky
  *import math:det
  //import math:diagn --> base
@@ -27,8 +26,8 @@
  *import math:ndim 
  //import math:ones --> base
  //import math:power --> base
- //*import math:floor UNCOMMENT WHEN REMOVED FROM BASE
- //*import math:ceil UNCOMMENT WHEN REMOVED FROM BASE 
+ //import math:floor UNCOMMENT WHEN REMOVED FROM BASE
+ //import math:ceil UNCOMMENT WHEN REMOVED FROM BASE 
  *import math:QR
  *import math:shape 
  *import math:sum
@@ -36,10 +35,13 @@
  *import math:trace
  *import math:transpose
  *import math:usolve
+ *import math:mink
 
  *import math:gcd
  *import math:mean 
  *import math:median 
+ *import math:multinomial
+ *import math:reshape
+ *import math:is_diag
  
- 
- 
+ *import math:check_input
