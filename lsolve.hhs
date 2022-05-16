@@ -26,6 +26,10 @@ function lsolve(inputM, input_col) {
     if (!(Array.isArray(inputM)) && !(inputM instanceof Mat) && !(inputM instanceof Tensor)) {
         throw new Error('Exception occurred in lsolve - argument[0] must be a 2-dimensional JS array, matrix or tensor');
     }
+    
+    if (!(Array.isArray(input_col)) && !(input_col instanceof Mat) && !(input_col instanceof Tensor)) {
+        throw new Error('Exception occurred in lsolve - argument[1] must be a 2-dimensional JS array, matrix or tensor');
+    }
 
     //declare raw_in and raw_in_col : they are either clones of inputM and input_col respectively if Mat objects or inputM, input_col themselves otherwise
     let in_type_M = (inputM instanceof Mat) || (inputM instanceof Tensor);
