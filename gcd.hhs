@@ -1,6 +1,7 @@
 /** 
 * @author Blake Wang
 * @params 2 integers, 2 js 2d-arrays/Mat objects of the same dimensions, 2 js 1d-arrays of the same dimensions
+* Or input an array to find the gcd of all the elements
 * @returns an integer representing greatest common divisor of 2 input integers 
 *  or a mat object holds greatest common divisors of the elements of A and B
 *
@@ -11,11 +12,12 @@
 
 
 
-function gcd(A, B) {
+function gcd(A, B = 1) {
 
     *import math: deep_copy
     *import math: ndim
     *import math: is_number
+    *import math: flatten
 
     //helper function for 1 argument / list version. could probably combine with integer version for compactness
 
@@ -30,6 +32,10 @@ function gcd(A, B) {
 
         if (a * b === 0) {
             return 0;
+        }
+
+        if (a === 1 || b === 1) {
+            return 1;
         }
 
         if (a < b) {
@@ -47,8 +53,35 @@ function gcd(A, B) {
         return a;
     }
 
-    if (arguments.length !== 2) {
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in gcd - no argument given');
+    }
+
+    if (arguments.length > 2) {
         throw new Error('Exception occurred in gcd - wrong argument number');
+    }
+
+    // the case input is [1, 2, 3, 4, 5]
+    if (arguments.length === 1) {
+        if (is_number(A)) {
+            return A;
+        }
+            if (!(Array.isArray(A)) && !(A instanceof Mat) && !(A instanceof Tensor)) {
+            throw new Error('Exception occurred in gcd - input must be number, array, matrix or tensor');
+        }
+
+        let in_type = A instanceof Mat || A instanceof Tensor;
+        let raw_in = in_type ? A.clone().val : deep_copy(A);
+        // in this way we guarantee A is 1-dimensional JS array
+        raw_in = flatten(raw_in);
+        if (raw_in.length === 1) {
+            return raw_in[0];
+        }
+        let result = find_gcd(raw_in[0], raw_in[1]);
+        for (let i = 2; i < raw_in.length; i++) {
+            result = find_gcd(result, raw_in[i]);
+        }
+        return result;
     }
 
     if (is_number(A) && is_number(B)) {
@@ -56,6 +89,9 @@ function gcd(A, B) {
     }
 
     if (!(Array.isArray(A)) && !(A instanceof Mat) && !(A instanceof Tensor)) {
+        throw new Error('Exception occurred in gcd - input must be number, array, matrix or tensor');
+    }
+    if (!(Array.isArray(B)) && !(B instanceof Mat) && !(B instanceof Tensor)) {
         throw new Error('Exception occurred in gcd - input must be number, array, matrix or tensor');
     }
 
