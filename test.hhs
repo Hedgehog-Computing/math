@@ -24,12 +24,15 @@ function test() {
 *import math:transpose_test
 *import math:usolve_test
 *import math:gcd_test
-//*import math:floor_test --> UNCOMMENT WHEN REMOVED FROM BASE
-//*import math:ceil_test --> UNCOMMENT WHEN REMOVED FROM BASE
+//import math:floor_test --> UNCOMMENT WHEN REMOVED FROM BASE
+//import math:ceil_test --> UNCOMMENT WHEN REMOVED FROM BASE
 *import math:mean_test 
 *import math:median_test
 *import math:multinomial_test
 *import math:reshape_test
+*import math:mink_test
+*import math:check_input_test
+*import math:is_diag_test
 
 
 
@@ -55,6 +58,9 @@ function test() {
   median_test();
   multinomial_test();
   reshape_test();
+  mink_test();
+  check_input_test();
+  is_diag_test();
 
   print("All test cases passed!")
 }
