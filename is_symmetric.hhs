@@ -25,7 +25,7 @@ function is_symmetric(input) {
     }
 
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
-        throw new Error('Exception occurred in is_symmetric - input must be a JS array, matrix or tensor');
+        throw new Error('Exception occurred in is_symmetric - input must be a 2-dimensional JS array, matrix or tensor');
     }
 
     //declare raw_in to be input.clone() if input is Mat otherwise let it be input itself
