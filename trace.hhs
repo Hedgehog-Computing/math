@@ -17,6 +17,10 @@ function trace(input) {
         throw new Error('Exception occurred in trace - wrong argument number');
     }
 
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in trace - input must be a JS array, matrix or tensor');
+    }
+
     //declare raw_in to be an input clone if Mat or input itself otherwise
     let in_type = (input instanceof Mat) || (input instanceof Tensor)
     let raw_in = (in_type) ? input.clone() : input;
