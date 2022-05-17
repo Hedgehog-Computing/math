@@ -43,6 +43,9 @@ function sum(input) {
         return result;
     }
     //now we're dealing with non-numbers and matrix-like structures:
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in sum - input must be a JS array, matrix or tensor');
+    }
 
     //declare raw_in, set it to a input clone if its a Mat otherwise input itself
     let in_type = (input instanceof Mat);
