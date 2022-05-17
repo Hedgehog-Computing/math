@@ -66,6 +66,6 @@ function ndim(input) {
 
     //should it be null? nothing? throw error? NaN?
     else {
-        throw new Error('Incorrect structure provided as input');
+        throw new Error('Exception occurred in ndim - incorrect structure provided as input');
     }
 }
