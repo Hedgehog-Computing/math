@@ -20,7 +20,7 @@ function magic(input)
   }
   // the input shoule be an integer
   if(!Number.isInteger(input)) {
-    throw new Error("Exception occurred in magic - the paramter must be a number.");
+    throw new Error("Exception occurred in magic - the paramter must be an integer.");
   }
   // 1x1 magic square is called trivial
   if(input === 1) return (new Mat([1]));
