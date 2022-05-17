@@ -15,6 +15,10 @@ function ndim(input) {
     *import math: shape
     *import math: deep_copy
 
+    if (arguments.length !== 1) {
+        throw new Error('Exception occurred in ndim - wrong argument number');
+    }
+
     //declare raw_in to be a clone of input or input itself depending on whether its a Mat/Tensor or not, respectively
     let in_type = (input instanceof Mat || input instanceof Tensor)
     let raw_in = (in_type) ? input.clone() : deep_copy(input);
