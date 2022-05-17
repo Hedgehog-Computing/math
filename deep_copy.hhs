@@ -7,7 +7,9 @@
  *  causes a lot of issues for functions that modify the input or a reference to the input 
  */
 
-function deep_copy(items) {
+ function deep_copy(items) {
+
+    *import math:is_number 
 
     // wrong argument number
     if (arguments.length === 0) {
@@ -18,13 +20,22 @@ function deep_copy(items) {
     }
 
     // type check
-    if (!(Array.isArray(items)) && !(items instanceof Mat) && !(items instanceof Tensor)) {
+    if (!(Array.isArray(items)) && !(items instanceof Mat) && !(items instanceof Tensor) && !(is_number(items))) {
         throw new Error('Exception occurred in deep_copy - input is not a Mat, Tensor or JS Array');
     }
     
     // for loop is faster, will replace with it later
     //below is causing items.map is not a function issue again?
     //return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
-    let result = Array.isArray(items) ? items.map(x => x) : items.clone();
-    return result;
+
+    //support for numbers in case we're deep copying numbers in general cases 
+    if (is_number(items)) {
+        return items;
+    }
+
+    else {
+
+        return items.map(item => Array.isArray(item) ? deep_copy(item) : item);
+
+    }
 }
