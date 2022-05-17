@@ -18,6 +18,10 @@ function shape(input) {
         throw new Error(Exception occurred in shape - wrong argument given);
     }
 
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in shape - input must be a JS array, matrix or tensor');
+    }
+
     let result = [];
     let current_dim = 0;
 
