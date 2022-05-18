@@ -24,18 +24,11 @@ function identity(input) {
 	}
 
 	// Now we can start on creating the Id matrix
-	let result = new Mat().zeros(n, n);
-	for (let i = 0; i < n; i++){
-		result[i][i] = 1;
+	let result = new Mat().zeros(input, input);
+	for (let i = 0; i < input; i++){
+		result.val[i][i] = 1;
 	}	
 
 	// return as a Mat object
 	return result;
-
-	// Note: the implementation of `result` above is for practicing purpose, from which I've learnt a lot.
-	// A better implementation suggested by the team is as follows, so feel free to alternate between the above 
-	// version and the following one.
-	// result = mathjs.identity(input);
-	// // return the result as a mat object
-	// return mat(result);
 }
