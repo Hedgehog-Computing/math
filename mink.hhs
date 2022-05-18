@@ -9,12 +9,29 @@
  */
 
 
-function mink(input, k, dim)
+function mink(input, k = 1, dim = 1)
 {
-  *import math: is_number
   *import math: ndim
   *import math: deep_copy
   *import math: transpose
+
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in mink - no argument given');
+    }
+
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in mink - argument[0] must be an array, matrix or tensor');
+    }
+
+    if (arguments.length >= 2) {
+        if (!(typeof k === 'number') || k <= 0 || parseInt(k) !== k) {
+            throw new Error('Exception occurred in mink - argument[1] must be a positive integer');
+        }
+    }
+
+    if (arguments.length > 3) {
+        throw new Error('Exception occurred in mink - wrong argument given');
+    }
   
   //declare raw_in to be input clone if Mat and input deep copy otherwise
   let in_type = (input instanceof Mat || input instanceof Tensor);

@@ -2,6 +2,7 @@
  * @OriginalAuthor Jason Reynolds
  * @modifiedBy Blake Wang
  * @param input - the structure to find the minimum value of. Can be a list, 1d array, 2d array, Mat, Tensor, number, etc
+ * min(1, 2, 3) or max([1, 2, 3])
  * @returns - a number that is the minimum value in the structure
  * 
  * Function that finds the minimum value of a list, matrix or general matrix like structure
@@ -13,46 +14,54 @@
 function min(input) {
  
     *import math: is_number
+    *import math: flatten
 
-    //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
-    let in_type = (input instanceof Mat || input instanceof Tensor);
-    let raw_in = (in_type) ? input.clone() : input;
-    //declare minimum within function scope so we can modify it in loop
-    let minimum = Number.MAX_SAFE_INTEGER;
+    if (arguments.length === 0) {
+        throw new Error('Exception occurred in min - no argument given');
+    }
 
-    if (in_type || (raw_in instanceof Array && raw_in[0] instanceof Array)) {
-        //degrade to JS array if Mat/Tensor
-        if (in_type) {
-            raw_in = raw_in.val;
-        }
+    // min(1, 2, 3)
+    if (arguments.length > 1) {
+        let result = arguments[0];
+        for (let i = 0; i < arguments.length; i++) {
+            if (!is_number(arguments[i])) {
+                throw new Error('Exception occurred in min - only numbers can be compared');
+            }
 
-        //loop through all elements (only supports 2d arrays right now until I get recursive for loops going)
-        for (let i = 0; i < raw_in.length; i++) {
-            for (let j = 0; j < raw_in[0].length; j++) {
-                //check in the matrix is larger than minimum. If so, replace minimum with that value. Repeat
-                if (raw_in[i][j] < minimum) {
-                    //keep replacing until you get the highest one eventually
-                    minimum = raw_in[i][j];
-                }
+            if (result > arguments[i]) {
+                result = arguments[i];
             }
         }
-        //we exhausted the elements so its gauranteed to be the minimum
-        return minimum;
+        return result;
     }
-    //otherwise, if it's a number, return the number
+
     if (is_number(input)) {
         return input;
     }
 
-    //for cases where its a 1d list:
-    //if you take the first row of the array... and its NOT an array it must be a 1d array
-    if (!Array.isArray(raw_in[0])) {
-        //loop through setting minimum to new values when finding one higher than itself
-        for (let i = 0; i < raw_in.length; i++) {
-            if (raw_in[i] < minimum) {
-                minimum = raw_in[i];
-            }
-        }
-        return minimum;
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in min - input can only be number, JS array, matrix or tensor');
     }
+
+    //declare raw_in as the clone of input if a Mat/Tensor otherwise, input itself
+    let in_type = (input instanceof Mat || input instanceof Tensor);
+    let raw_in = (in_type) ? input.clone().val : input;
+    // let raw_in be a 1-d array
+    raw_in = flatten(raw_in);
+    
+    // in case raw_in === []
+    if (raw_in.length === 0) {
+        return 0;
+    }
+    let result = raw_in[0];
+    for (let i = 0; i < raw_in.length; i++) {
+        if (!is_number(raw_in[i])) {
+            throw new Error('Exception occurred in min - only numbers can be compared');
+        }
+
+        if (result > raw_in[i]) {
+            result = raw_in[i];
+        }
+    }
+    return result;
 }

@@ -9,8 +9,6 @@
  * This function takes two matrix like structures and divides them element-wise. The left hand side argument is the numerator, the right, denominator.
  */
 
-//Note: need to add tensor support
-
 
 function dot_divide(A, B) {
 
