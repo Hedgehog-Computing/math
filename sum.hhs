@@ -22,7 +22,7 @@ function sum(input) {
 
     //if there are no arguments, there is an error
     if (arguments.length === 0) {
-        throw new Error('No argument given');
+        throw new Error('Exception occurred in sum - no argument given');
     }
 
     //if the first argument is a number, that means the user is inputting a list of numbers to add
@@ -31,7 +31,7 @@ function sum(input) {
         for (let i = 0; i < arguments.length; i++) {
             //first make sure it's a number! otherwise throw an error
             if (!(is_number(arguments[i]))) {
-                throw new Error('First argument suggests a list, but there is a non number element in arguments.');
+                throw new Error('Exception occurred in sum - first argument suggests a list, but there is a non number element in arguments.');
             }
         }
         //initialize 0 and add up all the arguments .... !! could probably combine with above !! 
@@ -43,6 +43,9 @@ function sum(input) {
         return result;
     }
     //now we're dealing with non-numbers and matrix-like structures:
+    if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
+        throw new Error('Exception occurred in sum - input must be a JS array, matrix or tensor');
+    }
 
     //declare raw_in, set it to a input clone if its a Mat otherwise input itself
     let in_type = (input instanceof Mat);
