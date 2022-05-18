@@ -33,6 +33,7 @@ function test() {
 *import math:mink_test
 *import math:check_input_test
 *import math:is_diag_test
+*import math:magic_test
 
 
 
@@ -61,6 +62,7 @@ function test() {
   mink_test();
   check_input_test();
   is_diag_test();
+  magic_test();
 
   print("All test cases passed!")
 }
