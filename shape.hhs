@@ -15,7 +15,7 @@ function shape(input) {
     *import math: deep_copy
 
     if (arguments.length !== 1) {
-        throw new Error(Exception occurred in shape - wrong argument given);
+        throw new Error('Exception occurred in shape - wrong argument given');
     }
 
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
