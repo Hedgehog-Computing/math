@@ -36,6 +36,7 @@ function test() {
 *import math:magic_test
 *import math:bounds_test
 *import math:iqr_test
+*import math:quantile_test
 
 
 
@@ -67,6 +68,7 @@ function test() {
   magic_test();
   bounds_test();
   iqr_test();
+  quantile_test();
 
   print("All test cases passed!")
 }
