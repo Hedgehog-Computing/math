@@ -1,6 +1,6 @@
 /**
  * @Author Jianan Lin (林家南)
- * @param input - a series of number, or an array, matrix, tensor to get the min and max
+ * @param input - a series of number, or an array, matrix, tensor to get the interquartile range
  * calculate the quartile of the data and get three borderline points q1, q2, q3
  * Use this formula: https://www.statisticshowto.com/probability-and-statistics/interquartile-range/
  * @returns - a number = q3 - q1
