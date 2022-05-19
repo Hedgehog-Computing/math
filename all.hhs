@@ -47,3 +47,4 @@
  *import math:check_input
  *import math:bounds
  *import math:iqr
+ *import math:quantile
