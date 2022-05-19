@@ -3,7 +3,7 @@
  * Unit test for bounds function
  */
 
-function mink_test() {
+function bounds_test() {
     *import math: bounds
 
     if (!(bounds(1, 2, 3, 4, 5) === [1, 5])) {
