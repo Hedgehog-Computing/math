@@ -50,3 +50,4 @@
  *import math:quantile
  *import math:percentile
  *import math:rms
+ *import math:correcoef
