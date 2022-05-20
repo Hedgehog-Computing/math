@@ -43,5 +43,6 @@
  *import math:multinomial
  *import math:reshape
  *import math:is_diag
+ *import math:magic
  
  *import math:check_input

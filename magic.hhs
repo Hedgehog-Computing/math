@@ -24,11 +24,11 @@ function magic(input)
   }
   // 1x1 magic square is called trivial
   if(input === 1) return (new Mat([1]));
-  // 2x2 magic square do not exist, retrun a default matrix
+  // 2x2 magic square do not exist, return a default matrix
   if(input === 2) return (new Mat([[1, 2], [3, 4]]));
 
   /* 
-    The method of generating magic matrix depends on the rank
+    The method of generating magic matrix depends on the order
     it should be consider as odd, 4M+2, 4M, M is an integer greater than 1
     mode = 0 : the input is 4M, use generate_square_doubly_even
     mode = 2 : the input is 4M+2, use generate_square_even
