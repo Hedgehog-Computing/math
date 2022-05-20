@@ -48,3 +48,4 @@
  *import math:bounds
  *import math:iqr
  *import math:quantile
+ *import math:percentile
