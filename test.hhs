@@ -38,6 +38,7 @@ function test() {
 *import math:iqr_test
 *import math:quantile_test
 *import math:percentile_test
+*import math:rms_test
 
 
 
@@ -71,6 +72,7 @@ function test() {
   iqr_test();
   quantile_test();
   percentile_test();
+  rms_test();
 
   print("All test cases passed!")
 }
