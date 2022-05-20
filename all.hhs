@@ -49,3 +49,4 @@
  *import math:iqr
  *import math:quantile
  *import math:percentile
+ *import math:rms
