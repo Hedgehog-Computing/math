@@ -1,6 +1,6 @@
 /**
  * @Author Jianan Lin (林家南)
- * @param input - an array, matrix, tensor to get the qunatile
+ * @param input - an array, matrix, tensor to get the percentile
  * @param x - percentage probability from interval [0, 100]
  * @returns - 1-d array from the input[0] to input[(0.01 * probability * length)]
  * 
