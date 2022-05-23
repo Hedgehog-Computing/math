@@ -40,6 +40,7 @@ function test() {
 *import math:percentile_test
 *import math:rms_test
 *import math:correcoef_test
+*import math:cov_test
 
 
 
@@ -75,6 +76,7 @@ function test() {
   percentile_test();
   rms_test();
   correcoef_test();
+  cov_test();
 
   print("All test cases passed!")
 }
