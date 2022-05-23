@@ -51,3 +51,4 @@
  *import math:percentile
  *import math:rms
  *import math:correcoef
+ *import math:cov
