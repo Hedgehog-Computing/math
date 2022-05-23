@@ -3,6 +3,8 @@
  * @param A an array / matrix / tensor
  * @param B an array / matrix / tensor
  * @returns - a number = correlation coefficient of A and B
+ * up to now only support one dimension correlatioin coefficient
+ * need to add support for matrix calculation after some work
  * 
  */
 
