@@ -41,6 +41,7 @@ function test() {
 *import math:rms_test
 *import math:correcoef_test
 *import math:cov_test
+*import math:quadratic_equation_test
 
 
 
@@ -77,6 +78,7 @@ function test() {
   rms_test();
   correcoef_test();
   cov_test();
+  quadratic_equation_test();
 
   print("All test cases passed!")
 }
