@@ -30,7 +30,7 @@ function quadratic_equation_test() {
     //     throw new Error('Unit test for quadratic_equation failed');
     // }
 
-    // x^2 + x + 1 = 0, false
+    // x^2 + 2x + 2 = 0, true
     // we can not test this because complex === complex returns false
     // but the answer is right [-1 - i, -1 + i]
     // if (!(quadratic_equation(1, 2, 2, true) === [mathjs.complex(-1, -1), mathjs.complex(-1, 1)])) {
