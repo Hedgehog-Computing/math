@@ -53,3 +53,4 @@
  *import math:rms
  *import math:correcoef
  *import math:cov
+ *import math:quadratic_equation
