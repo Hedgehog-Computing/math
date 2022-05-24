@@ -34,6 +34,13 @@ function test() {
 *import math:check_input_test
 *import math:is_diag_test
 *import math:magic_test
+*import math:bounds_test
+*import math:iqr_test
+*import math:quantile_test
+*import math:percentile_test
+*import math:rms_test
+*import math:correcoef_test
+*import math:cov_test
 
 
 
@@ -63,6 +70,13 @@ function test() {
   check_input_test();
   is_diag_test();
   magic_test();
+  bounds_test();
+  iqr_test();
+  quantile_test();
+  percentile_test();
+  rms_test();
+  correcoef_test();
+  cov_test();
 
   print("All test cases passed!")
 }

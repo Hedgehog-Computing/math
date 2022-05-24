@@ -46,3 +46,10 @@
  *import math:magic
  
  *import math:check_input
+ *import math:bounds
+ *import math:iqr
+ *import math:quantile
+ *import math:percentile
+ *import math:rms
+ *import math:correcoef
+ *import math:cov
