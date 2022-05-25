@@ -5,6 +5,8 @@
 
 
 function cubic_equation_test() {
+
+    *import math: cubic_equation
     
     // x^3 = 0
     if (!(cubic_equation(1) === [0, 0, 0])) {
