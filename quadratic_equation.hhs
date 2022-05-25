@@ -29,7 +29,9 @@ function quadratic_equation(a, b = 0, c = 0, flag = false) {
             return [NaN, NaN];
         }
         else {
-            return [-b / c, -b / c]
+            let result = b / c;
+            result = result.toFixed(5);
+            return [mathjs.complex(-result, 0), mathjs.complex(result, 0)];
         }
     }
 
@@ -39,13 +41,21 @@ function quadratic_equation(a, b = 0, c = 0, flag = false) {
     if (delta > 0.0000000001) {
         // remember to use mathjs.sqrt, otherwise sqrt returns matrix
         let diff = mathjs.sqrt(delta);
-        return [(-b - diff) / (2 * a), (-b + diff) / (2 * a)]
+        let x1 = (-b - diff) / (2 * a);
+        let x2 = (-b + diff) / (2 * a);
+        x1 = x1.toFixed(5);
+        x2 = x2.toFixed(5);
+        return [mathjs.complex(x1, 0), mathjs.complex(x2, 0)];
     }
 
     else if (delta < -0.0000000001) {
         let diff = mathjs.sqrt(-delta);
         if (flag === true) {
-            return [mathjs.complex(-b / (2 * a), -diff / (2 * a)), mathjs.complex(-b / (2 * a), diff / (2 * a))];
+            let real_part = -b / (2 * a);
+            real_part = real_part.toFixed(5);
+            let imag_part = diff / (2 * a);
+            imag_part = imag_part.toFixed(5);
+            return [mathjs.complex(real_part, -imag_part), mathjs.complex(real_part, imag_part)];
         }
         else {
             return [NaN, NaN];
@@ -53,6 +63,8 @@ function quadratic_equation(a, b = 0, c = 0, flag = false) {
     }
 
     else {
-        return [-b / (2 * a), -b / (2 * a)];
+        let result = -b / (2 * a);
+        result = result.toFixed(5);
+        return [mathjs.complex(result, 0), mathjs.complex(result, 0)];
     }
 }
