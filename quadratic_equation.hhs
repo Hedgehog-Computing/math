@@ -9,7 +9,7 @@
 
 
 
-function quadratic_equation(a, b = 0, c = 0, flag = false) {
+function quadratic_equation(a, b = 0, c = 0, flag = true) {
 
     if (arguments.length === 0) {
         throw new Error('Exception occurred in quadratic_equation - no argument given');
