@@ -43,6 +43,7 @@ function test() {
 *import math:cov_test
 *import math:quadratic_equation_test
 *import math:cubic_equation_test
+*import math:quartic_equation_test
 
 
 
@@ -81,6 +82,7 @@ function test() {
   cov_test();
   quadratic_equation_test();
   cubic_equation_test();
+  quartic_equation_test();
 
   print("All test cases passed!")
 }
