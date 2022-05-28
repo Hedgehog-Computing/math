@@ -19,7 +19,7 @@
  *import math:is_tril
  *import math:is_triu
  *import math:lsolve
- *import math:lup
+ *import math:lu
  *import math:lusolve
  *import math:max 
  *import math:min

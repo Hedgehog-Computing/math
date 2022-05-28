@@ -53,7 +53,7 @@ function test() {
   is_tril_test();
   is_triu_test();
   lsolve_test();
-  lup_test();
+  lu_test();
   lusolve_test();
   QR_test();
   trace_test();
