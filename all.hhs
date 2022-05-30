@@ -56,3 +56,4 @@
  *import math:quadratic_equation
  *import math:cubic_equation
  *import math:quartic_equation
+ *import math:vander
