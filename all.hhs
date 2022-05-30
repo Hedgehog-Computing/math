@@ -57,3 +57,4 @@
  *import math:cubic_equation
  *import math:quartic_equation
  *import math:vander
+ *import math:resize
