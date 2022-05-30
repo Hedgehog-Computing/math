@@ -2,7 +2,7 @@
  * @author Jianan Lin (林家南)
  * @param1 input - an array / matrix / tensor
  * @param2 sizes - an array such as [2, 3, 2] or [2, -1]
- * @returns - an 1-d array with specified size
+ * @returns - an 1-d array, 2-d matrix or more-d tensor with specified size
  * 
  */
 
@@ -79,7 +79,12 @@ function reshape(input, sizes = [-1]) {
             let temp = reshape_helper(raw_in, length / sizes[0] * i, length / sizes[0] * (i + 1), sizes, 1);
             result.push(temp);
         }
-        return result;
+        if (ndim(result) == 2) {
+            return mat(result);
+        }
+        else {
+            return new Tensor(result);
+        }
     }
 
     // use this recursive function
