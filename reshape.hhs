@@ -67,6 +67,8 @@ function reshape(input, sizes = [-1]) {
     if (sizes[dimension - 1] !== -1 && product * sizes[dimension - 1] !== length) {
         throw new Error('Exception occurred in reshape - the product of array sizes must be a divisor');
     }
+    
+    sizes[dimension - 1] = length / product;
 
     // next we reshape the array
     if (dimension === 1) {
