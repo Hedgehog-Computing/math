@@ -58,3 +58,4 @@
  *import math:quartic_equation
  *import math:vander
  *import math:resize
+ *import math:normalize
