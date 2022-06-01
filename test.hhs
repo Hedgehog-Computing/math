@@ -47,6 +47,8 @@ function test() {
 *import math:vander_test
 *import math:resize_test
 *import math:normalize_test
+*import math:is_local_min_test
+*import math:is_local_max_test
 
 
 
@@ -89,6 +91,8 @@ function test() {
   resize_test();
   vander_test();
   normalize_test();
+  is_local_min_test();
+  is_local_max_test();
 
   print("All test cases passed!")
 }
