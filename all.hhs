@@ -59,3 +59,5 @@
  *import math:vander
  *import math:resize
  *import math:normalize
+ *import math:is_local_min
+ *import math:is_local_max
