@@ -61,3 +61,5 @@
  *import math:normalize
  *import math:is_local_min
  *import math:is_local_max
+ *import math:smooth
+ *import math:any_missing
