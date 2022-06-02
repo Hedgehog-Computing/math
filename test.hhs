@@ -49,6 +49,8 @@ function test() {
 *import math:normalize_test
 *import math:is_local_min_test
 *import math:is_local_max_test
+*import math:smooth_test
+*import math:any_missing_test
 
 
 
@@ -93,6 +95,8 @@ function test() {
   normalize_test();
   is_local_min_test();
   is_local_max_test();
+  any_missing_test();
+  smooth_test();
 
   print("All test cases passed!")
 }
