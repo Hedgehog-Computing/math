@@ -1,0 +1,29 @@
+/**
+ * @author Jianan Lin
+ * Unit test for anymissing
+ * 
+ */
+
+
+function anymissing_test() {
+  
+    *import math: anymissing
+
+    let a = [NaN, 1, 0, 0, 1];
+    let b = mat([a, a]);
+    let c = new Tensor([[a, a], [a, a]])
+
+    if (!(anymissing(a) === true)) {
+        throw new Error('Unit test failed for anymissing for array');
+    }
+
+    if (!(anymissing(b) === true)) {
+        throw new Error('Unit test failed for anymissing for matrix');
+    }
+
+    if (!(anymissing(c) === true)) {
+        throw new Error('Unit test failed for anymissing for tensor');
+    }
+
+    //print('anymissing test pass');
+}
