@@ -7,22 +7,22 @@
  */
 
 
-function anymissing(input) {
+function any_missing(input) {
 
     *import math: ndim
     *import math: deep_copy
 
     // argument check
     if (arguments.length === 0) {
-        throw new Error('Exception occurred in anymissing - no argument given');
+        throw new Error('Exception occurred in any_missing - no argument given');
     }
 
     if (arguments.length > 1) {
-        throw new Error('Exception occurred in anymissing - wrong argument number');
+        throw new Error('Exception occurred in any_missing - wrong argument number');
     }
 
     if (!(Array.isArray(input)) && !(input instanceof Mat) && !(input instanceof Tensor)) {
-        throw new Error('Exception occurred in anymissing - input must be an array, matrix or tensor');
+        throw new Error('Exception occurred in any_missing - input must be an array, matrix or tensor');
     }
 
     let in_type = input instanceof Mat || input instanceof Tensor;
