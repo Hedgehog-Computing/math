@@ -51,6 +51,7 @@ function test() {
 *import math:is_local_max_test
 *import math:smooth_test
 *import math:any_missing_test
+*import math:is_missing_test
 
 
 
@@ -97,6 +98,7 @@ function test() {
   is_local_max_test();
   any_missing_test();
   smooth_test();
+  is_missing_test();
 
   print("All test cases passed!")
 }
