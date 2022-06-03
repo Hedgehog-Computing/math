@@ -32,7 +32,7 @@ function any_missing(input) {
     function anymissing_helper(raw_in) {
         if (ndim(raw_in) === 1) {
             for (let i = 0; i < raw_in.length; i++) {
-                if (raw_in[i]) {
+                if (raw_in[i] || raw_in[i] === 0) {
                     continue;
                 }
                 else {
