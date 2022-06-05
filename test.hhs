@@ -17,7 +17,7 @@ function test() {
 *import math:is_tril_test
 *import math:is_triu_test
 *import math:lsolve_test
-*import math:lup_test
+*import math:lu_test
 *import math:lusolve_test
 *import math:QR_test
 *import math:trace_test
