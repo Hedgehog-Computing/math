@@ -1,7 +1,7 @@
 /**
  * @author Jianan Lin (林家南)
- * @param1 input - an array, matrix, tensor that you want to get local max
- * @param2 dim - 0 or 1: 0 is local max of each row, 1 is each column. 
+ * @param input - an array, matrix, tensor that you want to get local max
+ * @param dim - 0 or 1: 0 is local max of each row, 1 is each column. 
  * dim only supports 2-d matrix. For tensor or array, this para is ignored.
  * @returns - a matrix / tensor with elements 0 or 1 denoting whether it is local max.
  * 
