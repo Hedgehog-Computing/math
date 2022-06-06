@@ -1,7 +1,7 @@
 /**
  * @author Jianan Lin (林家南)
- * @param1 input - an array with numbers, can be [1, 2, 3], [[1, 2, 3]] or [[1], [2], [3]]
- * @param2 dim - a number denoting the largest exponential, i.e. x^dim
+ * @param input - an array with numbers, can be [1, 2, 3], [[1, 2, 3]] or [[1], [2], [3]]
+ * @param dim - a number denoting the largest exponential, i.e. x^dim
  * @returns - a matrix with size = input.length * (dim + 1) in the form of
  * [[1, x1, x1^2, ..., x1^dim], ..., [1, xm, xm^2, ..., xm^dim]]
  * 
