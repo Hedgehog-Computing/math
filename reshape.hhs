@@ -1,7 +1,7 @@
 /**
  * @author Jianan Lin (林家南)
- * @param1 input - an array / matrix / tensor
- * @param2 sizes - an array such as [2, 3, 2] or [2, -1]
+ * @param input - an array / matrix / tensor
+ * @param sizes - an array such as [2, 3, 2] or [2, -1]
  * @returns - an 1-d array, 2-d matrix or more-d tensor with specified size
  * 
  */
