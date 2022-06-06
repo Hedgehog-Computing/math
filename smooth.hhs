@@ -1,7 +1,7 @@
 /**
  * @author Jianan Lin (林家南)
- * @param1 input - an array, matrix, tensor that you want to smooth
- * @param2 dim - 0 or 1 with row or column, only support 2-d matrix
+ * @param input - an array, matrix, tensor that you want to smooth
+ * @param dim - 0 or 1 with row or column, only support 2-d matrix
  * @returns - an array / matrix / tensor with elements smoothed
  * smooth method: a[i] -> (a[i - 2] + a[i - 1] + a[i] + a[i + 1] + a[i + 2]) / 5
  * 
