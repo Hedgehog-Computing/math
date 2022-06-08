@@ -65,3 +65,4 @@
  *import math:any_missing
  *import math:is_missing
  *import math:rmmissing
+ *import math:fillmissing
