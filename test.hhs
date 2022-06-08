@@ -53,6 +53,7 @@ function test() {
 *import math:any_missing_test
 *import math:is_missing_test
 *import math:rmmissing_test
+*import math:fillmissing_test
 
 
 
@@ -101,6 +102,7 @@ function test() {
   smooth_test();
   is_missing_test();
   rmmissing_test();
+  fillmissing_test();
 
   print("All test cases passed!")
 }
