@@ -54,6 +54,8 @@ function test() {
 *import math:is_missing_test
 *import math:rmmissing_test
 *import math:fillmissing_test
+*import math:missing_test
+*import math:hankel_test
 
 
 
@@ -103,6 +105,8 @@ function test() {
   is_missing_test();
   rmmissing_test();
   fillmissing_test();
+  missing_test();
+  hankel_test();
 
   print("All test cases passed!")
 }
