@@ -1,6 +1,6 @@
 /**
  * @Author Jianan Lin (林家南)
- * @param input: a 1-2d JS array / matrix / tensor
+ * @param input: a JS array / matrix / tensor
  * @param content: use this to fill the missing part, should be a constant / array / matrix / tensor
  * @param method: 1. 'constant' means use constant from content, 2. 'previous' means use the previous value in input and if no previous, then use constant
  * @returns - input with missing value filled
