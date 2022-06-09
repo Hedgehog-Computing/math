@@ -66,3 +66,5 @@
  *import math:is_missing
  *import math:rmmissing
  *import math:fillmissing
+ *import math:missing
+ *import math:hankel
