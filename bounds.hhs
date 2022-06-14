@@ -1,7 +1,7 @@
 /**
  * @Author Jianan Lin (林家南)
  * @param input - a series of number, or an array, matrix, tensor to get the min and max
- * @param dim - 0 (bound of all), 1 (bound of column), column(bound of row)
+ * @param dim - 0 (bound of all), 1 (bound of column), 2(bound of row)
  * @returns - 1-d array or 2-d matrix [min, max], [[min1, min2], [max1, max2]], [[min1, max1], [min2], max[2]]
  * 
  */
