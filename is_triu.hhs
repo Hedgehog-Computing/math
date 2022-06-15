@@ -33,7 +33,7 @@ function is_triu(input) {
     let raw_in = (in_type) ? input.clone() : deep_copy(input);
 
     //degrade raw_in to JS array for generalized code
-    if (raw_in) {
+    if (in_type) {
         raw_in = raw_in.val;
     }
 
