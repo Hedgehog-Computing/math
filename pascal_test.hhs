@@ -21,5 +21,5 @@ function pascal_test() {
         return Number.isInteger(Math.round(x * 100000) / 100000);
     }
     
-    print('pascal test pass');
+//print('pascal test pass');
 }
