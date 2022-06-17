@@ -69,3 +69,6 @@
  *import math:missing
  *import math:hankel
  *import math:standard_missing
+ *import math:toeplitz
+ *import math:pascal
+ 

@@ -57,6 +57,7 @@ function test() {
 *import math:missing_test
 *import math:hankel_test
 *import math:standard_missing_test
+*import math:pascal_test
 
 
 
@@ -109,6 +110,7 @@ function test() {
   missing_test();
   hankel_test();
   standard_missing_test();
+  pascal_test();
 
   print("All test cases passed!")
 }

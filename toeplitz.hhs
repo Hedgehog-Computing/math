@@ -63,7 +63,7 @@ function toeplitz()
       }
     }
 
-    return new Mat(toeplitzSquare);
+    return new toeplitzSquare;
   }
 
   function toeplitz_cr(c, r) {
@@ -107,6 +107,6 @@ function toeplitz()
       }
     }
 
-    return new Mat(toeplitzMatrix);
+    return toeplitzMatrix;
   }
 }
