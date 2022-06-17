@@ -37,5 +37,5 @@ function pascal(n)
       pascalSquare[row][col] = pascalSquare[row-1][col] + pascalSquare[row][col-1];
     }
   }
-  return new Mat(pascalSquare);
+return pascalSquare;
 }
