@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@hedgehogcomputing/core": "^0.7.0"
+  }
+}
