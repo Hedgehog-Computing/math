@@ -73,7 +73,7 @@ function correcoef(A, B) {
         result2 = result2 + (raw_in_A[i] - meanA) * (raw_in_A[i] - meanA);
         result3 = result3 + (raw_in_B[i] - meanB) * (raw_in_B[i] - meanB);
     }
-    result2 = sqrt(result2).val[0][0];
-    result3 = sqrt(result3).val[0][0];
+    result2 = mathjs.sqrt(result2).val[0][0];
+    result3 = mathjs.sqrt(result3).val[0][0];
     return result1 / result2 / result3;
 }
