@@ -28,8 +28,8 @@ function rms(input) {
                 throw new Error('Exception occurred in rms - you should input some numbers');
             }
         }
-        // sqrt return a matrix [[1]]
-        return sqrt(result / arguments.length).val[0][0];
+        // sqrt
+        return mathjs.sqrt(result / arguments.length);
     }
 
      // rms([1, 2, 3], 0)
@@ -56,5 +56,5 @@ function rms(input) {
     for (let i = 0; i < raw_in.length; i++) {
         result = result + raw_in[i] * raw_in[i];
     }
-    return sqrt(result / raw_in.length).val[0][0];
+    return mathjs.sqrt(result / raw_in.length);
 }
